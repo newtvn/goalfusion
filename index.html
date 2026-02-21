@@ -37,6 +37,23 @@
             color: #F8F1E9; /* brand-cream */
             font-family: 'Bricolage Grotesque', sans-serif;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 29, 21, 0.45);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
         }
 
         .art-card {
@@ -155,7 +172,7 @@
         </div>
     </section>
 
-    <footer class="bg-brand-dark border-t border-brand-sage/10 py-20 px-8">
+    <footer class="bg-transparent border-t border-brand-sage/10 py-20 px-8">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
             <div class="mb-10 md:mb-0">
                 <h4 class="text-3xl font-extrabold uppercase italic tracking-tighter mb-2">GoalFusion</h4>
