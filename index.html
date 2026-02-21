@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalFusion | The Complex</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-cream': '#F8F1E9',
+                        'brand-orange': '#FF9124',
+                        'brand-burnt': '#D94E00',
+                        'brand-sage': '#E1E5D1',
+                        'brand-dark': '#061D15',
+                    },
+                    fontFamily: {
+                        grotesq: ['"Bricolage Grotesque"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #061D15; /* brand-dark */
+            color: #F8F1E9; /* brand-cream */
+            font-family: 'Bricolage Grotesque', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .art-card {
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .art-card:hover {
+            transform: scale(1.02);
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(248, 241, 233, 0.3);
+            color: transparent;
+        }
+
+        .scroll-pill {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+    </style>
+</head>
+<body class="selection:bg-brand-orange selection:text-brand-dark">
+
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference">
+        <div class="text-2xl font-extrabold tracking-tighter uppercase italic">GoalFusion</div>
+        <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-[0.3em]">
+            <a href="#complex" class="hover:text-brand-orange transition">The Hub</a>
+            <a href="https://www.goalhub.ke/" class="hover:text-brand-orange transition">GoalHub</a>
+            <a href="https://www.kienyejihub.ke/" class="hover:text-brand-orange transition">KienyejiHub</a>
+            <a href="https://www.expresscarpets.co.ke/" class="hover:text-brand-orange transition">ExpressCarpets</a>
+        </div>
+        <div class="h-8 w-8 bg-brand-cream rounded-full flex items-center justify-center">
+            <div class="h-1 w-4 bg-brand-dark"></div>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+        <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-brand-burnt/20 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-brand-orange/10 blur-[100px] rounded-full"></div>
+
+        <div class="z-10">
+            <h2 class="text-brand-sage text-xs font-bold uppercase tracking-[0.5em] mb-8">Established 2026 • Kitengela</h2>
+            <h1 class="text-7xl md:text-[10rem] font-extrabold leading-[0.85] tracking-tighter uppercase">
+                Goal<span class="text-brand-orange">Fusion</span>
+            </h1>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 mt-8">
+                <p class="text-brand-sage/60 max-w-md text-lg font-light lowercase italic">
+                    one complex. three distinct identities. elite sports, heritage dining, and bespoke interiors.
+                </p>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 flex flex-col items-center gap-4 opacity-40">
+            <span class="text-[10px] tracking-widest uppercase">Explore The Hub</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-brand-cream to-transparent"></div>
+        </div>
+    </section>
+
+    <section id="complex" class="max-w-[1400px] mx-auto px-6 py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+
+            <div class="lg:col-span-8 group relative overflow-hidden rounded-[2.5rem] bg-brand-sage min-h-[500px] art-card">
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+                     style="background-image: url('https://images.unsplash.com/photo-1529900948634-19253457580b?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="absolute inset-0 bg-brand-dark/40 group-hover:bg-brand-dark/20 transition-all"></div>
+
+                <div class="absolute inset-0 p-12 flex flex-col justify-between">
+                    <div class="flex justify-between items-start">
+                        <span class="px-4 py-1 rounded-full border border-brand-cream/30 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest">Sport & Turf</span>
+                        <div class="w-12 h-12 bg-brand-orange rounded-full flex items-center justify-center -rotate-45 group-hover:rotate-0 transition-transform">
+                            <svg class="w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-6xl font-extrabold tracking-tighter uppercase mb-4">GoalHub</h3>
+                        <p class="max-w-xs text-brand-cream/80 text-sm leading-relaxed mb-6">Master the game on Kitengela's premier professional-grade football turfs.</p>
+                        <a href="https://www.goalhub.ke/" class="inline-block px-8 py-4 bg-brand-cream text-brand-dark text-xs font-bold uppercase rounded-xl hover:bg-brand-orange transition-colors">Book Your Pitch</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-4 group relative overflow-hidden rounded-[2.5rem] bg-brand-burnt min-h-[500px] art-card">
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+                     style="background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="absolute inset-0 bg-brand-burnt/60 group-hover:bg-brand-burnt/40 transition-all"></div>
+
+                <div class="absolute inset-0 p-10 flex flex-col justify-between">
+                    <span class="self-start px-4 py-1 rounded-full border border-brand-cream/30 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest">Heritage Dining</span>
+                    <div>
+                        <h3 class="text-5xl font-extrabold tracking-tighter uppercase mb-4">KienyejiHub</h3>
+                        <p class="text-brand-cream/80 text-sm mb-6">The rhythm of play meets the soul of African cuisine.</p>
+                        <a href="https://www.kienyejihub.ke/" class="text-brand-orange font-bold text-xs uppercase tracking-[0.2em] group-hover:underline">Visit Restaurant →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-12 group relative overflow-hidden rounded-[2.5rem] bg-brand-cream min-h-[400px] art-card border border-white/5">
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105 opacity-80"
+                     style="background-image: url('https://images.unsplash.com/photo-1534073828943-f801091bb18c?q=80&w=1887&auto=format&fit=crop');"></div>
+
+                <div class="absolute inset-0 p-12 flex flex-col md:flex-row md:items-end justify-between bg-gradient-to-t from-brand-dark/80 to-transparent">
+                    <div>
+                        <span class="inline-block px-4 py-1 rounded-full bg-brand-dark text-brand-cream text-[10px] font-bold uppercase tracking-widest mb-6">Home & Interior</span>
+                        <h3 class="text-6xl font-extrabold tracking-tighter uppercase text-brand-cream">ExpressCarpets</h3>
+                    </div>
+                    <div class="mt-6 md:mt-0 md:text-right">
+                        <p class="text-brand-cream/60 max-w-sm mb-6 text-sm">Artisan-crafted textures and luxury flooring to elevate your living sanctuary.</p>
+                        <a href="https://www.expresscarpets.co.ke/" class="inline-block px-8 py-4 bg-brand-orange text-brand-dark text-xs font-bold uppercase rounded-xl hover:bg-brand-burnt hover:text-white transition-all">Explore Collections</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-dark border-t border-brand-sage/10 py-20 px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-10 md:mb-0">
+                <h4 class="text-3xl font-extrabold uppercase italic tracking-tighter mb-2">GoalFusion</h4>
+                <p class="text-brand-sage/40 text-[10px] uppercase tracking-widest">The Lifestyle Complex • Namanga Road</p>
+            </div>
+
+            <div class="flex flex-col items-center md:items-end gap-2 text-right">
+                <div class="flex gap-6 mb-4">
+                    <a href="#" class="text-brand-cream/40 hover:text-brand-orange transition">IG</a>
+                    <a href="#" class="text-brand-cream/40 hover:text-brand-orange transition">FB</a>
+                    <a href="#" class="text-brand-cream/40 hover:text-brand-orange transition">TW</a>
+                </div>
+                <p class="text-[10px] text-brand-sage/30 uppercase tracking-[0.3em]">© 2026 GoalFusion Group. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
