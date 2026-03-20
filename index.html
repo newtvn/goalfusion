@@ -3,192 +3,614 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GoalFusion | The Complex</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-cream': '#F8F1E9',
-                        'brand-orange': '#FF9124',
-                        'brand-burnt': '#D94E00',
-                        'brand-sage': '#E1E5D1',
-                        'brand-dark': '#061D15',
-                    },
-                    fontFamily: {
-                        grotesq: ['"Bricolage Grotesque"', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <title>Kitengela Hub | Sport, Food & Home Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            background-color: #061D15; /* brand-dark */
-            background-image: url('bg-texture.jpeg');
-            background-size: cover;
-            background-position: center top;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #F8F1E9; /* brand-cream */
-            font-family: 'Bricolage Grotesque', sans-serif;
-            overflow-x: hidden;
-            position: relative;
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --green: #22c55e;
+            --green-dark: #16a34a;
+            --orange: #FF9124;
+            --dark: #0d1f13;
         }
 
-        body::before {
-            content: '';
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a120d;
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ── NAV ── */
+        nav {
             position: fixed;
-            inset: 0;
-            background: rgba(6, 29, 21, 0.45);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            z-index: 0;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2.5rem;
+            height: 64px;
+            background: rgba(10, 18, 13, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .nav-logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .nav-logo span { color: var(--green); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-links a.active,
+        .nav-links a:hover { color: var(--green); }
+
+        /* ── HERO WRAPPER ── */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 640px;
+            display: flex;
+            flex-direction: column;
+            padding-top: 64px;
+            overflow: hidden;
+        }
+
+        /* headline bar above panels */
+        .hero-headline {
+            position: absolute;
+            top: 64px;
+            left: 0; right: 0;
+            z-index: 50;
+            text-align: center;
+            padding: 2.5rem 1.5rem 0;
             pointer-events: none;
         }
+        .hero-headline h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(1.6rem, 4vw, 3rem);
+            font-weight: 900;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            line-height: 1.1;
+            color: #fff;
+            text-shadow: 0 2px 24px rgba(0,0,0,0.8);
+        }
+        .hero-headline p {
+            margin-top: 0.5rem;
+            font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+            color: rgba(255,255,255,0.7);
+            font-weight: 400;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+        }
 
-        body > * {
+        /* ── PANELS ── */
+        .panels {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: stretch;
+        }
+
+        .panel {
             position: relative;
+            overflow: hidden;
+            flex: none;
+        }
+
+        /* Diagonal cuts — each panel overlaps the next */
+        .panel-sports {
+            width: 38%;
+            clip-path: polygon(0 0, 100% 0, 87% 100%, 0 100%);
+            z-index: 3;
+        }
+        .panel-grill {
+            width: 38%;
+            margin-left: -5%;
+            clip-path: polygon(13% 0, 100% 0, 87% 100%, 0 100%);
+            z-index: 2;
+        }
+        .panel-wash {
+            width: 34%;
+            margin-left: -5%;
+            clip-path: polygon(13% 0, 100% 0, 100% 100%, 0 100%);
             z-index: 1;
         }
 
-        .art-card {
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        /* Glowing diagonal divider lines */
+        .panel-sports::after,
+        .panel-grill::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(255, 180, 0, 0.15) 10%,
+                rgba(255, 180, 0, 0.9) 40%,
+                rgba(255, 220, 60, 1) 50%,
+                rgba(255, 180, 0, 0.9) 60%,
+                rgba(255, 180, 0, 0.15) 90%,
+                transparent 100%
+            );
+            filter: blur(2px);
+            z-index: 20;
+            transform: skewX(-8deg);
+            transform-origin: top;
         }
 
-        .art-card:hover {
-            transform: scale(1.02);
+        /* Panel backgrounds */
+        .panel-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 6s ease;
+        }
+        .panel:hover .panel-bg { transform: scale(1.04); }
+
+        .panel-overlay {
+            position: absolute;
+            inset: 0;
         }
 
-        .text-outline {
-            -webkit-text-stroke: 1px rgba(248, 241, 233, 0.3);
-            color: transparent;
+        /* Sports: dark green gradient overlay */
+        .panel-sports .panel-overlay {
+            background: linear-gradient(
+                135deg,
+                rgba(5, 30, 10, 0.75) 0%,
+                rgba(10, 50, 20, 0.5) 50%,
+                rgba(5, 25, 10, 0.65) 100%
+            );
         }
 
-        .scroll-pill {
-            animation: bounce 2s infinite;
+        /* Grill: warm dark overlay */
+        .panel-grill .panel-overlay {
+            background: linear-gradient(
+                135deg,
+                rgba(30, 15, 5, 0.80) 0%,
+                rgba(60, 25, 5, 0.55) 50%,
+                rgba(20, 10, 3, 0.75) 100%
+            );
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
+        /* Wash: light overlay on carpet */
+        .panel-wash .panel-overlay {
+            background: linear-gradient(
+                135deg,
+                rgba(240, 235, 225, 0.15) 0%,
+                rgba(250, 245, 235, 0.05) 60%,
+                rgba(20, 15, 10, 0.3) 100%
+            );
+        }
+
+        /* Panel content */
+        .panel-content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 7rem 2rem 2rem;
+        }
+
+        .panel-sports .panel-content { padding-left: 2.5rem; }
+        .panel-grill .panel-content  { padding-left: 4rem; }
+        .panel-wash .panel-content   { padding-left: 4.5rem; }
+
+        .panel-content-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            flex: 1;
+            gap: 1rem;
+        }
+
+        /* ── BADGE / TAG ── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 999px;
+            padding: 5px 14px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            width: fit-content;
+        }
+
+        .now-live {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            border-radius: 999px;
+            padding: 3px 12px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+
+        /* ── HEADINGS ── */
+        .panel-heading {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+            font-weight: 900;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+        }
+
+        .text-green { color: var(--green); }
+        .text-orange { color: var(--orange); }
+
+        .panel-desc {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.5;
+            max-width: 260px;
+        }
+
+        /* Wash panel has dark text (light bg) */
+        .panel-wash .panel-heading { color: #1a1a1a; }
+        .panel-wash .panel-desc    { color: rgba(20,20,20,0.75); }
+
+        /* ── BUTTONS ── */
+        .btn-row {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            padding: 9px 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            text-decoration: none;
+            white-space: nowrap;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+        .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+        .btn-green    { background: var(--green); color: #fff; }
+        .btn-dark     { background: rgba(0,0,0,0.55); color: #fff; border: 1px solid rgba(255,255,255,0.25); backdrop-filter: blur(6px); }
+        .btn-orange   { background: var(--orange); color: #fff; }
+        .btn-outline  { background: transparent; color: #222; border: 1.5px solid rgba(30,30,30,0.4); }
+
+        /* ── TAGS / LINK PILLS ── */
+        .tags-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 999px;
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+        }
+        .tag svg { width: 12px; height: 12px; opacity: 0.7; }
+
+        /* Wash tags (dark text) */
+        .panel-wash .tag {
+            background: rgba(255,255,255,0.5);
+            border-color: rgba(0,0,0,0.12);
+            color: #222;
+        }
+
+        .tag-sep { color: rgba(255,255,255,0.25); font-size: 0.7rem; }
+
+        /* ── GRILL LOGO ── */
+        .grill-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+        }
+        .grill-logo-icon {
+            width: 44px;
+            height: 44px;
+        }
+        .grill-logo-text {
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* ── SOCIAL PROOF ── */
+        .social-proof {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 0.25rem;
+        }
+        .avatars {
+            display: flex;
+        }
+        .avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.8);
+            overflow: hidden;
+            margin-left: -8px;
+            background: #888;
+        }
+        .avatar:first-child { margin-left: 0; }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .proof-text { font-size: 0.72rem; color: #333; }
+        .proof-text strong { font-weight: 700; }
+        .stars { color: #FF9124; font-size: 0.7rem; letter-spacing: 0.05em; }
+
+        /* ── CHAT BUBBLE ── */
+        .chat-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 200;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 24px rgba(34,197,94,0.45);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .chat-btn:hover { transform: scale(1.08); }
+        .chat-btn svg { width: 24px; height: 24px; color: #fff; }
+
+        /* ── FOOTER ── */
+        footer {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 14px 1rem;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.45);
+            background: rgba(0,0,0,0.6);
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        footer a { color: rgba(255,255,255,0.65); text-decoration: underline; }
+
+        /* ── MOBILE STACK ── */
+        @media (max-width: 767px) {
+            .panels {
+                position: static;
+                flex-direction: column;
+                height: auto;
+            }
+            .hero {
+                height: auto;
+                overflow: visible;
+                padding-bottom: 0;
+            }
+            .hero-headline {
+                position: static;
+                padding: 5.5rem 1.25rem 1rem;
+                pointer-events: all;
+            }
+            .panel {
+                width: 100% !important;
+                margin-left: 0 !important;
+                clip-path: none !important;
+                min-height: 480px;
+            }
+            .panel-content {
+                padding: 2rem 1.5rem 2rem !important;
+            }
+            .panel-wash .panel-overlay {
+                background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
+            }
+            .panel-wash .panel-heading { color: #fff; }
+            .panel-wash .panel-desc    { color: rgba(255,255,255,0.8); }
+            .panel-wash .tag { background: rgba(0,0,0,0.35); border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.85); }
+            .proof-text { color: rgba(255,255,255,0.8); }
+            .btn-outline { color: #fff; border-color: rgba(255,255,255,0.4); }
         }
     </style>
 </head>
-<body class="selection:bg-brand-orange selection:text-brand-dark">
+<body>
 
-    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference">
-        <div class="text-2xl font-extrabold tracking-tighter uppercase italic">GoalFusion</div>
-        <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-[0.3em]">
-            <a href="#complex" class="hover:text-brand-orange transition">The Hub</a>
-            <a href="https://www.goalhub.ke/" class="hover:text-brand-orange transition">GoalHub</a>
-            <a href="https://www.kienyejihub.ke/" class="hover:text-brand-orange transition">KienyejiHub</a>
-            <a href="https://www.expresscarpets.co.ke/" class="hover:text-brand-orange transition">ExpressCarpets</a>
-        </div>
-        <div class="h-8 w-8 bg-brand-cream rounded-full flex items-center justify-center">
-            <div class="h-1 w-4 bg-brand-dark"></div>
-        </div>
+    <!-- NAV -->
+    <nav>
+        <div class="nav-logo">Kitengela <span>Hub</span></div>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
     </nav>
 
-    <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
-        <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-brand-burnt/20 blur-[120px] rounded-full"></div>
-        <div class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-brand-orange/10 blur-[100px] rounded-full"></div>
+    <!-- HERO -->
+    <div class="hero">
 
-        <div class="z-10">
-            <h2 class="text-brand-sage text-sm md:text-base font-bold uppercase tracking-[0.5em] mb-8">Established 2026 • Kitengela</h2>
-            <h1 class="text-7xl md:text-[10rem] font-extrabold leading-[0.85] tracking-tighter uppercase">
-                Goal<span class="text-brand-orange">Fusion</span>
-            </h1>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-4 mt-8">
-                <p class="text-brand-sage/60 max-w-lg text-xl md:text-2xl font-light lowercase italic">
-                    one complex. three distinct identities. elite sports, heritage dining, and bespoke interiors.
-                </p>
-            </div>
+        <!-- Headline floats above the panels -->
+        <div class="hero-headline">
+            <h1>Welcome to Your Premier Kitengela Services Portal</h1>
+            <p>Your unified gateway to sport, food, and home care in Kitengela.</p>
         </div>
 
-        <div class="absolute bottom-10 flex flex-col items-center gap-4 opacity-40">
-            <span class="text-xs tracking-widest uppercase">Explore The Hub</span>
-            <div class="w-[1px] h-12 bg-gradient-to-b from-brand-cream to-transparent"></div>
-        </div>
-    </section>
+        <!-- Three diagonal panels -->
+        <div class="panels">
 
-    <section id="complex" class="max-w-[1400px] mx-auto px-6 py-24">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-
-            <div class="lg:col-span-8 group relative overflow-hidden rounded-[2.5rem] bg-brand-sage min-h-[500px] art-card">
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
-                     style="background-image: url('https://images.unsplash.com/photo-1529900948634-19253457580b?q=80&w=2070&auto=format&fit=crop');"></div>
-                <div class="absolute inset-0 bg-brand-dark/40 group-hover:bg-brand-dark/20 transition-all"></div>
-
-                <div class="absolute inset-0 p-12 flex flex-col justify-between">
-                    <div class="flex justify-between items-start">
-                        <span class="px-4 py-1 rounded-full border border-brand-cream/30 backdrop-blur-md text-xs font-bold uppercase tracking-widest">Sport & Turf</span>
-                        <div class="w-12 h-12 bg-brand-orange rounded-full flex items-center justify-center -rotate-45 group-hover:rotate-0 transition-transform">
-                            <svg class="w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            <!-- PANEL 1 — GoalHub (Sports / Turf) -->
+            <div class="panel panel-sports">
+                <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1993&auto=format&fit=crop');"></div>
+                <div class="panel-overlay"></div>
+                <div class="panel-content">
+                    <div class="panel-content-inner">
+                        <div>
+                            <span class="now-live">Now Live</span>
+                        </div>
+                        <div>
+                            <div class="panel-heading">
+                                Book Your<br>
+                                <span class="text-green">Pitch.</span>
+                            </div>
+                        </div>
+                        <p class="panel-desc">
+                            Kitengela's premier football destination.<br>
+                            Professional grade turfs with seamless booking.
+                        </p>
+                        <div class="btn-row">
+                            <a href="https://www.goalhub.ke/" class="btn btn-green" target="_blank" rel="noopener">Book a Session</a>
+                            <a href="https://www.goalhub.ke/" class="btn btn-dark" target="_blank" rel="noopener">View Events</a>
+                        </div>
+                        <div class="tags-row">
+                            <a href="https://www.goalhub.ke/" class="tag" target="_blank" rel="noopener">
+                                <svg fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" opacity="0"/></svg>
+                                Turfs
+                            </a>
+                            <span class="tag-sep">|</span>
+                            <a href="https://www.goalhub.ke/" class="tag" target="_blank" rel="noopener">Bookings</a>
+                            <span class="tag-sep">|</span>
+                            <a href="https://www.goalhub.ke/" class="tag" target="_blank" rel="noopener">Events</a>
                         </div>
                     </div>
-                    <div>
-                        <h3 class="text-6xl font-extrabold tracking-tighter uppercase mb-4">GoalHub</h3>
-                        <p class="max-w-xs text-brand-cream/80 text-base leading-relaxed mb-6">Master the game on Kitengela's premier professional-grade football turfs.</p>
-                        <a href="https://www.goalhub.ke/" class="inline-block px-8 py-4 bg-brand-cream text-brand-dark text-sm font-bold uppercase rounded-xl hover:bg-brand-orange transition-colors">Book Your Pitch</a>
+                </div>
+            </div>
+
+            <!-- PANEL 2 — The Kitengela Grill (Restaurant) -->
+            <div class="panel panel-grill">
+                <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1887&auto=format&fit=crop');"></div>
+                <div class="panel-overlay"></div>
+                <div class="panel-content">
+                    <div class="panel-content-inner">
+                        <!-- Flame logo -->
+                        <div class="grill-logo">
+                            <svg class="grill-logo-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M32 56C32 56 14 44 14 28C14 18 22 10 32 10C42 10 50 18 50 28C50 44 32 56 32 56Z" fill="#FF6B00" opacity="0.9"/>
+                                <path d="M32 50C32 50 20 40 20 28C20 21 25.5 15 32 15C38.5 15 44 21 44 28C44 40 32 50 32 50Z" fill="#FFB800"/>
+                                <path d="M32 44C32 44 24 36 24 28C24 23 27.5 19 32 19C36.5 19 40 23 40 28C40 36 32 44 32 44Z" fill="#FFF0C0" opacity="0.8"/>
+                                <line x1="20" y1="60" x2="44" y2="60" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span class="grill-logo-text">the grill</span>
+                        </div>
+                        <div>
+                            <div class="panel-heading">
+                                Experience<br>The Grill.<br>
+                                <span style="font-size: 0.55em; font-weight: 700; text-transform: none; opacity: 0.85;">(The Kitengela Grill)</span>
+                            </div>
+                        </div>
+                        <p class="panel-desc">
+                            Authentic local &amp; international cuisine.<br>
+                            Perfect for team lunches and family dinners.
+                        </p>
+                        <div class="btn-row">
+                            <a href="#" class="btn btn-orange">Book a Table</a>
+                            <a href="#" class="btn btn-dark">View Menu</a>
+                        </div>
+                        <div class="tags-row">
+                            <span class="tag">🍽 Chef's Recommendation</span>
+                            <span class="tag">Open Hours</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="lg:col-span-4 group relative overflow-hidden rounded-[2.5rem] bg-brand-burnt min-h-[500px] art-card">
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
-                     style="background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop');"></div>
-                <div class="absolute inset-0 bg-brand-burnt/60 group-hover:bg-brand-burnt/40 transition-all"></div>
-
-                <div class="absolute inset-0 p-10 flex flex-col justify-between">
-                    <span class="self-start px-4 py-1 rounded-full border border-brand-cream/30 backdrop-blur-md text-xs font-bold uppercase tracking-widest">Heritage Dining</span>
-                    <div>
-                        <h3 class="text-5xl font-extrabold tracking-tighter uppercase mb-4">KienyejiHub</h3>
-                        <p class="text-brand-cream/80 text-base mb-6">The rhythm of play meets the soul of African cuisine.</p>
-                        <a href="https://www.kienyejihub.ke/" class="text-brand-orange font-bold text-sm uppercase tracking-[0.2em] group-hover:underline">Visit Restaurant →</a>
+            <!-- PANEL 3 — ExpressCarpets (Fabric Care) -->
+            <div class="panel panel-wash">
+                <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1887&auto=format&fit=crop');"></div>
+                <div class="panel-overlay"></div>
+                <div class="panel-content">
+                    <div class="panel-content-inner">
+                        <!-- ExpressWash badge -->
+                        <div class="badge" style="background: rgba(255,255,255,0.75); color: #111; border-color: rgba(0,0,0,0.1);">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#3b82f6"/>
+                            </svg>
+                            <span><b>Express</b>Carpets</span>
+                        </div>
+                        <div>
+                            <div class="panel-heading">
+                                Professional<br>Carpet &amp; Fabric<br>Care.
+                                <span style="font-size: 0.52em; font-weight: 700; display: block; margin-top: 2px; opacity: 0.75;">(ExpressCarpets)</span>
+                            </div>
+                        </div>
+                        <p class="panel-desc">
+                            Cleaner &amp; Faster. Trusted by thousands across Kenya.
+                        </p>
+                        <div class="btn-row">
+                            <a href="https://www.expresscarpets.co.ke/" class="btn btn-orange" target="_blank" rel="noopener">Schedule Pickup</a>
+                            <a href="https://www.expresscarpets.co.ke/" class="btn btn-outline" target="_blank" rel="noopener">Get a Quote</a>
+                        </div>
+                        <div class="social-proof">
+                            <div class="avatars">
+                                <div class="avatar"><img src="https://i.pravatar.cc/56?img=1" alt="customer"></div>
+                                <div class="avatar"><img src="https://i.pravatar.cc/56?img=2" alt="customer"></div>
+                                <div class="avatar"><img src="https://i.pravatar.cc/56?img=3" alt="customer"></div>
+                            </div>
+                            <div>
+                                <div class="stars">★★★★★</div>
+                                <div class="proof-text"><strong>10,000+</strong> happy customers</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="lg:col-span-12 group relative overflow-hidden rounded-[2.5rem] bg-brand-cream min-h-[400px] art-card border border-white/5">
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105 opacity-80"
-                     style="background-image: url('https://images.unsplash.com/photo-1534073828943-f801091bb18c?q=80&w=1887&auto=format&fit=crop');"></div>
+        </div><!-- end .panels -->
+    </div><!-- end .hero -->
 
-                <div class="absolute inset-0 p-12 flex flex-col md:flex-row md:items-end justify-between bg-gradient-to-t from-brand-dark/80 to-transparent">
-                    <div>
-                        <span class="inline-block px-4 py-1 rounded-full bg-brand-dark text-brand-cream text-xs font-bold uppercase tracking-widest mb-6">Home & Interior</span>
-                        <h3 class="text-6xl font-extrabold tracking-tighter uppercase text-brand-cream">ExpressCarpets</h3>
-                    </div>
-                    <div class="mt-6 md:mt-0 md:text-right">
-                        <p class="text-brand-cream/60 max-w-sm mb-6 text-base">Artisan-crafted textures and luxury flooring to elevate your living sanctuary.</p>
-                        <a href="https://www.expresscarpets.co.ke/" class="inline-block px-8 py-4 bg-brand-orange text-brand-dark text-sm font-bold uppercase rounded-xl hover:bg-brand-burnt hover:text-white transition-all">Explore Collections</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-transparent border-t border-brand-sage/10 py-20 px-8">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-10 md:mb-0">
-                <h4 class="text-4xl font-extrabold uppercase italic tracking-tighter mb-2">GoalFusion</h4>
-                <p class="text-brand-sage/40 text-xs uppercase tracking-widest">The Lifestyle Complex • Namanga Road</p>
-            </div>
-
-            <div class="flex flex-col items-center md:items-end gap-2 text-right">
-                <div class="flex gap-6 mb-4">
-                    <a href="#" class="text-brand-cream/40 hover:text-brand-orange transition">IG</a>
-                    <a href="#" class="text-brand-cream/40 hover:text-brand-orange transition">FB</a>
-                    <a href="#" class="text-brand-cream/40 hover:text-brand-orange transition">TW</a>
-                </div>
-                <p class="text-xs text-brand-sage/30 uppercase tracking-[0.3em]">© 2026 GoalFusion Group. All Rights Reserved.</p>
-            </div>
-        </div>
+    <!-- FOOTER -->
+    <footer>
+        Kitengela Hub &nbsp;|&nbsp; Site Credits by <a href="https://www.kitengelah.co.ke" target="_blank" rel="noopener">Kitengelah.co.ke</a>
     </footer>
+
+    <!-- CHAT BUBBLE -->
+    <div class="chat-btn" title="Chat with us">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+        </svg>
+    </div>
 
 </body>
 </html>
