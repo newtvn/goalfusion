@@ -3,7 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GOALFUSION | Sport, Food & Home Care — Kitengela</title>
+    <title>GOALFUSION | Sport, Food & Home Care — Kitengela, Kenya</title>
+    <meta name="description" content="GoalFusion is Kitengela's first multi-brand complex — GoalHub football turfs, Kienyeji Hub restaurant, and ExpressCarpets fabric care. Book a pitch, grab a meal, or schedule a carpet clean.">
+    <meta name="keywords" content="GoalFusion, Kitengela, GoalHub, football turf booking, Kienyeji Hub, restaurant Kitengela, ExpressCarpets, carpet cleaning Kenya, sports complex Kitengela">
+    <meta name="author" content="GoalFusion">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://goalfusion.co.ke/">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GOALFUSION — Sport, Food & Home Care in Kitengela">
+    <meta property="og:description" content="Kitengela's first multi-brand complex. Book football pitches at GoalHub, dine at Kienyeji Hub, or get carpets cleaned by ExpressCarpets — all in one place.">
+    <meta property="og:url" content="https://goalfusion.co.ke/">
+    <meta property="og:site_name" content="GoalFusion">
+    <meta property="og:locale" content="en_KE">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GOALFUSION — Sport, Food & Home Care in Kitengela">
+    <meta name="twitter:description" content="Kitengela's first multi-brand complex. GoalHub, Kienyeji Hub & ExpressCarpets under one roof.">
+    <!-- Geo tags for local SEO -->
+    <meta name="geo.region" content="KE-16">
+    <meta name="geo.placename" content="Kitengela">
+    <meta name="geo.position" content="-1.469;36.961">
+    <meta name="ICBM" content="-1.469, 36.961">
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
 
     <style>
@@ -131,15 +155,18 @@
             text-shadow: 0 1px 10px rgba(0,0,0,0.9);
         }
 
-        /* ─────────────── PAPER-CUT PANELS ─────────────── */
+        /* ─────────────── TORN PAPER PANELS ─────────────── */
         /*
-         * Paper-cut technique:
-         * Three full-height panels in a flex row, each clipped with
-         * polygon() to create a sharp diagonal cut. Panels overlap so
-         * the cuts meet cleanly. An SVG overlay (sibling of all panels,
-         * never clipped) draws precision glow lines exactly on the cut
-         * edges. Each panel also casts a drop-shadow inward onto the
-         * next for a real stacked-paper depth effect.
+         * Torn-paper technique:
+         * Three full-height panels sit in a flex row. Each panel uses
+         * an SVG <clipPath> (referenced by url()) with a highly irregular
+         * torn-edge path. The SVG defs block lives in the HTML body.
+         *
+         * Depth layers per seam:
+         *   1) CSS drop-shadow on each panel → stacked sheet shadow
+         *   2) ::before on panels 2 & 3 → shadow under the tear
+         *   3) ::after on panels 1 & 2 → white paper-fiber edge
+         *   4) SVG overlay → torn fiber texture along each seam
          */
         .panels {
             position: absolute;
@@ -153,32 +180,30 @@
             flex-shrink: 0;
         }
 
-        /*
-         * Cut geometry — 18% horizontal offset over full height.
-         * Sports  : 44% wide, right edge  44%→36% (top→bottom)
-         * Food    : 40% wide (starts at 36%), right edge 76%→68.8%
-         * Care    : 36% wide (starts at 68.8%), fills to 100%
-         */
+        /* Panels reference SVG clipPath IDs defined in the HTML */
         .panel-sports {
             width: 44%;
             z-index: 3;
-            clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
+            clip-path: url(#torn-clip-sports);
+            filter: drop-shadow(6px 0 18px rgba(0,0,0,0.8))
+                    drop-shadow(2px 0 6px rgba(0,0,0,0.6));
         }
         .panel-food {
             width: 40%;
             margin-left: -8%;
             z-index: 2;
-            clip-path: polygon(18% 0, 100% 0, 82% 100%, 0 100%);
+            clip-path: url(#torn-clip-food);
+            filter: drop-shadow(6px 0 18px rgba(0,0,0,0.75))
+                    drop-shadow(2px 0 6px rgba(0,0,0,0.55));
         }
         .panel-care {
             width: 36%;
             margin-left: -8%;
             z-index: 1;
-            clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+            clip-path: url(#torn-clip-care);
         }
 
-        /* Cast-shadow from the panel above onto the next panel.
-           Gradient runs from the diagonal cut edge inward. */
+        /* Shadow gradient on panels 2 & 3 from the tear above */
         .panel-food::before,
         .panel-care::before {
             content: '';
@@ -187,15 +212,35 @@
             z-index: 8;
             pointer-events: none;
             background: linear-gradient(
-                to right,
-                rgba(0,0,0,0.72) 0%,
-                rgba(0,0,0,0.3)  12%,
-                transparent      32%
+                115deg,
+                rgba(0,0,0,0.0) 0%,
+                rgba(0,0,0,0.6) 2.5%,
+                rgba(0,0,0,0.35) 6%,
+                rgba(0,0,0,0.12) 14%,
+                transparent 26%
             );
         }
 
-        /* SVG seam overlay — direct child of .panels so it is never
-           clipped by any panel's clip-path. */
+        /* White paper-fiber edge on the right side of panels 1 & 2 */
+        .panel-sports::after,
+        .panel-food::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 100%; height: 100%;
+            z-index: 9;
+            pointer-events: none;
+            background: linear-gradient(
+                -65deg,
+                rgba(255,255,255,0.0) 0%,
+                rgba(255,250,240,0.3) 0.6%,
+                rgba(255,250,240,0.12) 1.4%,
+                transparent 2.5%
+            );
+        }
+
+        /* SVG seam overlay — sits above all panels (never clipped).
+           Renders torn-paper fiber texture along each seam. */
         .seam-svg {
             position: absolute;
             inset: 0;
@@ -675,9 +720,15 @@
                 width: 100% !important;
                 margin-left: 0 !important;
                 clip-path: none !important;
+                -webkit-clip-path: none !important;
                 min-height: 440px;
+                filter: none !important;
             }
-            .seam { display: none; }
+            .seam-svg { display: none; }
+            .panel-food::before,
+            .panel-care::before,
+            .panel-sports::after,
+            .panel-food::after { display: none; }
             .panel-content {
                 padding: 2rem 1.5rem 2.2rem !important;
             }
@@ -697,8 +748,423 @@
             .nav-links { display: none; }
         }
     </style>
+
+    <!-- Structured Data — LocalBusiness + Organization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "GoalFusion — GoalHub Complex",
+        "description": "Kitengela's first multi-brand complex featuring GoalHub football turfs, Kienyeji Hub restaurant, and ExpressCarpets fabric care services.",
+        "url": "https://goalfusion.co.ke",
+        "telephone": "+254700000000",
+        "email": "hello@goalfusion.co.ke",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "GoalHub Complex",
+            "addressLocality": "Kitengela",
+            "addressRegion": "Kajiado County",
+            "addressCountry": "KE"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -1.469,
+            "longitude": 36.961
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                "opens": "07:00",
+                "closes": "23:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Sunday",
+                "opens": "08:00",
+                "closes": "22:00"
+            }
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "GoalFusion Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "GoalHub — Football Turf Booking",
+                        "description": "Professional 5-a-side and 7-a-side football turf hire in Kitengela with floodlights and online booking."
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Kienyeji Hub — Restaurant & Dining",
+                        "description": "Authentic Kenyan home-cooking restaurant in Kitengela serving traditional dishes and event catering."
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "ExpressCarpets — Carpet & Fabric Cleaning",
+                        "description": "Professional carpet and fabric deep-cleaning service with free doorstep collection and delivery across Kenya."
+                    }
+                }
+            ]
+        },
+        "sameAs": []
+    }
+    </script>
 </head>
 <body>
+
+<!--
+    SVG clip-path definitions for torn-paper edges.
+    Uses clipPathUnits="objectBoundingBox" so coordinates are 0-1 relative
+    to each panel's bounding box. The right edge of each path is a highly
+    irregular torn-paper boundary with deep notches, bumps, and fiber-like
+    protrusions matching the reference torn-paper aesthetic.
+-->
+<svg style="position:absolute;width:0;height:0;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <!--
+            CLIP 1 — Sports panel (right edge torn)
+            Right edge runs from ~1.0 at top to ~0.82 at bottom,
+            with deep organic tears: zigzags, notches, fiber bumps.
+        -->
+        <clipPath id="torn-clip-sports" clipPathUnits="objectBoundingBox">
+            <path d="
+                M 0,0
+                L 1,0
+                L 0.995,0.012
+                L 0.998,0.024
+                L 0.99,0.038
+                L 0.994,0.048
+                L 0.985,0.062
+                L 0.988,0.072
+                L 0.978,0.088
+                L 0.982,0.098
+                L 0.975,0.112
+                L 0.98,0.118
+                L 0.97,0.135
+                L 0.974,0.145
+                L 0.965,0.16
+                L 0.968,0.172
+                L 0.958,0.188
+                L 0.963,0.195
+                L 0.955,0.21
+                L 0.96,0.222
+                L 0.948,0.238
+                L 0.952,0.248
+                L 0.944,0.265
+                L 0.95,0.272
+                L 0.94,0.29
+                L 0.945,0.298
+                L 0.935,0.315
+                L 0.938,0.325
+                L 0.928,0.342
+                L 0.933,0.35
+                L 0.924,0.368
+                L 0.929,0.375
+                L 0.92,0.392
+                L 0.924,0.402
+                L 0.914,0.42
+                L 0.918,0.428
+                L 0.91,0.445
+                L 0.915,0.452
+                L 0.906,0.47
+                L 0.91,0.478
+                L 0.9,0.495
+                L 0.905,0.505
+                L 0.895,0.522
+                L 0.9,0.53
+                L 0.89,0.548
+                L 0.894,0.555
+                L 0.886,0.572
+                L 0.89,0.582
+                L 0.88,0.598
+                L 0.884,0.608
+                L 0.875,0.625
+                L 0.88,0.632
+                L 0.87,0.65
+                L 0.875,0.658
+                L 0.866,0.675
+                L 0.87,0.685
+                L 0.86,0.702
+                L 0.864,0.71
+                L 0.855,0.728
+                L 0.86,0.735
+                L 0.85,0.752
+                L 0.854,0.762
+                L 0.845,0.778
+                L 0.85,0.785
+                L 0.84,0.802
+                L 0.844,0.812
+                L 0.835,0.828
+                L 0.84,0.838
+                L 0.83,0.855
+                L 0.835,0.862
+                L 0.826,0.878
+                L 0.83,0.888
+                L 0.822,0.905
+                L 0.826,0.912
+                L 0.82,0.928
+                L 0.824,0.94
+                L 0.818,0.955
+                L 0.822,0.968
+                L 0.82,0.985
+                L 0.82,1
+                L 0,1
+                Z
+            "/>
+        </clipPath>
+
+        <!--
+            CLIP 2 — Food panel (left & right edges torn)
+            Left edge runs from ~0.18 at top to ~0.0 at bottom.
+            Right edge mirrors the same torn style.
+        -->
+        <clipPath id="torn-clip-food" clipPathUnits="objectBoundingBox">
+            <path d="
+                M 0.18,0
+                L 0.185,0.015
+                L 0.178,0.028
+                L 0.184,0.042
+                L 0.175,0.058
+                L 0.18,0.068
+                L 0.172,0.085
+                L 0.177,0.095
+                L 0.168,0.112
+                L 0.174,0.122
+                L 0.165,0.138
+                L 0.17,0.15
+                L 0.16,0.168
+                L 0.166,0.175
+                L 0.158,0.192
+                L 0.162,0.205
+                L 0.153,0.222
+                L 0.158,0.232
+                L 0.15,0.248
+                L 0.154,0.26
+                L 0.145,0.278
+                L 0.15,0.285
+                L 0.14,0.302
+                L 0.146,0.315
+                L 0.136,0.332
+                L 0.14,0.342
+                L 0.132,0.358
+                L 0.137,0.368
+                L 0.128,0.385
+                L 0.132,0.398
+                L 0.123,0.415
+                L 0.128,0.422
+                L 0.12,0.438
+                L 0.125,0.45
+                L 0.115,0.468
+                L 0.12,0.475
+                L 0.112,0.492
+                L 0.116,0.505
+                L 0.107,0.522
+                L 0.112,0.532
+                L 0.103,0.548
+                L 0.108,0.558
+                L 0.1,0.575
+                L 0.104,0.588
+                L 0.095,0.605
+                L 0.1,0.612
+                L 0.092,0.628
+                L 0.096,0.642
+                L 0.087,0.658
+                L 0.092,0.668
+                L 0.083,0.685
+                L 0.088,0.695
+                L 0.08,0.712
+                L 0.084,0.725
+                L 0.075,0.742
+                L 0.08,0.748
+                L 0.072,0.765
+                L 0.076,0.778
+                L 0.067,0.795
+                L 0.072,0.805
+                L 0.063,0.822
+                L 0.068,0.832
+                L 0.06,0.848
+                L 0.064,0.86
+                L 0.055,0.878
+                L 0.06,0.888
+                L 0.052,0.905
+                L 0.056,0.918
+                L 0.048,0.935
+                L 0.052,0.948
+                L 0.045,0.965
+                L 0.04,0.98
+                L 0,1
+                L 0,1
+                L 1,1
+                L 1,0
+                L 0.998,0.014
+                L 0.994,0.028
+                L 0.998,0.04
+                L 0.99,0.055
+                L 0.994,0.065
+                L 0.985,0.082
+                L 0.99,0.092
+                L 0.98,0.108
+                L 0.985,0.118
+                L 0.976,0.135
+                L 0.98,0.145
+                L 0.972,0.162
+                L 0.977,0.172
+                L 0.968,0.188
+                L 0.972,0.198
+                L 0.963,0.215
+                L 0.968,0.225
+                L 0.96,0.242
+                L 0.964,0.255
+                L 0.955,0.272
+                L 0.96,0.28
+                L 0.952,0.298
+                L 0.956,0.308
+                L 0.946,0.325
+                L 0.95,0.335
+                L 0.942,0.352
+                L 0.946,0.365
+                L 0.938,0.382
+                L 0.942,0.392
+                L 0.932,0.408
+                L 0.936,0.418
+                L 0.928,0.435
+                L 0.932,0.448
+                L 0.924,0.465
+                L 0.928,0.475
+                L 0.918,0.492
+                L 0.922,0.502
+                L 0.914,0.518
+                L 0.918,0.528
+                L 0.91,0.545
+                L 0.914,0.558
+                L 0.905,0.575
+                L 0.91,0.585
+                L 0.9,0.602
+                L 0.904,0.612
+                L 0.896,0.628
+                L 0.9,0.638
+                L 0.892,0.655
+                L 0.896,0.668
+                L 0.887,0.685
+                L 0.892,0.695
+                L 0.883,0.712
+                L 0.888,0.722
+                L 0.878,0.738
+                L 0.883,0.748
+                L 0.875,0.765
+                L 0.878,0.778
+                L 0.87,0.795
+                L 0.874,0.805
+                L 0.865,0.822
+                L 0.87,0.832
+                L 0.86,0.848
+                L 0.864,0.858
+                L 0.856,0.875
+                L 0.86,0.888
+                L 0.852,0.905
+                L 0.855,0.918
+                L 0.848,0.935
+                L 0.852,0.948
+                L 0.845,0.965
+                L 0.84,0.98
+                L 0.82,1
+                L 0,1
+                Z
+            "/>
+        </clipPath>
+
+        <!--
+            CLIP 3 — Care panel (left edge torn only)
+        -->
+        <clipPath id="torn-clip-care" clipPathUnits="objectBoundingBox">
+            <path d="
+                M 0.18,0
+                L 0.185,0.014
+                L 0.178,0.03
+                L 0.183,0.042
+                L 0.174,0.06
+                L 0.18,0.07
+                L 0.17,0.088
+                L 0.176,0.098
+                L 0.167,0.115
+                L 0.172,0.125
+                L 0.163,0.14
+                L 0.168,0.152
+                L 0.158,0.17
+                L 0.164,0.178
+                L 0.155,0.195
+                L 0.16,0.208
+                L 0.15,0.225
+                L 0.156,0.235
+                L 0.147,0.252
+                L 0.152,0.262
+                L 0.143,0.28
+                L 0.148,0.29
+                L 0.138,0.308
+                L 0.143,0.318
+                L 0.134,0.335
+                L 0.14,0.345
+                L 0.13,0.362
+                L 0.135,0.375
+                L 0.126,0.392
+                L 0.13,0.402
+                L 0.122,0.42
+                L 0.126,0.43
+                L 0.117,0.448
+                L 0.122,0.458
+                L 0.113,0.475
+                L 0.118,0.485
+                L 0.108,0.502
+                L 0.113,0.515
+                L 0.104,0.532
+                L 0.11,0.542
+                L 0.1,0.558
+                L 0.105,0.568
+                L 0.096,0.585
+                L 0.1,0.598
+                L 0.092,0.615
+                L 0.096,0.625
+                L 0.087,0.642
+                L 0.092,0.655
+                L 0.083,0.672
+                L 0.088,0.682
+                L 0.078,0.698
+                L 0.083,0.71
+                L 0.074,0.728
+                L 0.078,0.738
+                L 0.07,0.755
+                L 0.074,0.768
+                L 0.065,0.785
+                L 0.07,0.795
+                L 0.06,0.812
+                L 0.065,0.825
+                L 0.056,0.842
+                L 0.06,0.852
+                L 0.052,0.868
+                L 0.056,0.878
+                L 0.048,0.895
+                L 0.052,0.908
+                L 0.044,0.925
+                L 0.048,0.94
+                L 0.04,0.958
+                L 0.035,0.975
+                L 0,1
+                L 1,1
+                L 1,0
+                Z
+            "/>
+        </clipPath>
+    </defs>
+</svg>
 
 <!-- ── NAV ── -->
 <nav>
@@ -797,50 +1263,78 @@
         </div>
 
         <!--
-            SVG seam overlay — sits above all three panels but is NOT a child
-            of any panel, so it is never clipped. viewBox="0 0 100 100" with
-            preserveAspectRatio="none" maps directly to percentages of the
-            panels container. Seam coordinates match the clip-path geometry:
-              Seam 1: Sports right edge  → (44,0)→(36,100)
-              Seam 2: Food right edge    → (76,0)→(69,100)
+            SVG seam overlay — torn paper fiber texture.
+            Sits above all panels (never clipped). Renders the visible
+            white paper fibers along each tear line using a turbulence-
+            displaced stroke that creates an organic fibrous appearance.
         -->
-        <svg class="seam-svg" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="seam-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-                <!-- Glow filters -->
-                <filter id="glow-s1" x="-500%" y="-10%" width="1100%" height="120%">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/>
-                    <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                <!-- Turbulence filter to create paper-fiber texture on strokes -->
+                <filter id="fiber-tex" x="-10%" y="-2%" width="120%" height="104%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.04 0.15" numOctaves="5" seed="2" result="noise"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+                    <feGaussianBlur in="displaced" stdDeviation="0.6" result="softened"/>
+                    <feMerge><feMergeNode in="softened"/></feMerge>
                 </filter>
-                <filter id="glow-s2" x="-500%" y="-10%" width="1100%" height="120%">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/>
-                    <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                <!-- Wider fiber glow for the outer fibrous halo -->
+                <filter id="fiber-glow" x="-15%" y="-3%" width="130%" height="106%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.03 0.12" numOctaves="4" seed="5" result="noise"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+                    <feGaussianBlur in="displaced" stdDeviation="2.5" result="glow"/>
+                    <feMerge><feMergeNode in="glow"/></feMerge>
                 </filter>
-                <!-- Vertical fade gradients -->
-                <linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%"   stop-color="#22c55e" stop-opacity="0"/>
-                    <stop offset="18%"  stop-color="#fde047" stop-opacity="0.85"/>
-                    <stop offset="50%"  stop-color="#ffffff" stop-opacity="1"/>
-                    <stop offset="82%"  stop-color="#fde047" stop-opacity="0.85"/>
-                    <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
-                </linearGradient>
-                <linearGradient id="sg2" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%"   stop-color="#FF9124" stop-opacity="0"/>
-                    <stop offset="18%"  stop-color="#fde047" stop-opacity="0.85"/>
-                    <stop offset="50%"  stop-color="#ffffff" stop-opacity="1"/>
-                    <stop offset="82%"  stop-color="#fde047" stop-opacity="0.85"/>
-                    <stop offset="100%" stop-color="#FF9124" stop-opacity="0"/>
-                </linearGradient>
+                <!-- Deep shadow behind the tear -->
+                <filter id="tear-shadow" x="-20%" y="-5%" width="140%" height="110%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
+                </filter>
+                <!-- Near shadow crease -->
+                <filter id="tear-crease" x="-10%" y="-3%" width="120%" height="106%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.03 0.1" numOctaves="3" seed="8" result="noise"/>
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" result="d"/>
+                    <feGaussianBlur in="d" stdDeviation="3"/>
+                </filter>
             </defs>
 
-            <!-- Seam 1 — outer soft glow -->
-            <line x1="44" y1="0" x2="36" y2="100" stroke="rgba(253,224,71,0.22)" stroke-width="2.4" filter="url(#glow-s1)"/>
-            <!-- Seam 1 — inner sharp bright line -->
-            <line x1="44" y1="0" x2="36" y2="100" stroke="url(#sg1)" stroke-width="0.22"/>
+            <!--
+                SEAM 1 — torn edge between Sports & Food panels
+                Path runs from (440,0) to (320,1000) with deep irregular tears.
+            -->
+            <!-- Layer 1: Deep shadow cast by top sheet -->
+            <polyline points="440,-10 438,30 435,60 440,85 432,115 428,150 434,175 427,210 421,250 426,280 418,320 412,360 417,390 409,430 404,470 408,500 400,540 394,580 398,610 390,650 384,690 388,715 380,750 374,785 378,810 370,850 364,885 360,920 352,955 344,980 320,1010"
+                      fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="22" filter="url(#tear-shadow)"/>
+            <!-- Layer 2: Near crease shadow with fiber displacement -->
+            <polyline points="440,-10 438,30 435,60 440,85 432,115 428,150 434,175 427,210 421,250 426,280 418,320 412,360 417,390 409,430 404,470 408,500 400,540 394,580 398,610 390,650 384,690 388,715 380,750 374,785 378,810 370,850 364,885 360,920 352,955 344,980 320,1010"
+                      fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="6" filter="url(#tear-crease)"/>
+            <!-- Layer 3: Outer fibrous glow — wide halo of paper fibers -->
+            <polyline points="440,-10 438,30 435,60 440,85 432,115 428,150 434,175 427,210 421,250 426,280 418,320 412,360 417,390 409,430 404,470 408,500 400,540 394,580 398,610 390,650 384,690 388,715 380,750 374,785 378,810 370,850 364,885 360,920 352,955 344,980 320,1010"
+                      fill="none" stroke="rgba(255,250,240,0.2)" stroke-width="5" filter="url(#fiber-glow)"/>
+            <!-- Layer 4: Core fiber line — bright torn paper edge -->
+            <polyline points="440,-10 438,30 435,60 440,85 432,115 428,150 434,175 427,210 421,250 426,280 418,320 412,360 417,390 409,430 404,470 408,500 400,540 394,580 398,610 390,650 384,690 388,715 380,750 374,785 378,810 370,850 364,885 360,920 352,955 344,980 320,1010"
+                      fill="none" stroke="rgba(255,252,245,0.55)" stroke-width="1.5" filter="url(#fiber-tex)"/>
+            <!-- Layer 5: Extra-thin bright fiber highlights -->
+            <polyline points="440,-10 438,30 435,60 440,85 432,115 428,150 434,175 427,210 421,250 426,280 418,320 412,360 417,390 409,430 404,470 408,500 400,540 394,580 398,610 390,650 384,690 388,715 380,750 374,785 378,810 370,850 364,885 360,920 352,955 344,980 320,1010"
+                      fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="0.6" filter="url(#fiber-tex)"/>
 
-            <!-- Seam 2 — outer soft glow -->
-            <line x1="76" y1="0" x2="69" y2="100" stroke="rgba(253,224,71,0.22)" stroke-width="2.4" filter="url(#glow-s2)"/>
-            <!-- Seam 2 — inner sharp bright line -->
-            <line x1="76" y1="0" x2="69" y2="100" stroke="url(#sg2)" stroke-width="0.22"/>
+            <!--
+                SEAM 2 — torn edge between Food & Care panels
+                Path runs from (760,0) to (640,1000) with deep irregular tears.
+            -->
+            <!-- Layer 1: Deep shadow -->
+            <polyline points="760,-10 757,25 753,55 758,80 750,115 745,150 750,178 742,215 736,255 740,285 732,325 726,365 730,395 722,435 717,475 720,505 712,545 706,585 710,615 702,655 696,695 700,720 692,755 686,790 690,815 682,855 676,890 672,925 664,960 657,985 640,1010"
+                      fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="22" filter="url(#tear-shadow)"/>
+            <!-- Layer 2: Near crease -->
+            <polyline points="760,-10 757,25 753,55 758,80 750,115 745,150 750,178 742,215 736,255 740,285 732,325 726,365 730,395 722,435 717,475 720,505 712,545 706,585 710,615 702,655 696,695 700,720 692,755 686,790 690,815 682,855 676,890 672,925 664,960 657,985 640,1010"
+                      fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="6" filter="url(#tear-crease)"/>
+            <!-- Layer 3: Outer fiber glow -->
+            <polyline points="760,-10 757,25 753,55 758,80 750,115 745,150 750,178 742,215 736,255 740,285 732,325 726,365 730,395 722,435 717,475 720,505 712,545 706,585 710,615 702,655 696,695 700,720 692,755 686,790 690,815 682,855 676,890 672,925 664,960 657,985 640,1010"
+                      fill="none" stroke="rgba(255,250,240,0.2)" stroke-width="5" filter="url(#fiber-glow)"/>
+            <!-- Layer 4: Core fiber line -->
+            <polyline points="760,-10 757,25 753,55 758,80 750,115 745,150 750,178 742,215 736,255 740,285 732,325 726,365 730,395 722,435 717,475 720,505 712,545 706,585 710,615 702,655 696,695 700,720 692,755 686,790 690,815 682,855 676,890 672,925 664,960 657,985 640,1010"
+                      fill="none" stroke="rgba(255,252,245,0.55)" stroke-width="1.5" filter="url(#fiber-tex)"/>
+            <!-- Layer 5: Extra-thin highlights -->
+            <polyline points="760,-10 757,25 753,55 758,80 750,115 745,150 750,178 742,215 736,255 740,285 732,325 726,365 730,395 722,435 717,475 720,505 712,545 706,585 710,615 702,655 696,695 700,720 692,755 686,790 690,815 682,855 676,890 672,925 664,960 657,985 640,1010"
+                      fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="0.6" filter="url(#fiber-tex)"/>
         </svg>
 
     </div><!-- end .panels -->
