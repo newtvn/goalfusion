@@ -161,111 +161,67 @@
             text-shadow: 0 1px 10px rgba(0,0,0,0.9);
         }
 
-        /* ─────────────── TORN PAPER PANELS ─────────────── */
-        /*
-         * Torn-paper technique:
-         * Three full-height panels sit in a flex row. Each panel uses
-         * an SVG <clipPath> (referenced by url()) with a highly irregular
-         * torn-edge path. The SVG defs block lives in the HTML body.
-         *
-         * Depth layers per seam:
-         *   1) CSS drop-shadow on each panel → stacked sheet shadow
-         *   2) ::before on panels 2 & 3 → shadow under the tear
-         *   3) ::after on panels 1 & 2 → white paper-fiber edge
-         *   4) SVG overlay → torn fiber texture along each seam
-         */
+        /* ─────────────── DIAGONAL PANELS ─────────────── */
         .panels {
             position: absolute;
             inset: 0;
-            display: flex;
         }
 
         .panel {
-            position: relative;
+            position: absolute;
+            inset: 0;
             overflow: hidden;
-            flex-shrink: 0;
         }
 
-        /* Panels reference SVG clipPath IDs defined in the HTML */
+        /* Diagonal clip-paths — left leans slightly left top→bottom */
         .panel-sports {
-            width: 44%;
-            z-index: 3;
-            clip-path: url(#torn-clip-sports);
-            filter: drop-shadow(6px 0 18px rgba(0,0,0,0.8))
-                    drop-shadow(2px 0 6px rgba(0,0,0,0.6));
+            z-index: 1;
+            clip-path: polygon(0 0, 30% 0, 24% 100%, 0 100%);
         }
         .panel-food {
-            width: 40%;
-            margin-left: -8%;
-            z-index: 2;
-            clip-path: url(#torn-clip-food);
-            filter: drop-shadow(6px 0 18px rgba(0,0,0,0.75))
-                    drop-shadow(2px 0 6px rgba(0,0,0,0.55));
+            z-index: 3;
+            clip-path: polygon(30% 0, 76% 0, 72% 100%, 24% 100%);
         }
         .panel-care {
-            width: 36%;
-            margin-left: -8%;
-            z-index: 1;
-            clip-path: url(#torn-clip-care);
+            z-index: 2;
+            clip-path: polygon(76% 0, 100% 0, 100% 100%, 72% 100%);
         }
 
-        /* Shadow gradient on panels 2 & 3 from the tear above */
-        .panel-food::before,
-        .panel-care::before {
-            content: '';
+        /* Thin gold divider lines between panels */
+        .panel-divider {
             position: absolute;
-            inset: 0;
-            z-index: 8;
+            top: -5%; bottom: -5%;
+            width: 2px;
+            z-index: 20;
             pointer-events: none;
             background: linear-gradient(
-                115deg,
-                rgba(0,0,0,0.0) 0%,
-                rgba(0,0,0,0.35) 2.5%,
-                rgba(0,0,0,0.18) 6%,
-                rgba(0,0,0,0.06) 14%,
-                transparent 22%
+                to bottom,
+                transparent 0%,
+                rgba(245,158,11,0.85) 12%,
+                rgba(245,158,11,0.85) 88%,
+                transparent 100%
             );
         }
-
-        /* White paper-fiber edge on the right side of panels 1 & 2 */
-        .panel-sports::after,
-        .panel-food::after {
-            content: '';
-            position: absolute;
-            top: 0; right: 0;
-            width: 100%; height: 100%;
-            z-index: 9;
-            pointer-events: none;
-            background: linear-gradient(
-                -65deg,
-                rgba(255,255,255,0.0) 0%,
-                rgba(255,250,240,0.3) 0.6%,
-                rgba(255,250,240,0.12) 1.4%,
-                transparent 2.5%
-            );
+        .divider-left {
+            left: 27%;
+            transform: rotate(-3.4deg);
+            transform-origin: top center;
         }
-
-        /* SVG seam overlay — sits above all panels (never clipped).
-           Renders torn-paper fiber texture along each seam. */
-        .seam-svg {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 50;
-            pointer-events: none;
-            overflow: visible;
+        .divider-right {
+            left: 74%;
+            transform: rotate(-2.3deg);
+            transform-origin: top center;
         }
 
         /* Panel photo backgrounds */
         .panel-bg {
             position: absolute;
-            inset: -4%; /* slight bleed so zoom doesn't show edge */
+            inset: 0;
             background-size: cover;
             background-position: center;
             transition: transform 7s ease;
         }
-        .panel:hover .panel-bg { transform: scale(1.06); }
+        .panel:hover .panel-bg { transform: scale(1.04); }
 
         /* Dark gradient overlays — bottom-heavy so text reads */
         .panel-overlay {
@@ -291,9 +247,9 @@
         .panel-food .panel-overlay {
             background: linear-gradient(
                 to top,
-                rgba(25, 10, 2, 0.78) 0%,
-                rgba(50, 20, 4, 0.28) 40%,
-                rgba(15, 6, 2, 0.08) 100%
+                rgba(20, 8, 0, 0.72) 0%,
+                rgba(20, 8, 0, 0.18) 45%,
+                rgba(0, 0, 0, 0.05) 100%
             );
         }
         .panel-care .panel-overlay {
@@ -305,19 +261,19 @@
             );
         }
 
-        /* Panel content sits at bottom */
+        /* Panel content sits at bottom, constrained to each panel's visible region */
         .panel-content {
-            position: relative;
+            position: absolute;
+            inset: 0;
             z-index: 10;
-            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             padding: 2.4rem 2.2rem;
         }
-        .panel-sports .panel-content { padding-left: 2.8rem; }
-        .panel-food  .panel-content  { padding-left: 5.5rem; }
-        .panel-care  .panel-content  { padding-left: 5.5rem; }
+        .panel-sports .panel-content { padding-right: 72%; padding-left: 2.8rem; }
+        .panel-food   .panel-content { padding-left: 31%; padding-right: 27%; }
+        .panel-care   .panel-content { padding-left: 78%; padding-right: 2rem; }
 
         .panel-content-inner {
             display: flex;
@@ -711,6 +667,7 @@
             /* Panels stack vertically on mobile */
             .panels {
                 position: static;
+                display: flex;
                 flex-direction: column;
             }
             .hero {
@@ -723,19 +680,14 @@
                 pointer-events: all;
             }
             .panel {
-                width: 100% !important;
-                margin-left: 0 !important;
+                position: relative !important;
                 clip-path: none !important;
                 -webkit-clip-path: none !important;
                 min-height: 440px;
-                filter: none !important;
             }
-            .seam-svg { display: none; }
-            .panel-food::before,
-            .panel-care::before,
-            .panel-sports::after,
-            .panel-food::after { display: none; }
+            .panel-divider { display: none; }
             .panel-content {
+                position: relative !important;
                 padding: 2rem 1.5rem 2.2rem !important;
             }
             .panel-sub { max-width: 100%; }
@@ -1208,8 +1160,8 @@
                         Kitengela's premier football destination. Professional-grade turfs, seamless online booking, and competitive league events.
                     </p>
                     <div class="btn-row">
-                        <a href="goalhub.html" class="btn btn-green">Book a Session</a>
-                        <a href="goalhub.html" class="btn btn-ghost">View Events</a>
+                        <a href="https://www.goalhub.ke/" target="_blank" rel="noopener" class="btn btn-green">Book a Session</a>
+                        <a href="https://www.goalhub.ke/" target="_blank" rel="noopener" class="btn btn-ghost">View Events</a>
                     </div>
                 </div>
             </div>
@@ -1217,7 +1169,7 @@
 
         <!-- PANEL 2 — Kienyeji Hub Restaurant -->
         <div class="panel panel-food">
-            <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1887&auto=format&fit=crop');"></div>
+            <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?q=80&w=2000&auto=format&fit=crop'); background-position: center center;"></div>
             <div class="panel-overlay"></div>
             <div class="panel-content">
                 <div class="panel-content-inner">
@@ -1229,8 +1181,8 @@
                         Authentic Kenyan home-cooking meets bold flavour. Perfect for post-match meals, team lunches, and family dinners.
                     </p>
                     <div class="btn-row">
-                        <a href="kienyeji-hub.html" class="btn btn-orange">Book a Table</a>
-                        <a href="kienyeji-hub.html" class="btn btn-ghost">View Menu</a>
+                        <a href="contact.html" class="btn btn-orange">Book a Table</a>
+                        <a href="contact.html" class="btn btn-ghost">View Menu</a>
                     </div>
                 </div>
             </div>
@@ -1250,8 +1202,8 @@
                         Professional carpet & fabric care. We collect, deep-clean, and return — trusted by 10,000+ homes across Kenya.
                     </p>
                     <div class="btn-row">
-                        <a href="expresscarpets.html" class="btn btn-blue">Schedule Pickup</a>
-                        <a href="expresscarpets.html" class="btn btn-ghost">Get a Quote</a>
+                        <a href="https://www.expresscarpets.co.ke/" target="_blank" rel="noopener" class="btn btn-blue">Schedule Pickup</a>
+                        <a href="https://www.expresscarpets.co.ke/" target="_blank" rel="noopener" class="btn btn-ghost">Get a Quote</a>
                     </div>
                     <div class="social-proof">
                         <div class="avatars">
@@ -1268,80 +1220,8 @@
             </div>
         </div>
 
-        <!--
-            SVG seam overlay — torn paper fiber texture.
-            Sits above all panels (never clipped). Renders the visible
-            white paper fibers along each tear line using a turbulence-
-            displaced stroke that creates an organic fibrous appearance.
-        -->
-        <svg class="seam-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <!-- Turbulence filter to create paper-fiber texture on strokes -->
-                <filter id="fiber-tex" x="-10%" y="-2%" width="120%" height="104%">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.04 0.15" numOctaves="5" seed="2" result="noise"/>
-                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
-                    <feGaussianBlur in="displaced" stdDeviation="0.6" result="softened"/>
-                    <feMerge><feMergeNode in="softened"/></feMerge>
-                </filter>
-                <!-- Wider fiber glow for the outer fibrous halo -->
-                <filter id="fiber-glow" x="-15%" y="-3%" width="130%" height="106%">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.03 0.12" numOctaves="4" seed="5" result="noise"/>
-                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
-                    <feGaussianBlur in="displaced" stdDeviation="2.5" result="glow"/>
-                    <feMerge><feMergeNode in="glow"/></feMerge>
-                </filter>
-                <!-- Deep shadow behind the tear -->
-                <filter id="tear-shadow" x="-20%" y="-5%" width="140%" height="110%">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
-                </filter>
-                <!-- Near shadow crease -->
-                <filter id="tear-crease" x="-10%" y="-3%" width="120%" height="106%">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.03 0.1" numOctaves="3" seed="8" result="noise"/>
-                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" result="d"/>
-                    <feGaussianBlur in="d" stdDeviation="3"/>
-                </filter>
-            </defs>
-
-            <!--
-                SEAM 1 — torn edge between Sports & Food panels
-                Path runs from (440,0) to (320,1000) with deep irregular tears.
-            -->
-            <!-- Layer 1: Deep shadow cast by top sheet -->
-            <polyline points="440,-10 438,30 435,60 440,85 432,115 428,150 434,175 427,210 421,250 426,280 418,320 412,360 417,390 409,430 404,470 408,500 400,540 394,580 398,610 390,650 384,690 388,715 380,750 374,785 378,810 370,850 364,885 360,920 352,955 344,980 320,1010"
-                      fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="22" filter="url(#tear-shadow)"/>
-            <!-- Layer 2: Near crease shadow with fiber displacement -->
-            <polyline points="440,-10 438,30 435,60 440,85 432,115 428,150 434,175 427,210 421,250 426,280 418,320 412,360 417,390 409,430 404,470 408,500 400,540 394,580 398,610 390,650 384,690 388,715 380,750 374,785 378,810 370,850 364,885 360,920 352,955 344,980 320,1010"
-                      fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="6" filter="url(#tear-crease)"/>
-            <!-- Layer 3: Outer fibrous glow — wide halo of paper fibers -->
-            <polyline points="440,-10 438,30 435,60 440,85 432,115 428,150 434,175 427,210 421,250 426,280 418,320 412,360 417,390 409,430 404,470 408,500 400,540 394,580 398,610 390,650 384,690 388,715 380,750 374,785 378,810 370,850 364,885 360,920 352,955 344,980 320,1010"
-                      fill="none" stroke="rgba(255,250,240,0.2)" stroke-width="5" filter="url(#fiber-glow)"/>
-            <!-- Layer 4: Core fiber line — bright torn paper edge -->
-            <polyline points="440,-10 438,30 435,60 440,85 432,115 428,150 434,175 427,210 421,250 426,280 418,320 412,360 417,390 409,430 404,470 408,500 400,540 394,580 398,610 390,650 384,690 388,715 380,750 374,785 378,810 370,850 364,885 360,920 352,955 344,980 320,1010"
-                      fill="none" stroke="rgba(255,252,245,0.55)" stroke-width="1.5" filter="url(#fiber-tex)"/>
-            <!-- Layer 5: Extra-thin bright fiber highlights -->
-            <polyline points="440,-10 438,30 435,60 440,85 432,115 428,150 434,175 427,210 421,250 426,280 418,320 412,360 417,390 409,430 404,470 408,500 400,540 394,580 398,610 390,650 384,690 388,715 380,750 374,785 378,810 370,850 364,885 360,920 352,955 344,980 320,1010"
-                      fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="0.6" filter="url(#fiber-tex)"/>
-
-            <!--
-                SEAM 2 — torn edge between Food & Care panels
-                Path runs from (760,0) to (640,1000) with deep irregular tears.
-            -->
-            <!-- Layer 1: Deep shadow -->
-            <polyline points="760,-10 757,25 753,55 758,80 750,115 745,150 750,178 742,215 736,255 740,285 732,325 726,365 730,395 722,435 717,475 720,505 712,545 706,585 710,615 702,655 696,695 700,720 692,755 686,790 690,815 682,855 676,890 672,925 664,960 657,985 640,1010"
-                      fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="22" filter="url(#tear-shadow)"/>
-            <!-- Layer 2: Near crease -->
-            <polyline points="760,-10 757,25 753,55 758,80 750,115 745,150 750,178 742,215 736,255 740,285 732,325 726,365 730,395 722,435 717,475 720,505 712,545 706,585 710,615 702,655 696,695 700,720 692,755 686,790 690,815 682,855 676,890 672,925 664,960 657,985 640,1010"
-                      fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="6" filter="url(#tear-crease)"/>
-            <!-- Layer 3: Outer fiber glow -->
-            <polyline points="760,-10 757,25 753,55 758,80 750,115 745,150 750,178 742,215 736,255 740,285 732,325 726,365 730,395 722,435 717,475 720,505 712,545 706,585 710,615 702,655 696,695 700,720 692,755 686,790 690,815 682,855 676,890 672,925 664,960 657,985 640,1010"
-                      fill="none" stroke="rgba(255,250,240,0.2)" stroke-width="5" filter="url(#fiber-glow)"/>
-            <!-- Layer 4: Core fiber line -->
-            <polyline points="760,-10 757,25 753,55 758,80 750,115 745,150 750,178 742,215 736,255 740,285 732,325 726,365 730,395 722,435 717,475 720,505 712,545 706,585 710,615 702,655 696,695 700,720 692,755 686,790 690,815 682,855 676,890 672,925 664,960 657,985 640,1010"
-                      fill="none" stroke="rgba(255,252,245,0.55)" stroke-width="1.5" filter="url(#fiber-tex)"/>
-            <!-- Layer 5: Extra-thin highlights -->
-            <polyline points="760,-10 757,25 753,55 758,80 750,115 745,150 750,178 742,215 736,255 740,285 732,325 726,365 730,395 722,435 717,475 720,505 712,545 706,585 710,615 702,655 696,695 700,720 692,755 686,790 690,815 682,855 676,890 672,925 664,960 657,985 640,1010"
-                      fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="0.6" filter="url(#fiber-tex)"/>
-        </svg>
+        <div class="panel-divider divider-left"></div>
+        <div class="panel-divider divider-right"></div>
 
     </div><!-- end .panels -->
 </div><!-- end .hero -->
@@ -1475,8 +1355,8 @@
         <ul class="footer-links">
             <li><a href="about.html">About</a></li>
             <li><a href="services.html">Services</a></li>
-            <li><a href="goalhub.html">GoalHub</a></li>
-            <li><a href="expresscarpets.html">ExpressCarpets</a></li>
+            <li><a href="https://www.goalhub.ke/" target="_blank" rel="noopener">GoalHub</a></li>
+            <li><a href="https://www.expresscarpets.co.ke/" target="_blank" rel="noopener">ExpressCarpets</a></li>
         </ul>
         <div class="footer-copy">
             © 2025 GoalFusion. All rights reserved.<br>
