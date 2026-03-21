@@ -133,13 +133,20 @@
 
         /* ─────────────── PAPER-CUT PANELS ─────────────── */
         /*
-         * Paper-cut technique:
-         * Three full-height panels in a flex row, each clipped with
-         * polygon() to create a sharp diagonal cut. Panels overlap so
-         * the cuts meet cleanly. An SVG overlay (sibling of all panels,
-         * never clipped) draws precision glow lines exactly on the cut
-         * edges. Each panel also casts a drop-shadow inward onto the
-         * next for a real stacked-paper depth effect.
+         * Paper-cut design:
+         * Three full-height panels arranged as stacked "sheets of paper"
+         * that have been cut diagonally. Each panel sits on top of the
+         * next with visible paper edge thickness, realistic cast shadows,
+         * and subtle paper texture along the cut edge.
+         *
+         * The illusion comes from:
+         *   1) A jagged/organic clip-path on the right edge (not a
+         *      perfectly straight diagonal — real paper cuts aren't perfect)
+         *   2) A visible "paper edge" strip — a thin lit band along the
+         *      cut that shows the paper's cross-section / thickness
+         *   3) Multi-layer drop shadows cast by the top sheet onto
+         *      the sheet below
+         *   4) A subtle texture overlay on the edge
          */
         .panels {
             position: absolute;
@@ -154,31 +161,97 @@
         }
 
         /*
-         * Cut geometry — 18% horizontal offset over full height.
-         * Sports  : 44% wide, right edge  44%→36% (top→bottom)
-         * Food    : 40% wide (starts at 36%), right edge 76%→68.8%
-         * Care    : 36% wide (starts at 68.8%), fills to 100%
+         * Cut geometry — each panel's right edge is a slightly irregular
+         * diagonal (many polygon points for a hand-cut paper feel).
+         * Sports  : 44% wide, right edge runs ~44%→36% with micro-jags
+         * Food    : 40% wide (starts at ~36%), right edge ~76%→69%
+         * Care    : 36% wide (starts at ~69%), fills to 100%
          */
         .panel-sports {
             width: 44%;
             z-index: 3;
-            clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
+            clip-path: polygon(
+                0 0,
+                100% 0,
+                99.6% 4%,
+                98.8% 9%,
+                99.2% 14%,
+                98.5% 19%,
+                97.8% 24%,
+                98.2% 29%,
+                97.2% 35%,
+                96.5% 40%,
+                96.8% 45%,
+                95.8% 51%,
+                95.2% 56%,
+                94.8% 60%,
+                94.2% 65%,
+                93.5% 70%,
+                93.0% 74%,
+                92.5% 78%,
+                91.8% 82%,
+                91.2% 86%,
+                90.5% 90%,
+                89.8% 94%,
+                89.2% 97%,
+                82% 100%,
+                0 100%
+            );
+            filter: drop-shadow(8px 4px 12px rgba(0,0,0,0.7))
+                    drop-shadow(3px 2px 4px rgba(0,0,0,0.5));
         }
         .panel-food {
             width: 40%;
             margin-left: -8%;
             z-index: 2;
-            clip-path: polygon(18% 0, 100% 0, 82% 100%, 0 100%);
+            clip-path: polygon(
+                18% 0,
+                100% 0,
+                99.6% 4%,
+                99.0% 9%,
+                99.4% 13%,
+                98.6% 18%,
+                98.0% 23%,
+                98.3% 28%,
+                97.4% 34%,
+                96.8% 39%,
+                97.0% 44%,
+                96.2% 49%,
+                95.6% 54%,
+                95.0% 59%,
+                94.5% 64%,
+                93.8% 69%,
+                93.2% 73%,
+                92.7% 77%,
+                92.0% 82%,
+                91.4% 86%,
+                90.8% 90%,
+                90.0% 94%,
+                89.5% 97%,
+                82% 100%,
+                0 100%
+            );
+            filter: drop-shadow(8px 4px 12px rgba(0,0,0,0.65))
+                    drop-shadow(3px 2px 4px rgba(0,0,0,0.45));
         }
         .panel-care {
             width: 36%;
             margin-left: -8%;
             z-index: 1;
-            clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+            clip-path: polygon(
+                18% 0,
+                100% 0,
+                100% 100%,
+                0 100%
+            );
         }
 
-        /* Cast-shadow from the panel above onto the next panel.
-           Gradient runs from the diagonal cut edge inward. */
+        /*
+         * Paper edge thickness — a bright-lit strip that runs along the
+         * diagonal cut edge, simulating the visible cross-section of
+         * thick card/paper being viewed edge-on. Applied as an overlay
+         * on panels 2 & 3, positioned along their left (cut) edge.
+         */
         .panel-food::before,
         .panel-care::before {
             content: '';
@@ -186,16 +259,51 @@
             inset: 0;
             z-index: 8;
             pointer-events: none;
+            /*
+             * Multi-stop gradient: thin bright paper-edge highlight,
+             * then deep shadow that fades out — like light catching
+             * the cut cross-section of a stacked sheet.
+             */
             background: linear-gradient(
-                to right,
-                rgba(0,0,0,0.72) 0%,
-                rgba(0,0,0,0.3)  12%,
-                transparent      32%
+                115deg,
+                rgba(255,255,255,0.0) 0%,
+                rgba(255,248,230,0.18) 1.5%,
+                rgba(255,248,230,0.35) 2%,
+                rgba(255,248,230,0.18) 2.5%,
+                rgba(0,0,0,0.0) 3%,
+                rgba(0,0,0,0.55) 3.5%,
+                rgba(0,0,0,0.35) 7%,
+                rgba(0,0,0,0.15) 14%,
+                transparent 28%
+            );
+        }
+
+        /*
+         * Paper edge on the right side of panels (where they overlap
+         * the next panel) — a thin lit edge visible on the "top" sheet.
+         */
+        .panel-sports::after,
+        .panel-food::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9;
+            pointer-events: none;
+            background: linear-gradient(
+                -65deg,
+                rgba(255,248,230,0.0) 0%,
+                rgba(255,248,230,0.22) 1%,
+                rgba(255,248,230,0.08) 1.8%,
+                transparent 3%
             );
         }
 
         /* SVG seam overlay — direct child of .panels so it is never
-           clipped by any panel's clip-path. */
+           clipped by any panel's clip-path. Draws paper-texture
+           hatching and subtle shadow lines along each cut. */
         .seam-svg {
             position: absolute;
             inset: 0;
@@ -677,7 +785,13 @@
                 clip-path: none !important;
                 min-height: 440px;
             }
-            .seam { display: none; }
+            .seam-svg { display: none; }
+            .panel-sports,
+            .panel-food { filter: none !important; }
+            .panel-food::before,
+            .panel-care::before,
+            .panel-sports::after,
+            .panel-food::after { display: none; }
             .panel-content {
                 padding: 2rem 1.5rem 2.2rem !important;
             }
@@ -797,50 +911,72 @@
         </div>
 
         <!--
-            SVG seam overlay — sits above all three panels but is NOT a child
-            of any panel, so it is never clipped. viewBox="0 0 100 100" with
-            preserveAspectRatio="none" maps directly to percentages of the
-            panels container. Seam coordinates match the clip-path geometry:
-              Seam 1: Sports right edge  → (44,0)→(36,100)
-              Seam 2: Food right edge    → (76,0)→(69,100)
+            SVG seam overlay — paper-cut edge treatment.
+            Sits above all panels (never clipped). Draws:
+              1) A soft diffused shadow along each cut edge
+              2) A bright paper-edge highlight (the lit cross-section)
+              3) Subtle cross-hatch texture marks for a hand-cut feel
+            Seam paths follow the jagged clip-path coordinates.
         -->
-        <svg class="seam-svg" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="seam-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-                <!-- Glow filters -->
-                <filter id="glow-s1" x="-500%" y="-10%" width="1100%" height="120%">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/>
-                    <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                <!-- Soft shadow blur for depth -->
+                <filter id="paper-shadow" x="-50%" y="-5%" width="200%" height="110%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="shadow"/>
+                    <feMerge><feMergeNode in="shadow"/></feMerge>
                 </filter>
-                <filter id="glow-s2" x="-500%" y="-10%" width="1100%" height="120%">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/>
-                    <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                <!-- Tighter shadow for edge proximity -->
+                <filter id="paper-near" x="-30%" y="-3%" width="160%" height="106%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="near"/>
+                    <feMerge><feMergeNode in="near"/></feMerge>
                 </filter>
-                <!-- Vertical fade gradients -->
-                <linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%"   stop-color="#22c55e" stop-opacity="0"/>
-                    <stop offset="18%"  stop-color="#fde047" stop-opacity="0.85"/>
-                    <stop offset="50%"  stop-color="#ffffff" stop-opacity="1"/>
-                    <stop offset="82%"  stop-color="#fde047" stop-opacity="0.85"/>
-                    <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
-                </linearGradient>
-                <linearGradient id="sg2" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%"   stop-color="#FF9124" stop-opacity="0"/>
-                    <stop offset="18%"  stop-color="#fde047" stop-opacity="0.85"/>
-                    <stop offset="50%"  stop-color="#ffffff" stop-opacity="1"/>
-                    <stop offset="82%"  stop-color="#fde047" stop-opacity="0.85"/>
-                    <stop offset="100%" stop-color="#FF9124" stop-opacity="0"/>
-                </linearGradient>
+                <!-- Paper edge highlight — subtle paper texture -->
+                <filter id="paper-edge" x="-20%" y="-2%" width="140%" height="104%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="0.8"/>
+                </filter>
+                <!-- Grain/noise texture for paper feel -->
+                <filter id="paper-grain" x="0" y="0" width="100%" height="100%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" result="noise"/>
+                    <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+                    <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply"/>
+                </filter>
             </defs>
 
-            <!-- Seam 1 — outer soft glow -->
-            <line x1="44" y1="0" x2="36" y2="100" stroke="rgba(253,224,71,0.22)" stroke-width="2.4" filter="url(#glow-s1)"/>
-            <!-- Seam 1 — inner sharp bright line -->
-            <line x1="44" y1="0" x2="36" y2="100" stroke="url(#sg1)" stroke-width="0.22"/>
+            <!--
+                SEAM 1 — between Sports and Food panels
+                Path follows the jagged right edge of panel-sports.
+                Coordinates: 44%→36% x-range over full height, with micro-jags.
+            -->
+            <!-- Layer 1: Wide diffused shadow (paper casting shadow on panel below) -->
+            <polyline points="440,0 438,40 432,90 436,140 429,190 422,240 426,290 416,350 409,400 412,450 402,510 396,560 392,600 386,650 379,700 374,740 369,780 362,820 356,860 349,900 342,940 336,970 320,1000"
+                      fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="18" filter="url(#paper-shadow)"/>
+            <!-- Layer 2: Close shadow for depth crease -->
+            <polyline points="440,0 438,40 432,90 436,140 429,190 422,240 426,290 416,350 409,400 412,450 402,510 396,560 392,600 386,650 379,700 374,740 369,780 362,820 356,860 349,900 342,940 336,970 320,1000"
+                      fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="5" filter="url(#paper-near)"/>
+            <!-- Layer 3: Paper edge highlight — thin bright line (lit cross-section) -->
+            <polyline points="440,0 438,40 432,90 436,140 429,190 422,240 426,290 416,350 409,400 412,450 402,510 396,560 392,600 386,650 379,700 374,740 369,780 362,820 356,860 349,900 342,940 336,970 320,1000"
+                      fill="none" stroke="rgba(255,248,235,0.5)" stroke-width="1.2" filter="url(#paper-edge)"/>
+            <!-- Layer 4: Sharp razor line — the actual cut -->
+            <polyline points="440,0 438,40 432,90 436,140 429,190 422,240 426,290 416,350 409,400 412,450 402,510 396,560 392,600 386,650 379,700 374,740 369,780 362,820 356,860 349,900 342,940 336,970 320,1000"
+                      fill="none" stroke="rgba(255,252,245,0.18)" stroke-width="0.5"/>
 
-            <!-- Seam 2 — outer soft glow -->
-            <line x1="76" y1="0" x2="69" y2="100" stroke="rgba(253,224,71,0.22)" stroke-width="2.4" filter="url(#glow-s2)"/>
-            <!-- Seam 2 — inner sharp bright line -->
-            <line x1="76" y1="0" x2="69" y2="100" stroke="url(#sg2)" stroke-width="0.22"/>
+            <!--
+                SEAM 2 — between Food and Care panels
+                Path follows the jagged right edge of panel-food.
+                Coordinates: 76%→69% x-range over full height, with micro-jags.
+            -->
+            <!-- Layer 1: Wide diffused shadow -->
+            <polyline points="760,0 758,40 754,90 758,130 750,180 744,230 747,280 738,340 732,390 734,440 726,490 720,540 714,590 709,640 702,690 696,730 691,770 684,820 678,860 672,900 664,940 659,970 640,1000"
+                      fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="18" filter="url(#paper-shadow)"/>
+            <!-- Layer 2: Close shadow -->
+            <polyline points="760,0 758,40 754,90 758,130 750,180 744,230 747,280 738,340 732,390 734,440 726,490 720,540 714,590 709,640 702,690 696,730 691,770 684,820 678,860 672,900 664,940 659,970 640,1000"
+                      fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="5" filter="url(#paper-near)"/>
+            <!-- Layer 3: Paper edge highlight -->
+            <polyline points="760,0 758,40 754,90 758,130 750,180 744,230 747,280 738,340 732,390 734,440 726,490 720,540 714,590 709,640 702,690 696,730 691,770 684,820 678,860 672,900 664,940 659,970 640,1000"
+                      fill="none" stroke="rgba(255,248,235,0.5)" stroke-width="1.2" filter="url(#paper-edge)"/>
+            <!-- Layer 4: Sharp razor line -->
+            <polyline points="760,0 758,40 754,90 758,130 750,180 744,230 747,280 738,340 732,390 734,440 726,490 720,540 714,590 709,640 702,690 696,730 691,770 684,820 678,860 672,900 664,940 659,970 640,1000"
+                      fill="none" stroke="rgba(255,252,245,0.18)" stroke-width="0.5"/>
         </svg>
 
     </div><!-- end .panels -->
