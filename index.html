@@ -133,10 +133,13 @@
 
         /* ─────────────── PAPER-CUT PANELS ─────────────── */
         /*
-         * Technique: three full-height panels sit in a flex row.
-         * Each uses a CSS clip-path polygon to create a sharp
-         * diagonal "paper cut" edge. The panels overlap so the
-         * cuts fit together seamlessly without any gap.
+         * Paper-cut technique:
+         * Three full-height panels in a flex row, each clipped with
+         * polygon() to create a sharp diagonal cut. Panels overlap so
+         * the cuts meet cleanly. An SVG overlay (sibling of all panels,
+         * never clipped) draws precision glow lines exactly on the cut
+         * edges. Each panel also casts a drop-shadow inward onto the
+         * next for a real stacked-paper depth effect.
          */
         .panels {
             position: absolute;
@@ -150,48 +153,57 @@
             flex-shrink: 0;
         }
 
-        /* Panel widths — total visible = 100% once overlaps cancel */
+        /*
+         * Cut geometry — 18% horizontal offset over full height.
+         * Sports  : 44% wide, right edge  44%→36% (top→bottom)
+         * Food    : 40% wide (starts at 36%), right edge 76%→68.8%
+         * Care    : 36% wide (starts at 68.8%), fills to 100%
+         */
         .panel-sports {
-            width: 42%;
+            width: 44%;
             z-index: 3;
-            /* cut right edge at ~88% bottom, 100% top */
-            clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
         }
         .panel-food {
             width: 40%;
-            margin-left: -6%;
+            margin-left: -8%;
             z-index: 2;
-            clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
+            clip-path: polygon(18% 0, 100% 0, 82% 100%, 0 100%);
         }
         .panel-care {
             width: 36%;
-            margin-left: -6%;
+            margin-left: -8%;
             z-index: 1;
-            clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
+            clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
         }
 
-        /* Glowing razor seam lines between panels */
-        .seam {
+        /* Cast-shadow from the panel above onto the next panel.
+           Gradient runs from the diagonal cut edge inward. */
+        .panel-food::before,
+        .panel-care::before {
+            content: '';
             position: absolute;
-            top: 0; right: 0;
-            width: 3px;
-            height: 100%;
-            z-index: 30;
+            inset: 0;
+            z-index: 8;
             pointer-events: none;
-            /* skew matches the clip-path ~12% angle */
-            transform: skewX(-8.5deg);
-            transform-origin: top center;
             background: linear-gradient(
-                to bottom,
-                transparent 0%,
-                rgba(255,200,60,0.08) 8%,
-                rgba(255,200,60,0.85) 35%,
-                rgba(255,230,80,1)   50%,
-                rgba(255,200,60,0.85) 65%,
-                rgba(255,200,60,0.08) 92%,
-                transparent 100%
+                to right,
+                rgba(0,0,0,0.72) 0%,
+                rgba(0,0,0,0.3)  12%,
+                transparent      32%
             );
-            filter: blur(1.5px);
+        }
+
+        /* SVG seam overlay — direct child of .panels so it is never
+           clipped by any panel's clip-path. */
+        .seam-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 50;
+            pointer-events: none;
+            overflow: visible;
         }
 
         /* Panel photo backgrounds */
@@ -253,8 +265,8 @@
             padding: 2.4rem 2.2rem;
         }
         .panel-sports .panel-content { padding-left: 2.8rem; }
-        .panel-food  .panel-content  { padding-left: 4.5rem; }
-        .panel-care  .panel-content  { padding-left: 5rem;   }
+        .panel-food  .panel-content  { padding-left: 5.5rem; }
+        .panel-care  .panel-content  { padding-left: 5.5rem; }
 
         .panel-content-inner {
             display: flex;
@@ -692,10 +704,10 @@
 <nav>
     <div class="nav-logo">GOAL<span>FUSION</span></div>
     <ul class="nav-links">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
     </ul>
 </nav>
 
@@ -714,7 +726,6 @@
         <div class="panel panel-sports">
             <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1993&auto=format&fit=crop');"></div>
             <div class="panel-overlay"></div>
-            <div class="seam"></div>
             <div class="panel-content">
                 <div class="panel-content-inner">
                     <div class="brand-chip chip-green">⚽ GoalHub</div>
@@ -725,8 +736,8 @@
                         Kitengela's premier football destination. Professional-grade turfs, seamless online booking, and competitive league events.
                     </p>
                     <div class="btn-row">
-                        <a href="https://www.goalhub.ke/" class="btn btn-green" target="_blank" rel="noopener">Book a Session</a>
-                        <a href="https://www.goalhub.ke/" class="btn btn-ghost" target="_blank" rel="noopener">View Events</a>
+                        <a href="goalhub.html" class="btn btn-green">Book a Session</a>
+                        <a href="goalhub.html" class="btn btn-ghost">View Events</a>
                     </div>
                 </div>
             </div>
@@ -736,7 +747,6 @@
         <div class="panel panel-food">
             <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1887&auto=format&fit=crop');"></div>
             <div class="panel-overlay"></div>
-            <div class="seam"></div>
             <div class="panel-content">
                 <div class="panel-content-inner">
                     <div class="brand-chip chip-orange">🍽 Kienyeji Hub</div>
@@ -747,8 +757,8 @@
                         Authentic Kenyan home-cooking meets bold flavour. Perfect for post-match meals, team lunches, and family dinners.
                     </p>
                     <div class="btn-row">
-                        <a href="#" class="btn btn-orange">Book a Table</a>
-                        <a href="#" class="btn btn-ghost">View Menu</a>
+                        <a href="kienyeji-hub.html" class="btn btn-orange">Book a Table</a>
+                        <a href="kienyeji-hub.html" class="btn btn-ghost">View Menu</a>
                     </div>
                 </div>
             </div>
@@ -768,8 +778,8 @@
                         Professional carpet & fabric care. We collect, deep-clean, and return — trusted by 10,000+ homes across Kenya.
                     </p>
                     <div class="btn-row">
-                        <a href="https://www.expresscarpets.co.ke/" class="btn btn-blue" target="_blank" rel="noopener">Schedule Pickup</a>
-                        <a href="https://www.expresscarpets.co.ke/" class="btn btn-ghost" target="_blank" rel="noopener">Get a Quote</a>
+                        <a href="expresscarpets.html" class="btn btn-blue">Schedule Pickup</a>
+                        <a href="expresscarpets.html" class="btn btn-ghost">Get a Quote</a>
                     </div>
                     <div class="social-proof">
                         <div class="avatars">
@@ -785,6 +795,53 @@
                 </div>
             </div>
         </div>
+
+        <!--
+            SVG seam overlay — sits above all three panels but is NOT a child
+            of any panel, so it is never clipped. viewBox="0 0 100 100" with
+            preserveAspectRatio="none" maps directly to percentages of the
+            panels container. Seam coordinates match the clip-path geometry:
+              Seam 1: Sports right edge  → (44,0)→(36,100)
+              Seam 2: Food right edge    → (76,0)→(69,100)
+        -->
+        <svg class="seam-svg" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- Glow filters -->
+                <filter id="glow-s1" x="-500%" y="-10%" width="1100%" height="120%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <filter id="glow-s2" x="-500%" y="-10%" width="1100%" height="120%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <!-- Vertical fade gradients -->
+                <linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%"   stop-color="#22c55e" stop-opacity="0"/>
+                    <stop offset="18%"  stop-color="#fde047" stop-opacity="0.85"/>
+                    <stop offset="50%"  stop-color="#ffffff" stop-opacity="1"/>
+                    <stop offset="82%"  stop-color="#fde047" stop-opacity="0.85"/>
+                    <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="sg2" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%"   stop-color="#FF9124" stop-opacity="0"/>
+                    <stop offset="18%"  stop-color="#fde047" stop-opacity="0.85"/>
+                    <stop offset="50%"  stop-color="#ffffff" stop-opacity="1"/>
+                    <stop offset="82%"  stop-color="#fde047" stop-opacity="0.85"/>
+                    <stop offset="100%" stop-color="#FF9124" stop-opacity="0"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Seam 1 — outer soft glow -->
+            <line x1="44" y1="0" x2="36" y2="100" stroke="rgba(253,224,71,0.22)" stroke-width="2.4" filter="url(#glow-s1)"/>
+            <!-- Seam 1 — inner sharp bright line -->
+            <line x1="44" y1="0" x2="36" y2="100" stroke="url(#sg1)" stroke-width="0.22"/>
+
+            <!-- Seam 2 — outer soft glow -->
+            <line x1="76" y1="0" x2="69" y2="100" stroke="rgba(253,224,71,0.22)" stroke-width="2.4" filter="url(#glow-s2)"/>
+            <!-- Seam 2 — inner sharp bright line -->
+            <line x1="76" y1="0" x2="69" y2="100" stroke="url(#sg2)" stroke-width="0.22"/>
+        </svg>
 
     </div><!-- end .panels -->
 </div><!-- end .hero -->
@@ -916,10 +973,10 @@
             <div class="footer-tagline">GoalHub Complex · Kitengela, Kenya</div>
         </div>
         <ul class="footer-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="https://www.goalhub.ke/" target="_blank" rel="noopener">GoalHub</a></li>
-            <li><a href="https://www.expresscarpets.co.ke/" target="_blank" rel="noopener">ExpressCarpets</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="goalhub.html">GoalHub</a></li>
+            <li><a href="expresscarpets.html">ExpressCarpets</a></li>
         </ul>
         <div class="footer-copy">
             © 2025 GoalFusion. All rights reserved.<br>
