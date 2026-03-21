@@ -3,47 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GOALFUSION | Sport, Food & Home Care</title>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>GOALFUSION | Sport, Food & Home Care — Kitengela</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --green: #22c55e;
+            --green:      #22c55e;
             --green-dark: #16a34a;
-            --orange: #FF9124;
-            --dark: #0d1f13;
+            --orange:     #FF9124;
+            --amber:      #f59e0b;
+            --blue:       #3b82f6;
+            --dark:       #080f0a;
+            --font:       'Bricolage Grotesque', sans-serif;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #0a120d;
-            color: white;
+            font-family: var(--font);
+            background: var(--dark);
+            color: #fff;
             overflow-x: hidden;
-            min-height: 100vh;
         }
 
-        /* ── NAV ── */
+        /* ─────────────── NAV ─────────────── */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            z-index: 100;
+            z-index: 200;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 2.5rem;
-            height: 64px;
-            background: rgba(10, 18, 13, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            height: 62px;
+            background: rgba(8, 15, 10, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
         }
 
         .nav-logo {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font);
             font-weight: 800;
-            font-size: 1.2rem;
-            letter-spacing: 0.04em;
+            font-size: 1.18rem;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
         }
         .nav-logo span { color: var(--green); }
@@ -54,563 +58,882 @@
             list-style: none;
         }
         .nav-links a {
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.65);
             text-decoration: none;
             transition: color 0.2s;
         }
-        .nav-links a.active,
-        .nav-links a:hover { color: var(--green); }
+        .nav-links a:hover,
+        .nav-links a.active { color: var(--green); }
 
-        /* ── HERO WRAPPER ── */
+        /* ─────────────── HERO ─────────────── */
         .hero {
             position: relative;
             height: 100vh;
-            min-height: 640px;
-            display: flex;
-            flex-direction: column;
-            padding-top: 64px;
+            min-height: 660px;
             overflow: hidden;
         }
 
-        /* headline bar above panels */
+        /* Floating headline */
         .hero-headline {
             position: absolute;
-            top: 64px;
+            top: 62px;
             left: 0; right: 0;
-            z-index: 50;
+            z-index: 60;
             text-align: center;
-            padding: 2.5rem 1.5rem 0;
+            padding: 2.8rem 1.5rem 0;
             pointer-events: none;
         }
-        .hero-headline h1 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(1.6rem, 4vw, 3rem);
-            font-weight: 900;
-            letter-spacing: 0.02em;
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(34,197,94,0.12);
+            border: 1px solid rgba(34,197,94,0.3);
+            border-radius: 999px;
+            padding: 5px 16px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 1rem;
+        }
+        .hero-eyebrow span {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50%      { opacity: 0.4; transform: scale(0.7); }
+        }
+        .hero-headline h1 {
+            font-family: var(--font);
+            font-size: clamp(1.8rem, 4.5vw, 3.4rem);
+            font-weight: 800;
+            letter-spacing: -0.01em;
             line-height: 1.1;
             color: #fff;
-            text-shadow: 0 2px 24px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 32px rgba(0,0,0,0.9);
+        }
+        .hero-headline h1 em {
+            font-style: normal;
+            color: var(--green);
         }
         .hero-headline p {
-            margin-top: 0.5rem;
-            font-size: clamp(0.85rem, 1.5vw, 1.1rem);
-            color: rgba(255,255,255,0.7);
+            margin-top: 0.6rem;
+            font-size: clamp(0.82rem, 1.4vw, 1rem);
+            color: rgba(255,255,255,0.6);
             font-weight: 400;
-            text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+            text-shadow: 0 1px 10px rgba(0,0,0,0.9);
         }
 
-        /* ── PANELS ── */
+        /* ─────────────── PAPER-CUT PANELS ─────────────── */
+        /*
+         * Technique: three full-height panels sit in a flex row.
+         * Each uses a CSS clip-path polygon to create a sharp
+         * diagonal "paper cut" edge. The panels overlap so the
+         * cuts fit together seamlessly without any gap.
+         */
         .panels {
             position: absolute;
             inset: 0;
             display: flex;
-            align-items: stretch;
         }
 
         .panel {
             position: relative;
             overflow: hidden;
-            flex: none;
+            flex-shrink: 0;
         }
 
-        /* Diagonal cuts — each panel overlaps the next */
+        /* Panel widths — total visible = 100% once overlaps cancel */
         .panel-sports {
-            width: 38%;
-            clip-path: polygon(0 0, 100% 0, 87% 100%, 0 100%);
+            width: 42%;
             z-index: 3;
+            /* cut right edge at ~88% bottom, 100% top */
+            clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
         }
-        .panel-grill {
-            width: 38%;
-            margin-left: -5%;
-            clip-path: polygon(13% 0, 100% 0, 87% 100%, 0 100%);
+        .panel-food {
+            width: 40%;
+            margin-left: -6%;
             z-index: 2;
+            clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
         }
-        .panel-wash {
-            width: 34%;
-            margin-left: -5%;
-            clip-path: polygon(13% 0, 100% 0, 100% 100%, 0 100%);
+        .panel-care {
+            width: 36%;
+            margin-left: -6%;
             z-index: 1;
+            clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
         }
 
-        /* Glowing diagonal divider lines */
-        .panel-sports::after,
-        .panel-grill::after {
-            content: '';
+        /* Glowing razor seam lines between panels */
+        .seam {
             position: absolute;
             top: 0; right: 0;
-            width: 4px;
+            width: 3px;
             height: 100%;
+            z-index: 30;
+            pointer-events: none;
+            /* skew matches the clip-path ~12% angle */
+            transform: skewX(-8.5deg);
+            transform-origin: top center;
             background: linear-gradient(
                 to bottom,
                 transparent 0%,
-                rgba(255, 180, 0, 0.15) 10%,
-                rgba(255, 180, 0, 0.9) 40%,
-                rgba(255, 220, 60, 1) 50%,
-                rgba(255, 180, 0, 0.9) 60%,
-                rgba(255, 180, 0, 0.15) 90%,
+                rgba(255,200,60,0.08) 8%,
+                rgba(255,200,60,0.85) 35%,
+                rgba(255,230,80,1)   50%,
+                rgba(255,200,60,0.85) 65%,
+                rgba(255,200,60,0.08) 92%,
                 transparent 100%
             );
-            filter: blur(2px);
-            z-index: 20;
-            transform: skewX(-8deg);
-            transform-origin: top;
+            filter: blur(1.5px);
         }
 
-        /* Panel backgrounds */
+        /* Panel photo backgrounds */
         .panel-bg {
             position: absolute;
-            inset: 0;
+            inset: -4%; /* slight bleed so zoom doesn't show edge */
             background-size: cover;
             background-position: center;
-            transition: transform 6s ease;
+            transition: transform 7s ease;
         }
-        .panel:hover .panel-bg { transform: scale(1.04); }
+        .panel:hover .panel-bg { transform: scale(1.06); }
 
+        /* Dark gradient overlays — bottom-heavy so text reads */
         .panel-overlay {
             position: absolute;
             inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(0,0,0,0.82) 0%,
+                rgba(0,0,0,0.45) 40%,
+                rgba(0,0,0,0.18) 100%
+            );
         }
 
-        /* Sports: dark green gradient overlay */
+        /* Tinted tints per panel */
         .panel-sports .panel-overlay {
             background: linear-gradient(
-                135deg,
-                rgba(5, 30, 10, 0.75) 0%,
-                rgba(10, 50, 20, 0.5) 50%,
-                rgba(5, 25, 10, 0.65) 100%
+                to top,
+                rgba(3, 22, 8, 0.88) 0%,
+                rgba(5, 40, 12, 0.5) 45%,
+                rgba(2, 15, 6, 0.22) 100%
             );
         }
-
-        /* Grill: warm dark overlay */
-        .panel-grill .panel-overlay {
+        .panel-food .panel-overlay {
             background: linear-gradient(
-                135deg,
-                rgba(30, 15, 5, 0.80) 0%,
-                rgba(60, 25, 5, 0.55) 50%,
-                rgba(20, 10, 3, 0.75) 100%
+                to top,
+                rgba(25, 10, 2, 0.90) 0%,
+                rgba(50, 20, 4, 0.55) 45%,
+                rgba(15, 6, 2, 0.22) 100%
             );
         }
-
-        /* Wash: light overlay on carpet */
-        .panel-wash .panel-overlay {
+        .panel-care .panel-overlay {
             background: linear-gradient(
-                135deg,
-                rgba(240, 235, 225, 0.15) 0%,
-                rgba(250, 245, 235, 0.05) 60%,
-                rgba(20, 15, 10, 0.3) 100%
+                to top,
+                rgba(5, 15, 30, 0.88) 0%,
+                rgba(8, 25, 50, 0.55) 45%,
+                rgba(4, 10, 20, 0.22) 100%
             );
         }
 
-        /* Panel content */
+        /* Panel content sits at bottom */
         .panel-content {
             position: relative;
             z-index: 10;
             height: 100%;
             display: flex;
             flex-direction: column;
-            padding: 7rem 2rem 2rem;
+            justify-content: flex-end;
+            padding: 2.4rem 2.2rem;
         }
-
-        .panel-sports .panel-content { padding-left: 2.5rem; }
-        .panel-grill .panel-content  { padding-left: 4rem; }
-        .panel-wash .panel-content   { padding-left: 4.5rem; }
+        .panel-sports .panel-content { padding-left: 2.8rem; }
+        .panel-food  .panel-content  { padding-left: 4.5rem; }
+        .panel-care  .panel-content  { padding-left: 5rem;   }
 
         .panel-content-inner {
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            flex: 1;
-            gap: 1rem;
+            gap: 0.85rem;
         }
 
-        /* ── BADGE / TAG ── */
-        .badge {
+        /* Brand eyebrow chip */
+        .brand-chip {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(0,0,0,0.45);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.18);
-            border-radius: 999px;
-            padding: 5px 14px;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            width: fit-content;
-        }
-
-        .now-live {
-            display: inline-block;
-            background: var(--green);
-            color: white;
-            border-radius: 999px;
-            padding: 3px 12px;
-            font-size: 0.68rem;
+            border-radius: 6px;
+            padding: 4px 12px;
+            font-size: 0.67rem;
             font-weight: 700;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             width: fit-content;
+            border: 1px solid;
         }
+        .chip-green  { background: rgba(34,197,94,0.15);  border-color: rgba(34,197,94,0.4);  color: #6ee7a0; }
+        .chip-orange { background: rgba(255,145,36,0.15); border-color: rgba(255,145,36,0.4); color: #ffc07a; }
+        .chip-blue   { background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.4); color: #93c5fd; }
 
-        /* ── HEADINGS ── */
+        /* Panel headings */
         .panel-heading {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-            font-weight: 900;
-            line-height: 1;
-            text-transform: uppercase;
-            letter-spacing: 0.01em;
+            font-family: var(--font);
+            font-size: clamp(2rem, 3.8vw, 3.4rem);
+            font-weight: 800;
+            line-height: 1.0;
+            letter-spacing: -0.02em;
+        }
+        .panel-heading .accent-green  { color: var(--green); }
+        .panel-heading .accent-orange { color: var(--orange); }
+        .panel-heading .accent-blue   { color: #60a5fa; }
+
+        .panel-sub {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.62);
+            line-height: 1.55;
+            max-width: 240px;
+            font-weight: 400;
         }
 
-        .text-green { color: var(--green); }
-        .text-orange { color: var(--orange); }
-
-        .panel-desc {
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.75);
-            line-height: 1.5;
-            max-width: 260px;
-        }
-
-        /* Wash panel has dark text (light bg) */
-        .panel-wash .panel-heading { color: #1a1a1a; }
-        .panel-wash .panel-desc    { color: rgba(20,20,20,0.75); }
-
-        /* ── BUTTONS ── */
-        .btn-row {
-            display: flex;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-        }
+        /* Buttons */
+        .btn-row { display: flex; gap: 0.55rem; flex-wrap: wrap; }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 999px;
-            padding: 9px 20px;
-            font-size: 0.78rem;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-family: var(--font);
+            font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.02em;
             text-transform: uppercase;
             text-decoration: none;
             white-space: nowrap;
             cursor: pointer;
             border: none;
-            transition: opacity 0.2s, transform 0.15s;
+            transition: opacity 0.18s, transform 0.14s;
         }
-        .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+        .btn:hover { opacity: 0.85; transform: translateY(-2px); }
 
-        .btn-green    { background: var(--green); color: #fff; }
-        .btn-dark     { background: rgba(0,0,0,0.55); color: #fff; border: 1px solid rgba(255,255,255,0.25); backdrop-filter: blur(6px); }
-        .btn-orange   { background: var(--orange); color: #fff; }
-        .btn-outline  { background: transparent; color: #222; border: 1.5px solid rgba(30,30,30,0.4); }
-
-        /* ── TAGS / LINK PILLS ── */
-        .tags-row {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 999px;
-            padding: 5px 12px;
-            font-size: 0.7rem;
-            font-weight: 500;
+        .btn-green   { background: var(--green);  color: #fff; }
+        .btn-orange  { background: var(--orange); color: #fff; }
+        .btn-blue    { background: #3b82f6;        color: #fff; }
+        .btn-ghost   {
+            background: rgba(255,255,255,0.08);
             color: rgba(255,255,255,0.85);
-            text-decoration: none;
-        }
-        .tag svg { width: 12px; height: 12px; opacity: 0.7; }
-
-        /* Wash tags (dark text) */
-        .panel-wash .tag {
-            background: rgba(255,255,255,0.5);
-            border-color: rgba(0,0,0,0.12);
-            color: #222;
+            border: 1px solid rgba(255,255,255,0.18);
+            backdrop-filter: blur(6px);
         }
 
-        .tag-sep { color: rgba(255,255,255,0.25); font-size: 0.7rem; }
-
-        /* ── GRILL LOGO ── */
-        .grill-logo {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 4px;
-        }
-        .grill-logo-icon {
-            width: 44px;
-            height: 44px;
-        }
-        .grill-logo-text {
-            font-size: 0.72rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.6);
-        }
-
-        /* ── SOCIAL PROOF ── */
+        /* Social proof strip */
         .social-proof {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-top: 0.25rem;
         }
-        .avatars {
-            display: flex;
-        }
+        .avatars { display: flex; }
         .avatar {
-            width: 28px;
-            height: 28px;
+            width: 26px; height: 26px;
             border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.8);
+            border: 2px solid rgba(255,255,255,0.75);
             overflow: hidden;
-            margin-left: -8px;
-            background: #888;
+            margin-left: -7px;
+            background: #555;
         }
         .avatar:first-child { margin-left: 0; }
         .avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .proof-text { font-size: 0.69rem; color: rgba(255,255,255,0.7); line-height: 1.3; }
+        .proof-text strong { font-weight: 700; color: #fff; }
+        .stars { color: var(--amber); font-size: 0.65rem; letter-spacing: 0.06em; }
 
-        .proof-text { font-size: 0.72rem; color: #333; }
-        .proof-text strong { font-weight: 700; }
-        .stars { color: #FF9124; font-size: 0.7rem; letter-spacing: 0.05em; }
+        /* ─────────────── ABOUT SECTION ─────────────── */
+        #about {
+            background: #0a120c;
+            padding: 100px 2rem;
+        }
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
 
-        /* ── CHAT BUBBLE ── */
+        .section-label {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 1rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: var(--font);
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.12;
+            margin-bottom: 1.4rem;
+            color: #fff;
+        }
+        .about-text h2 span { color: var(--green); }
+
+        .about-text p {
+            font-size: 0.97rem;
+            color: rgba(255,255,255,0.62);
+            line-height: 1.75;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .about-brands {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+        }
+
+        .brand-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            padding: 1.4rem;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.03);
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .brand-card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.12);
+        }
+
+        .brand-icon {
+            width: 46px; height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.4rem;
+        }
+        .icon-green  { background: rgba(34,197,94,0.15); }
+        .icon-orange { background: rgba(255,145,36,0.15); }
+        .icon-blue   { background: rgba(59,130,246,0.15); }
+
+        .brand-card-text h3 {
+            font-size: 0.97rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: #fff;
+        }
+        .brand-card-text p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.55;
+            margin-bottom: 0;
+        }
+
+        /* ─────────────── SERVICES SECTION ─────────────── */
+        #services {
+            background: #060d07;
+            padding: 100px 2rem;
+        }
+
+        #services h2 {
+            font-family: var(--font);
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.12;
+            margin-bottom: 0.6rem;
+            color: #fff;
+        }
+        #services h2 span { color: var(--green); }
+        #services .section-intro {
+            font-size: 0.97rem;
+            color: rgba(255,255,255,0.5);
+            max-width: 540px;
+            line-height: 1.7;
+            margin-bottom: 3.5rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.03);
+            transition: transform 0.25s, border-color 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255,255,255,0.13);
+        }
+
+        .service-card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .service-card-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(6,13,7,0.9) 0%, transparent 60%);
+        }
+
+        .service-card-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .service-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+        .sbadge-green  { background: rgba(34,197,94,0.15);  color: #6ee7a0; border: 1px solid rgba(34,197,94,0.3); }
+        .sbadge-orange { background: rgba(255,145,36,0.15); color: #ffc07a; border: 1px solid rgba(255,145,36,0.3); }
+        .sbadge-blue   { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+
+        .service-card-body h3 {
+            font-size: 1.18rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: #fff;
+        }
+        .service-card-body p {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        .service-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .service-list li {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.55);
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .service-list li::before {
+            content: '';
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .sports-li::before  { background: var(--green); }
+        .food-li::before    { background: var(--orange); }
+        .care-li::before    { background: #60a5fa; }
+
+        .service-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: gap 0.2s;
+        }
+        .service-cta:hover { gap: 10px; }
+        .cta-green  { color: var(--green); }
+        .cta-orange { color: var(--orange); }
+        .cta-blue   { color: #60a5fa; }
+
+        /* ─────────────── FOOTER ─────────────── */
+        footer {
+            background: #040a05;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 2.5rem 2.5rem;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .footer-logo {
+            font-family: var(--font);
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .footer-logo span { color: var(--green); }
+        .footer-tagline {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            margin-top: 3px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 1.8rem;
+            list-style: none;
+        }
+        .footer-links a {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--green); }
+        .footer-copy {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.25);
+            text-align: right;
+        }
+
+        /* ─────────────── CHAT BUBBLE ─────────────── */
         .chat-btn {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            z-index: 200;
-            width: 54px;
-            height: 54px;
+            z-index: 300;
+            width: 52px; height: 52px;
             border-radius: 50%;
             background: var(--green);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 24px rgba(34,197,94,0.45);
+            box-shadow: 0 4px 28px rgba(34,197,94,0.5);
             cursor: pointer;
             transition: transform 0.2s;
         }
-        .chat-btn:hover { transform: scale(1.08); }
-        .chat-btn svg { width: 24px; height: 24px; color: #fff; }
+        .chat-btn:hover { transform: scale(1.1); }
+        .chat-btn svg { width: 22px; height: 22px; color: #fff; }
 
-        /* ── FOOTER ── */
-        footer {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 14px 1rem;
-            font-size: 0.78rem;
-            color: rgba(255,255,255,0.45);
-            background: rgba(0,0,0,0.6);
-            border-top: 1px solid rgba(255,255,255,0.06);
-        }
-        footer a { color: rgba(255,255,255,0.65); text-decoration: underline; }
-
-        /* ── MOBILE STACK ── */
-        @media (max-width: 767px) {
+        /* ─────────────── MOBILE ─────────────── */
+        @media (max-width: 820px) {
+            /* Panels stack vertically on mobile */
             .panels {
                 position: static;
                 flex-direction: column;
-                height: auto;
             }
             .hero {
                 height: auto;
                 overflow: visible;
-                padding-bottom: 0;
             }
             .hero-headline {
                 position: static;
-                padding: 5.5rem 1.25rem 1rem;
+                padding: 5.5rem 1.25rem 0;
                 pointer-events: all;
             }
             .panel {
                 width: 100% !important;
                 margin-left: 0 !important;
                 clip-path: none !important;
-                min-height: 480px;
+                min-height: 440px;
             }
+            .seam { display: none; }
             .panel-content {
-                padding: 2rem 1.5rem 2rem !important;
+                padding: 2rem 1.5rem 2.2rem !important;
             }
-            .panel-wash .panel-overlay {
-                background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
-            }
-            .panel-wash .panel-heading { color: #fff; }
-            .panel-wash .panel-desc    { color: rgba(255,255,255,0.8); }
-            .panel-wash .tag { background: rgba(0,0,0,0.35); border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.85); }
-            .proof-text { color: rgba(255,255,255,0.8); }
-            .btn-outline { color: #fff; border-color: rgba(255,255,255,0.4); }
+            .panel-sub { max-width: 100%; }
+
+            .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .services-grid { grid-template-columns: 1fr; }
+
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+            .footer-copy  { text-align: left; }
+
+            nav { padding: 0 1.25rem; }
+            .nav-links { gap: 1.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAV -->
-    <nav>
-        <div class="nav-logo">GOAL<span>FUSION</span></div>
-        <ul class="nav-links">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+<!-- ── NAV ── -->
+<nav>
+    <div class="nav-logo">GOAL<span>FUSION</span></div>
+    <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
-    <!-- HERO -->
-    <div class="hero">
+<!-- ── HERO ── -->
+<div class="hero">
 
-        <!-- Headline floats above the panels -->
-        <div class="hero-headline">
-            <h1>Welcome to GOALFUSION — Your Premier Services Portal</h1>
-            <p>Your unified gateway to sport, food, and home care.</p>
+    <div class="hero-headline">
+        <div class="hero-eyebrow"><span></span>Kitengela's Multi-Brand Complex</div>
+        <h1>One Address.<br><em>Three Experiences.</em></h1>
+        <p>Sport · Food · Home Care — all under the GoalHub Complex, Kitengela.</p>
+    </div>
+
+    <div class="panels">
+
+        <!-- PANEL 1 — GoalHub Sports / Turf -->
+        <div class="panel panel-sports">
+            <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1993&auto=format&fit=crop');"></div>
+            <div class="panel-overlay"></div>
+            <div class="seam"></div>
+            <div class="panel-content">
+                <div class="panel-content-inner">
+                    <div class="brand-chip chip-green">⚽ GoalHub</div>
+                    <div class="panel-heading">
+                        Book Your<br><span class="accent-green">Pitch.</span>
+                    </div>
+                    <p class="panel-sub">
+                        Kitengela's premier football destination. Professional-grade turfs, seamless online booking, and competitive league events.
+                    </p>
+                    <div class="btn-row">
+                        <a href="https://www.goalhub.ke/" class="btn btn-green" target="_blank" rel="noopener">Book a Session</a>
+                        <a href="https://www.goalhub.ke/" class="btn btn-ghost" target="_blank" rel="noopener">View Events</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Three diagonal panels -->
-        <div class="panels">
+        <!-- PANEL 2 — Kienyeji Hub Restaurant -->
+        <div class="panel panel-food">
+            <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1887&auto=format&fit=crop');"></div>
+            <div class="panel-overlay"></div>
+            <div class="seam"></div>
+            <div class="panel-content">
+                <div class="panel-content-inner">
+                    <div class="brand-chip chip-orange">🍽 Kienyeji Hub</div>
+                    <div class="panel-heading">
+                        Taste<br>Something<br><span class="accent-orange">Real.</span>
+                    </div>
+                    <p class="panel-sub">
+                        Authentic Kenyan home-cooking meets bold flavour. Perfect for post-match meals, team lunches, and family dinners.
+                    </p>
+                    <div class="btn-row">
+                        <a href="#" class="btn btn-orange">Book a Table</a>
+                        <a href="#" class="btn btn-ghost">View Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <!-- PANEL 1 — GoalHub (Sports / Turf) -->
-            <div class="panel panel-sports">
-                <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1993&auto=format&fit=crop');"></div>
-                <div class="panel-overlay"></div>
-                <div class="panel-content">
-                    <div class="panel-content-inner">
-                        <div>
-                            <span class="now-live">Now Live</span>
+        <!-- PANEL 3 — ExpressCarpets Fabric Care -->
+        <div class="panel panel-care">
+            <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1887&auto=format&fit=crop');"></div>
+            <div class="panel-overlay"></div>
+            <div class="panel-content">
+                <div class="panel-content-inner">
+                    <div class="brand-chip chip-blue">🧺 ExpressCarpets</div>
+                    <div class="panel-heading">
+                        Deep Clean.<br><span class="accent-blue">Delivered.</span>
+                    </div>
+                    <p class="panel-sub">
+                        Professional carpet & fabric care. We collect, deep-clean, and return — trusted by 10,000+ homes across Kenya.
+                    </p>
+                    <div class="btn-row">
+                        <a href="https://www.expresscarpets.co.ke/" class="btn btn-blue" target="_blank" rel="noopener">Schedule Pickup</a>
+                        <a href="https://www.expresscarpets.co.ke/" class="btn btn-ghost" target="_blank" rel="noopener">Get a Quote</a>
+                    </div>
+                    <div class="social-proof">
+                        <div class="avatars">
+                            <div class="avatar"><img src="https://i.pravatar.cc/56?img=11" alt=""></div>
+                            <div class="avatar"><img src="https://i.pravatar.cc/56?img=22" alt=""></div>
+                            <div class="avatar"><img src="https://i.pravatar.cc/56?img=33" alt=""></div>
                         </div>
                         <div>
-                            <div class="panel-heading">
-                                Book Your<br>
-                                <span class="text-green">Pitch.</span>
-                            </div>
-                        </div>
-                        <p class="panel-desc">
-                            Kitengela's premier football destination.<br>
-                            Professional grade turfs with seamless booking.
-                        </p>
-                        <div class="btn-row">
-                            <a href="https://www.goalhub.ke/" class="btn btn-green" target="_blank" rel="noopener">Book a Session</a>
-                            <a href="https://www.goalhub.ke/" class="btn btn-dark" target="_blank" rel="noopener">View Events</a>
-                        </div>
-                        <div class="tags-row">
-                            <a href="https://www.goalhub.ke/" class="tag" target="_blank" rel="noopener">
-                                <svg fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" opacity="0"/></svg>
-                                Turfs
-                            </a>
-                            <span class="tag-sep">|</span>
-                            <a href="https://www.goalhub.ke/" class="tag" target="_blank" rel="noopener">Bookings</a>
-                            <span class="tag-sep">|</span>
-                            <a href="https://www.goalhub.ke/" class="tag" target="_blank" rel="noopener">Events</a>
+                            <div class="stars">★★★★★</div>
+                            <div class="proof-text"><strong>10,000+</strong> happy customers</div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- PANEL 2 — Kienyeji Hub (Restaurant) -->
-            <div class="panel panel-grill">
-                <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1887&auto=format&fit=crop');"></div>
-                <div class="panel-overlay"></div>
-                <div class="panel-content">
-                    <div class="panel-content-inner">
-                        <!-- Flame logo -->
-                        <div class="grill-logo">
-                            <svg class="grill-logo-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M32 56C32 56 14 44 14 28C14 18 22 10 32 10C42 10 50 18 50 28C50 44 32 56 32 56Z" fill="#FF6B00" opacity="0.9"/>
-                                <path d="M32 50C32 50 20 40 20 28C20 21 25.5 15 32 15C38.5 15 44 21 44 28C44 40 32 50 32 50Z" fill="#FFB800"/>
-                                <path d="M32 44C32 44 24 36 24 28C24 23 27.5 19 32 19C36.5 19 40 23 40 28C40 36 32 44 32 44Z" fill="#FFF0C0" opacity="0.8"/>
-                                <line x1="20" y1="60" x2="44" y2="60" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            <span class="grill-logo-text">kienyeji hub</span>
-                        </div>
-                        <div>
-                            <div class="panel-heading">
-                                Experience<br>Kienyeji<br>
-                                <span class="text-orange">Hub.</span>
-                            </div>
-                        </div>
-                        <p class="panel-desc">
-                            Authentic local &amp; international cuisine.<br>
-                            Perfect for team lunches and family dinners.
-                        </p>
-                        <div class="btn-row">
-                            <a href="#" class="btn btn-orange">Book a Table</a>
-                            <a href="#" class="btn btn-dark">View Menu</a>
-                        </div>
-                        <div class="tags-row">
-                            <span class="tag">🍽 Chef's Recommendation</span>
-                            <span class="tag">Open Hours</span>
-                        </div>
+    </div><!-- end .panels -->
+</div><!-- end .hero -->
+
+<!-- ── ABOUT ── -->
+<section id="about">
+    <div class="section-inner">
+        <div class="about-grid">
+
+            <div class="about-text">
+                <span class="section-label">About GoalFusion</span>
+                <h2>Kitengela's First<br><span>Multi-Brand Complex</span></h2>
+                <p>
+                    GoalFusion is the digital home of the <strong style="color:#fff">GoalHub Complex</strong> — a first-of-its-kind lifestyle destination in Kitengela that brings together world-class sport facilities, authentic local food, and professional home-care services under one roof.
+                </p>
+                <p>
+                    Whether you're booking a football pitch with your crew, grabbing a hearty meal after the game, or getting your carpets freshened up before the weekend — everything you need is right here. One location. Three brands. Zero hassle.
+                </p>
+                <p>
+                    GoalFusion is more than a hub — it's the heartbeat of the Kitengela community.
+                </p>
+            </div>
+
+            <div class="about-brands">
+                <div class="brand-card">
+                    <div class="brand-icon icon-green">⚽</div>
+                    <div class="brand-card-text">
+                        <h3>GoalHub — Sports & Turf</h3>
+                        <p>Professional 5-a-side and 7-a-side football turfs in Kitengela. Book online, join leagues, and host tournaments at Kitengela's most popular football complex.</p>
+                    </div>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-icon icon-orange">🍽</div>
+                    <div class="brand-card-text">
+                        <h3>Kienyeji Hub — Restaurant</h3>
+                        <p>Rooted in Kenyan tradition, Kienyeji Hub serves genuine home-style cooking — from nyama choma to pilau — in a warm, relaxed atmosphere right next to the pitch.</p>
+                    </div>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-icon icon-blue">🧺</div>
+                    <div class="brand-card-text">
+                        <h3>ExpressCarpets — Home Care</h3>
+                        <p>Kenya's leading carpet and fabric cleaning service. We collect from your door, deep-clean with industrial equipment, and return same-day or next-day.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- PANEL 3 — ExpressCarpets (Fabric Care) -->
-            <div class="panel panel-wash">
-                <div class="panel-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1887&auto=format&fit=crop');"></div>
-                <div class="panel-overlay"></div>
-                <div class="panel-content">
-                    <div class="panel-content-inner">
-                        <!-- ExpressWash badge -->
-                        <div class="badge" style="background: rgba(255,255,255,0.75); color: #111; border-color: rgba(0,0,0,0.1);">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#3b82f6"/>
-                            </svg>
-                            <span><b>Express</b>Carpets</span>
-                        </div>
-                        <div>
-                            <div class="panel-heading">
-                                Professional<br>Carpet &amp; Fabric<br>Care.
-                                <span style="font-size: 0.52em; font-weight: 700; display: block; margin-top: 2px; opacity: 0.75;">(ExpressCarpets)</span>
-                            </div>
-                        </div>
-                        <p class="panel-desc">
-                            Cleaner &amp; Faster. Trusted by thousands across Kenya.
-                        </p>
-                        <div class="btn-row">
-                            <a href="https://www.expresscarpets.co.ke/" class="btn btn-orange" target="_blank" rel="noopener">Schedule Pickup</a>
-                            <a href="https://www.expresscarpets.co.ke/" class="btn btn-outline" target="_blank" rel="noopener">Get a Quote</a>
-                        </div>
-                        <div class="social-proof">
-                            <div class="avatars">
-                                <div class="avatar"><img src="https://i.pravatar.cc/56?img=1" alt="customer"></div>
-                                <div class="avatar"><img src="https://i.pravatar.cc/56?img=2" alt="customer"></div>
-                                <div class="avatar"><img src="https://i.pravatar.cc/56?img=3" alt="customer"></div>
-                            </div>
-                            <div>
-                                <div class="stars">★★★★★</div>
-                                <div class="proof-text"><strong>10,000+</strong> happy customers</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div><!-- end .panels -->
-    </div><!-- end .hero -->
-
-    <!-- FOOTER -->
-    <footer>
-        GOALFUSION &nbsp;|&nbsp; Sport, Food &amp; Home Care
-    </footer>
-
-    <!-- CHAT BUBBLE -->
-    <div class="chat-btn" title="Chat with us">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-        </svg>
+        </div>
     </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+    <div class="section-inner">
+        <span class="section-label">What We Offer</span>
+        <h2>Three Brands,<br><span>One Destination</span></h2>
+        <p class="section-intro">
+            From the pitch to the plate to your living room — explore everything the GoalHub Complex has to offer.
+        </p>
+
+        <div class="services-grid">
+
+            <!-- GoalHub -->
+            <div class="service-card">
+                <div class="service-card-img" style="background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1200&auto=format&fit=crop');"></div>
+                <div class="service-card-body">
+                    <span class="service-badge sbadge-green">⚽ GoalHub</span>
+                    <h3>Sports & Turf Booking</h3>
+                    <p>Kitengela's premier football destination with professional-grade synthetic turfs, flood-lit evening sessions, and a growing league calendar.</p>
+                    <ul class="service-list">
+                        <li class="sports-li">5-a-side & 7-a-side turfs</li>
+                        <li class="sports-li">Online booking — no walk-in queues</li>
+                        <li class="sports-li">Weekend tournaments & leagues</li>
+                        <li class="sports-li">Corporate team-building packages</li>
+                    </ul>
+                    <a href="https://www.goalhub.ke/" class="service-cta cta-green" target="_blank" rel="noopener">
+                        Book a session →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Kienyeji Hub -->
+            <div class="service-card">
+                <div class="service-card-img" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1200&auto=format&fit=crop');"></div>
+                <div class="service-card-body">
+                    <span class="service-badge sbadge-orange">🍽 Kienyeji Hub</span>
+                    <h3>Restaurant & Dining</h3>
+                    <p>Authentic Kenyan cuisine crafted with fresh local ingredients. The perfect place to unwind after a match or enjoy a family dinner in Kitengela.</p>
+                    <ul class="service-list">
+                        <li class="food-li">Nyama choma, pilau & kienyeji favourites</li>
+                        <li class="food-li">Team lunch & group booking packages</li>
+                        <li class="food-li">Open lunch through late evening</li>
+                        <li class="food-li">Private dining & event catering</li>
+                    </ul>
+                    <a href="#" class="service-cta cta-orange">
+                        View menu →
+                    </a>
+                </div>
+            </div>
+
+            <!-- ExpressCarpets -->
+            <div class="service-card">
+                <div class="service-card-img" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop');"></div>
+                <div class="service-card-body">
+                    <span class="service-badge sbadge-blue">🧺 ExpressCarpets</span>
+                    <h3>Carpet & Fabric Care</h3>
+                    <p>Professional-grade cleaning that comes to your door. Trusted by over 10,000 Kenyan homes for deep-clean results with a same-day turnaround.</p>
+                    <ul class="service-list">
+                        <li class="care-li">Free doorstep collection & delivery</li>
+                        <li class="care-li">Carpets, sofas, curtains & duvets</li>
+                        <li class="care-li">Same-day & next-day options</li>
+                        <li class="care-li">Commercial & residential contracts</li>
+                    </ul>
+                    <a href="https://www.expresscarpets.co.ke/" class="service-cta cta-blue" target="_blank" rel="noopener">
+                        Schedule pickup →
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="contact">
+    <div class="footer-inner">
+        <div>
+            <div class="footer-logo">GOAL<span>FUSION</span></div>
+            <div class="footer-tagline">GoalHub Complex · Kitengela, Kenya</div>
+        </div>
+        <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="https://www.goalhub.ke/" target="_blank" rel="noopener">GoalHub</a></li>
+            <li><a href="https://www.expresscarpets.co.ke/" target="_blank" rel="noopener">ExpressCarpets</a></li>
+        </ul>
+        <div class="footer-copy">
+            © 2025 GoalFusion. All rights reserved.<br>
+            GoalHub Complex, Kitengela.
+        </div>
+    </div>
+</footer>
+
+<!-- ── CHAT BUBBLE ── -->
+<div class="chat-btn" title="Chat with us">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+    </svg>
+</div>
 
 </body>
 </html>
