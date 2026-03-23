@@ -1,941 +1,254 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About GoalFusion — Kitengela's First Multi-Brand Complex | GoalHub</title>
-    <meta name="description" content="Learn about GoalFusion — Kitengela's first multi-brand complex bringing together GoalHub sports turfs, Kienyeji Hub restaurant, and ExpressCarpets home care under one roof.">
-    <meta name="keywords" content="GoalFusion about, Kitengela complex, GoalHub Complex, multi-brand Kitengela, sports food home care Kenya">
-    <meta name="author" content="GoalFusion">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://goalfusion.co.ke/about">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="About GoalFusion — Kitengela's First Multi-Brand Complex">
-    <meta property="og:description" content="One address. Three world-class brands. GoalHub, Kienyeji Hub & ExpressCarpets — built to serve Kitengela.">
-    <meta property="og:url" content="https://goalfusion.co.ke/about">
-    <meta property="og:site_name" content="GoalFusion">
-    <meta property="og:locale" content="en_KE">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="About GoalFusion — Kitengela's First Multi-Brand Complex">
-    <meta name="twitter:description" content="One address. Three world-class brands serving Kitengela every day.">
-    <meta name="geo.region" content="KE-16">
-    <meta name="geo.placename" content="Kitengela">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        :root {
-            --green:      #22c55e;
-            --green-dark: #16a34a;
-            --orange:     #FF9124;
-            --amber:      #f59e0b;
-            --blue:       #3b82f6;
-            --dark:       #080f0a;
-            --font:       'Bricolage Grotesque', sans-serif;
-        }
-
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: var(--font);
-            background: var(--dark);
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        /* ── NAV ── */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 200;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2.5rem;
-            height: 62px;
-            background: rgba(8,15,10,0.88);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(255,255,255,0.07);
-        }
-        .nav-logo {
-            font-family: var(--font);
-            font-weight: 800;
-            font-size: 1.18rem;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: #fff;
-        }
-        .nav-logo span { color: var(--green); }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        .nav-links a {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: rgba(255,255,255,0.65);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover,
-        .nav-links a.active { color: var(--green); }
-
-        /* ── PAGE HERO ── */
-        .page-hero {
-            position: relative;
-            padding-top: 62px;
-            min-height: 480px;
-            display: flex;
-            align-items: flex-end;
-            overflow: hidden;
-        }
-        .page-hero-bg {
-            position: absolute;
-            inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1529900748604-07564a03e7a6?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center 30%;
-        }
-        .page-hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to top,
-                rgba(8,15,10,1)   0%,
-                rgba(8,15,10,0.7) 50%,
-                rgba(8,15,10,0.3) 100%
-            );
-        }
-
-        /*
-         * Paper-cut hero divider — two diagonal panels slice the bottom
-         * of the hero so the transition into the content below feels cut.
-         */
-        .hero-cut {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 120px;
-            pointer-events: none;
-            z-index: 10;
-        }
-        .hero-cut-left {
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 55%;
-            height: 100%;
-            background: var(--dark);
-            clip-path: polygon(0 100%, 100% 40%, 100% 100%);
-        }
-        .hero-cut-right {
-            position: absolute;
-            bottom: 0; right: 0;
-            width: 55%;
-            height: 100%;
-            background: var(--dark);
-            clip-path: polygon(0 40%, 100% 100%, 0 100%);
-        }
-        /* Glow seam on the cut edge */
-        .hero-cut-seam {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 100%;
-        }
-
-        .page-hero-content {
-            position: relative;
-            z-index: 20;
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem 5rem;
-        }
-        .page-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(34,197,94,0.12);
-            border: 1px solid rgba(34,197,94,0.3);
-            border-radius: 999px;
-            padding: 5px 16px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 1.2rem;
-        }
-        .page-hero h1 {
-            font-family: var(--font);
-            font-size: clamp(2.4rem, 5vw, 4.2rem);
-            font-weight: 800;
-            letter-spacing: -0.025em;
-            line-height: 1.05;
-            color: #fff;
-        }
-        .page-hero h1 span { color: var(--green); }
-        .page-hero .hero-sub {
-            margin-top: 1rem;
-            font-size: 1.05rem;
-            color: rgba(255,255,255,0.55);
-            max-width: 560px;
-            line-height: 1.7;
-        }
-
-        /* ── SHARED LAYOUT ── */
-        .section {
-            padding: 90px 2rem;
-        }
-        .section-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        .section-label {
-            display: inline-block;
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 0.9rem;
-        }
-        .section h2 {
-            font-family: var(--font);
-            font-size: clamp(2rem, 3.5vw, 2.9rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1.12;
-            color: #fff;
-            margin-bottom: 1.2rem;
-        }
-        .section h2 span { color: var(--green); }
-
-        /* ── MISSION / STORY ── */
-        .mission-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: start;
-            margin-top: 3.5rem;
-        }
-        .mission-text p {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.62);
-            line-height: 1.78;
-            margin-bottom: 1.1rem;
-        }
-        .mission-text p strong { color: #fff; font-weight: 600; }
-
-        .mission-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.2rem;
-        }
-        .stat-card {
-            padding: 1.6rem 1.4rem;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.08);
-            background: rgba(255,255,255,0.03);
-        }
-        .stat-number {
-            font-family: var(--font);
-            font-size: 2.4rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1;
-            margin-bottom: 0.35rem;
-        }
-        .stat-green  { color: var(--green); }
-        .stat-orange { color: var(--orange); }
-        .stat-blue   { color: #60a5fa; }
-        .stat-amber  { color: var(--amber); }
-        .stat-label {
-            font-size: 0.78rem;
-            color: rgba(255,255,255,0.45);
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        /* ── THREE BRANDS — PAPER CUT CARDS ── */
-        .brands-section {
-            background: #060d07;
-        }
-
-        /*
-         * Paper-cut brand cards: each card has a diagonal clip on one
-         * corner so the three cards feel like stacked cut paper.
-         */
-        .brands-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-            margin-top: 3.5rem;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .brand-panel {
-            position: relative;
-            min-height: 560px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-
-        /* Diagonal cut between brand panels */
-        .brand-panel-sports {
-            clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
-            z-index: 3;
-            margin-right: -3%;
-        }
-        .brand-panel-food {
-            clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
-            z-index: 2;
-            margin-right: -3%;
-        }
-        .brand-panel-care {
-            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
-            z-index: 1;
-        }
-
-        .brand-panel-bg {
-            position: absolute;
-            inset: -4%;
-            background-size: cover;
-            background-position: center;
-            transition: transform 6s ease;
-        }
-        .brand-panel:hover .brand-panel-bg { transform: scale(1.05); }
-
-        .brand-panel-overlay {
-            position: absolute;
-            inset: 0;
-        }
-        .brand-panel-sports .brand-panel-overlay {
-            background: linear-gradient(to top, rgba(3,22,8,0.92) 0%, rgba(5,40,12,0.5) 50%, transparent 100%);
-        }
-        .brand-panel-food .brand-panel-overlay {
-            background: linear-gradient(to top, rgba(25,10,2,0.94) 0%, rgba(50,20,4,0.55) 50%, transparent 100%);
-        }
-        .brand-panel-care .brand-panel-overlay {
-            background: linear-gradient(to top, rgba(5,15,30,0.94) 0%, rgba(8,25,50,0.55) 50%, transparent 100%);
-        }
-
-        /* Cast shadow on panels 2 & 3 from the previous panel's cut */
-        .brand-panel-food::before,
-        .brand-panel-care::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 5;
-            pointer-events: none;
-            background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 12%, transparent 28%);
-        }
-
-        .brand-panel-body {
-            position: relative;
-            z-index: 10;
-            padding: 2.2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-        }
-        .brand-panel-food .brand-panel-body  { padding-left: 3.5rem; }
-        .brand-panel-care .brand-panel-body  { padding-left: 3.5rem; }
-
-        .bp-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            border-radius: 6px;
-            padding: 4px 12px;
-            font-size: 0.67rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            width: fit-content;
-            border: 1px solid;
-        }
-        .bp-green  { background: rgba(34,197,94,0.15);  border-color: rgba(34,197,94,0.4);  color: #6ee7a0; }
-        .bp-orange { background: rgba(255,145,36,0.15); border-color: rgba(255,145,36,0.4); color: #ffc07a; }
-        .bp-blue   { background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.4); color: #93c5fd; }
-
-        .brand-panel-body h3 {
-            font-family: var(--font);
-            font-size: clamp(1.5rem, 2.5vw, 2rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            color: #fff;
-        }
-        .brand-panel-body h3 .ag { color: var(--green); }
-        .brand-panel-body h3 .ao { color: var(--orange); }
-        .brand-panel-body h3 .ab { color: #60a5fa; }
-
-        .brand-panel-body p {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.6);
-            line-height: 1.6;
-            max-width: 220px;
-        }
-
-        .bp-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: gap 0.2s;
-        }
-        .bp-link:hover { gap: 10px; }
-        .bp-link-green  { color: var(--green); }
-        .bp-link-orange { color: var(--orange); }
-        .bp-link-blue   { color: #60a5fa; }
-
-        /* SVG seam overlay for brand panels */
-        .brands-seam-svg {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 50;
-            pointer-events: none;
-            overflow: visible;
-        }
-        .brands-grid-wrap {
-            position: relative;
-            margin-top: 3.5rem;
-        }
-
-        /* ── VALUES ── */
-        .values-section { background: #0a120c; }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-        .value-card {
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.07);
-            background: rgba(255,255,255,0.025);
-            transition: background 0.2s, border-color 0.2s;
-        }
-        .value-card:hover {
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(255,255,255,0.12);
-        }
-        .value-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-        .value-card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-        .value-card p {
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.5);
-            line-height: 1.65;
-        }
-
-        /* ── TEAM / LOCATION ── */
-        .location-section { background: #060d07; }
-
-        .location-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-top: 3rem;
-        }
-        .location-map {
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.08);
-            background: #111;
-            height: 360px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .location-map img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.7;
-        }
-        .map-pin {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-        }
-        .map-pin-dot {
-            width: 20px; height: 20px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 0 6px rgba(34,197,94,0.25);
-            animation: map-pulse 2.4s infinite;
-        }
-        @keyframes map-pulse {
-            0%,100% { box-shadow: 0 0 0 6px rgba(34,197,94,0.25); }
-            50%      { box-shadow: 0 0 0 14px rgba(34,197,94,0.08); }
-        }
-        .map-pin-label {
-            background: rgba(8,15,10,0.9);
-            border: 1px solid rgba(34,197,94,0.3);
-            border-radius: 8px;
-            padding: 4px 12px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--green);
-            white-space: nowrap;
-        }
-
-        .location-info h3 {
-            font-family: var(--font);
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -0.01em;
-            color: #fff;
-            margin-bottom: 1rem;
-        }
-        .location-info p {
-            font-size: 0.95rem;
-            color: rgba(255,255,255,0.6);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-        .location-detail {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-        }
-        .location-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 0.87rem;
-            color: rgba(255,255,255,0.65);
-        }
-        .location-row .icon {
-            font-size: 1rem;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-        .location-row strong { color: #fff; font-weight: 600; }
-
-        /* ── CTA BANNER ── */
-        .cta-banner {
-            background: linear-gradient(135deg, #0d2010 0%, #060d07 100%);
-            border-top: 1px solid rgba(34,197,94,0.12);
-            border-bottom: 1px solid rgba(34,197,94,0.12);
-            padding: 80px 2rem;
-            text-align: center;
-        }
-        .cta-banner h2 {
-            font-family: var(--font);
-            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            color: #fff;
-            margin-bottom: 0.8rem;
-        }
-        .cta-banner h2 span { color: var(--green); }
-        .cta-banner p {
-            font-size: 1rem;
-            color: rgba(255,255,255,0.55);
-            max-width: 520px;
-            margin: 0 auto 2rem;
-            line-height: 1.7;
-        }
-        .cta-btns {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            border-radius: 8px;
-            padding: 10px 22px;
-            font-family: var(--font);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            text-decoration: none;
-            white-space: nowrap;
-            cursor: pointer;
-            border: none;
-            transition: opacity 0.18s, transform 0.14s;
-        }
-        .btn:hover { opacity: 0.85; transform: translateY(-2px); }
-        .btn-green  { background: var(--green);  color: #fff; }
-        .btn-ghost  {
-            background: rgba(255,255,255,0.08);
-            color: rgba(255,255,255,0.85);
-            border: 1px solid rgba(255,255,255,0.18);
-        }
-
-        /* ── FOOTER ── */
-        footer {
-            background: #040a05;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding: 2.5rem;
-        }
-        .footer-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .footer-logo {
-            font-family: var(--font);
-            font-weight: 800;
-            font-size: 1.05rem;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: #fff;
-            text-decoration: none;
-        }
-        .footer-logo span { color: var(--green); }
-        .footer-tagline { font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-top: 3px; }
-        .footer-links { display: flex; gap: 1.8rem; list-style: none; }
-        .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--green); }
-        .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.25); text-align: right; }
-
-        /* ── MOBILE ── */
-        @media (max-width: 820px) {
-            nav { padding: 0 1.25rem; }
-            .nav-links { gap: 1.2rem; }
-            .mission-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-            .brands-grid { grid-template-columns: 1fr; border-radius: 16px; }
-            .brand-panel { min-height: 380px; }
-            .brand-panel-sports,
-            .brand-panel-food,
-            .brand-panel-care { clip-path: none !important; margin-right: 0 !important; }
-            .brand-panel-food::before,
-            .brand-panel-care::before { display: none; }
-            .brand-panel-food .brand-panel-body,
-            .brand-panel-care .brand-panel-body { padding-left: 2.2rem; }
-            .brands-seam-svg { display: none; }
-            .values-grid { grid-template-columns: 1fr; }
-            .location-grid { grid-template-columns: 1fr; }
-            .footer-inner { flex-direction: column; align-items: flex-start; }
-            .footer-copy { text-align: left; }
-        }
-        @media (max-width: 480px) {
-            .nav-links { display: none; }
-            .mission-stats { grid-template-columns: 1fr 1fr; }
-        }
-    </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About GoalFusion — Kitengela's First Multi-Brand Complex</title>
+<meta name="description" content="Learn about GoalFusion — Kitengela's first multi-brand complex bringing together GoalHub sports turfs, Kienyeji Hub restaurant, and ExpressCarpets home care under one roof."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://goalfusion.co.ke/about"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="About GoalFusion — Kitengela's First Multi-Brand Complex"/>
+<meta property="og:url" content="https://goalfusion.co.ke/about"/>
+<meta property="og:site_name" content="GoalFusion"/>
+<meta name="geo.region" content="KE-16"/>
+<meta name="geo.placename" content="Kitengela"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    "on-primary-container": "#79a894", "primary-fixed": "#bcedd7",
+                    "primary-container": "#0b3d2e", "background": "#fbfaee",
+                    "tertiary-fixed-dim": "#f9b6af", "on-primary": "#ffffff",
+                    "surface-container-highest": "#e4e3d7", "on-background": "#1b1c15",
+                    "outline-variant": "#c0c8c3", "tertiary-container": "#542925",
+                    "surface": "#fbfaee", "surface-container-lowest": "#ffffff",
+                    "primary": "#00261b", "on-surface": "#1b1c15",
+                    "secondary": "#50625a", "inverse-on-surface": "#f2f1e5",
+                    "on-surface-variant": "#414944", "surface-container-low": "#f5f4e8",
+                    "surface-container-high": "#e9e9dd", "primary-fixed-dim": "#a0d1bc",
+                    "surface-container": "#efeee3", "outline": "#717974",
+                },
+                fontFamily: { "headline": ["Space Grotesk"], "body": ["Inter"] },
+                borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+            },
+        },
+    }
+</script>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+</style>
 </head>
-<body>
+<body class="bg-background text-on-background font-body antialiased">
 
-<!-- NAV -->
-<nav>
-    <a href="index.html" class="nav-logo">GOAL<span>FUSION</span></a>
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
+<!-- Floating Pill Nav -->
+<nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-full border border-[#c0c8c3]/20 bg-white/80 backdrop-blur-3xl shadow-[0_20px_80px_rgba(27,28,21,0.08)] flex justify-between items-center px-8 py-3.5 z-50">
+    <a href="index.html" class="text-2xl font-bold tracking-tighter text-primary font-headline select-none">
+        Goal<span class="text-[#396756]">Fusion</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+        <a class="font-medium transition-colors hover:scale-105 duration-300 text-sm text-primary font-semibold" href="about.html">About</a>
+        <a class="text-on-background/60 font-medium hover:text-primary transition-colors hover:scale-105 duration-300 text-sm" href="services.html">Services</a>
+        <a class="text-on-background/60 font-medium hover:text-primary transition-colors hover:scale-105 duration-300 text-sm" href="goalhub.html">GoalHub</a>
+        <a class="text-on-background/60 font-medium hover:text-primary transition-colors hover:scale-105 duration-300 text-sm" href="kienyeji-hub.html">Kienyeji Hub</a>
+        <a class="text-on-background/60 font-medium hover:text-primary transition-colors hover:scale-105 duration-300 text-sm" href="expresscarpets.html">ExpressCarpets</a>
+    </div>
+    <a href="contact.html" class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-headline font-bold text-sm hover:scale-105 transition-transform active:scale-95">
+        Get Started
+    </a>
 </nav>
 
-<!-- PAGE HERO -->
-<div class="page-hero">
-    <div class="page-hero-bg"></div>
-    <div class="page-hero-overlay"></div>
-
-    <!-- Paper-cut bottom edge -->
-    <div class="hero-cut">
-        <div class="hero-cut-left"></div>
-        <div class="hero-cut-right"></div>
-        <svg style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-                <filter id="hglow" x="-200%" y="-200%" width="600%" height="600%">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="b"/>
-                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-                <linearGradient id="hsg" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#22c55e" stop-opacity="0"/>
-                    <stop offset="35%" stop-color="#fde047" stop-opacity="0.9"/>
-                    <stop offset="50%" stop-color="#ffffff" stop-opacity="1"/>
-                    <stop offset="65%" stop-color="#fde047" stop-opacity="0.9"/>
-                    <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
-                </linearGradient>
-            </defs>
-            <!-- The V-shaped paper cut seam line -->
-            <polyline points="0,100 50,40 100,100" fill="none" stroke="rgba(253,224,71,0.18)" stroke-width="2" filter="url(#hglow)"/>
-            <polyline points="0,100 50,40 100,100" fill="none" stroke="url(#hsg)" stroke-width="0.3"/>
-        </svg>
-    </div>
-
-    <div class="page-hero-content">
-        <div class="page-eyebrow">About GoalFusion</div>
-        <h1>Kitengela's First<br><span>Multi-Brand Complex</span></h1>
-        <p class="hero-sub">
-            One address. Three world-class brands. Built to serve the Kitengela community every single day.
-        </p>
+<!-- Page Hero -->
+<div class="relative min-h-[420px] flex items-end overflow-hidden pt-20">
+    <img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?q=80&w=2070&auto=format&fit=crop"
+         alt="GoalFusion complex" class="absolute inset-0 w-full h-full object-cover object-center"/>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#00261b]/90 via-[#00261b]/55 to-[#00261b]/20"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-8 pb-16 w-full">
+        <span class="inline-block text-primary-fixed font-headline tracking-widest text-xs uppercase mb-4">Our Story</span>
+        <h1 class="text-5xl lg:text-7xl font-headline font-bold tracking-tighter text-white mb-4">About <span class="text-primary-fixed">GoalFusion</span></h1>
+        <p class="text-white/70 text-lg max-w-xl leading-relaxed">One address. Three world-class brands. Built to serve Kitengela.</p>
     </div>
 </div>
 
-<!-- MISSION & STORY -->
-<section class="section" style="background: var(--dark);">
-    <div class="section-inner">
-        <span class="section-label">Our Story</span>
-        <h2>Born from a Simple Idea:<br><span>Everything You Need, Here.</span></h2>
-
-        <div class="mission-grid">
-            <div class="mission-text">
-                <p>
-                    GoalFusion started with a question: <strong>why should the people of Kitengela have to drive across town for quality sport, great food, and reliable home care?</strong> The answer was simple — they shouldn't.
-                </p>
-                <p>
-                    The <strong>GoalHub Complex</strong> was born at the intersection of community and convenience. We brought together three independent brands, each exceptional at what they do, and put them in the same place so you can get more done in less time.
-                </p>
-                <p>
-                    Today GoalFusion is more than a complex — it's the social and commercial heartbeat of Kitengela. From the pitch to the plate to your doorstep, we're here every day of the week.
-                </p>
-            </div>
-
-            <div class="mission-stats">
-                <div class="stat-card">
-                    <div class="stat-number stat-green">3</div>
-                    <div class="stat-label">Brands under<br>one roof</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number stat-orange">10K+</div>
-                    <div class="stat-label">Homes served<br>by ExpressCarpets</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number stat-blue">7</div>
-                    <div class="stat-label">Days a week<br>open for business</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number stat-amber">1</div>
-                    <div class="stat-label">Kitengela — our<br>home community</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- THREE BRANDS — paper-cut panels -->
-<section class="section brands-section">
-    <div class="section-inner">
-        <span class="section-label">Our Brands</span>
-        <h2>Three Brands,<br><span>One Mission</span></h2>
-
-        <div class="brands-grid-wrap">
-            <div class="brands-grid">
-
-                <!-- GoalHub -->
-                <div class="brand-panel brand-panel-sports">
-                    <div class="brand-panel-bg" style="background-image:url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1200&auto=format&fit=crop');"></div>
-                    <div class="brand-panel-overlay"></div>
-                    <div class="brand-panel-body">
-                        <div class="bp-chip bp-green">⚽ GoalHub</div>
-                        <h3>Sport &amp;<br><span class="ag">Turf</span></h3>
-                        <p>Kitengela's premier football venue. Book a pitch, join a league, or host a tournament — online or walk-in.</p>
-                        <a href="goalhub.html" class="bp-link bp-link-green">Explore GoalHub →</a>
-                    </div>
-                </div>
-
-                <!-- Kienyeji Hub -->
-                <div class="brand-panel brand-panel-food">
-                    <div class="brand-panel-bg" style="background-image:url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1200&auto=format&fit=crop');"></div>
-                    <div class="brand-panel-overlay"></div>
-                    <div class="brand-panel-body">
-                        <div class="bp-chip bp-orange">🍽 Kienyeji Hub</div>
-                        <h3>Food &amp;<br><span class="ao">Dining</span></h3>
-                        <p>Authentic Kenyan home-cooking. Great for post-match meals, family lunches, and private events.</p>
-                        <a href="kienyeji-hub.html" class="bp-link bp-link-orange">Explore Kienyeji Hub →</a>
-                    </div>
-                </div>
-
-                <!-- ExpressCarpets -->
-                <div class="brand-panel brand-panel-care">
-                    <div class="brand-panel-bg" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop');"></div>
-                    <div class="brand-panel-overlay"></div>
-                    <div class="brand-panel-body">
-                        <div class="bp-chip bp-blue">🧺 ExpressCarpets</div>
-                        <h3>Home<br><span class="ab">Care</span></h3>
-                        <p>Professional carpet &amp; fabric cleaning. Free doorstep collection, same-day or next-day return.</p>
-                        <a href="expresscarpets.html" class="bp-link bp-link-blue">Explore ExpressCarpets →</a>
-                    </div>
-                </div>
-
-            </div><!-- .brands-grid -->
-
-            <!-- SVG seam overlay for brand panels -->
-            <svg class="brands-seam-svg" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"
-                 style="position:absolute;inset:0;width:100%;height:100%;z-index:50;pointer-events:none;overflow:visible;top:3.5rem;">
-                <defs>
-                    <filter id="bg1" x="-500%" y="-10%" width="1100%" height="120%">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="b"/>
-                        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                    </filter>
-                    <linearGradient id="bsg1" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%"   stop-color="#22c55e" stop-opacity="0"/>
-                        <stop offset="20%"  stop-color="#fde047" stop-opacity="0.9"/>
-                        <stop offset="50%"  stop-color="#ffffff" stop-opacity="1"/>
-                        <stop offset="80%"  stop-color="#fde047" stop-opacity="0.9"/>
-                        <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
-                    </linearGradient>
-                    <linearGradient id="bsg2" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%"   stop-color="#FF9124" stop-opacity="0"/>
-                        <stop offset="20%"  stop-color="#fde047" stop-opacity="0.9"/>
-                        <stop offset="50%"  stop-color="#ffffff" stop-opacity="1"/>
-                        <stop offset="80%"  stop-color="#fde047" stop-opacity="0.9"/>
-                        <stop offset="100%" stop-color="#FF9124" stop-opacity="0"/>
-                    </linearGradient>
-                </defs>
-                <!-- Seam 1: between sports and food panels — ~33.3% + 8% offset -->
-                <line x1="33.3" y1="0" x2="30" y2="100" stroke="rgba(253,224,71,0.2)" stroke-width="2" filter="url(#bg1)"/>
-                <line x1="33.3" y1="0" x2="30" y2="100" stroke="url(#bsg1)" stroke-width="0.2"/>
-                <!-- Seam 2: between food and care panels — ~66.6% -->
-                <line x1="66.6" y1="0" x2="63" y2="100" stroke="rgba(253,224,71,0.2)" stroke-width="2" filter="url(#bg1)"/>
-                <line x1="66.6" y1="0" x2="63" y2="100" stroke="url(#bsg2)" stroke-width="0.2"/>
-            </svg>
-
-        </div><!-- .brands-grid-wrap -->
-    </div>
-</section>
-
-<!-- VALUES -->
-<section class="section values-section">
-    <div class="section-inner">
-        <span class="section-label">What We Stand For</span>
-        <h2>Our Values</h2>
-
-        <div class="values-grid">
-            <div class="value-card">
-                <span class="value-icon">🏘</span>
-                <h3>Community First</h3>
-                <p>Kitengela is our home and our customer. Every decision we make puts the local community's needs at the centre.</p>
-            </div>
-            <div class="value-card">
-                <span class="value-icon">⚡</span>
-                <h3>Convenience</h3>
-                <p>We eliminate friction. One location, multiple services, seamless booking — because your time is valuable.</p>
-            </div>
-            <div class="value-card">
-                <span class="value-icon">🏆</span>
-                <h3>Quality Without Compromise</h3>
-                <p>Professional-grade facilities, authentic home-cooking, and industrial-standard cleaning — all under one roof.</p>
-            </div>
-            <div class="value-card">
-                <span class="value-icon">🤝</span>
-                <h3>Trusted Partnerships</h3>
-                <p>Each brand within GoalFusion is a specialist. We partner with the best so you always get the best.</p>
-            </div>
-            <div class="value-card">
-                <span class="value-icon">🌱</span>
-                <h3>Sustainable Growth</h3>
-                <p>We invest in local talent, local suppliers, and local infrastructure to ensure Kitengela grows with us.</p>
-            </div>
-            <div class="value-card">
-                <span class="value-icon">📱</span>
-                <h3>Digital-First Access</h3>
-                <p>Book a pitch, reserve a table, or schedule a carpet pickup — everything is just a tap away, 24/7.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- LOCATION -->
-<section class="section location-section">
-    <div class="section-inner">
-        <span class="section-label">Find Us</span>
-        <h2>Right in the Heart of<br><span>Kitengela</span></h2>
-
-        <div class="location-grid">
-            <div class="location-map">
-                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200&auto=format&fit=crop" alt="Kitengela map area">
-                <div class="map-pin">
-                    <div class="map-pin-dot"></div>
-                    <div class="map-pin-label">GoalHub Complex</div>
-                </div>
-            </div>
-
-            <div class="location-info">
-                <h3>GoalHub Complex, Kitengela</h3>
-                <p>
-                    Conveniently located in Kitengela town, the GoalHub Complex is easily accessible by road and just minutes from the main stage. Plenty of parking available on-site.
-                </p>
-                <div class="location-detail">
-                    <div class="location-row">
-                        <span class="icon">📍</span>
-                        <div><strong>GoalHub Complex</strong><br>Kitengela, Kajiado County, Kenya</div>
-                    </div>
-                    <div class="location-row">
-                        <span class="icon">🕐</span>
-                        <div><strong>Hours</strong><br>Mon – Sun · 7:00 AM – 11:00 PM</div>
-                    </div>
-                    <div class="location-row">
-                        <span class="icon">📞</span>
-                        <div><strong>Phone</strong><br>+254 700 000 000</div>
-                    </div>
-                    <div class="location-row">
-                        <span class="icon">✉️</span>
-                        <div><strong>Email</strong><br>hello@goalfusion.co.ke</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA BANNER -->
-<div class="cta-banner">
-    <h2>Ready to Experience<br><span>GoalFusion?</span></h2>
-    <p>Book a pitch, grab a meal, or schedule a carpet clean — all in one place, all in Kitengela.</p>
-    <div class="cta-btns">
-        <a href="services.html" class="btn btn-green">Explore Services</a>
-        <a href="contact.html" class="btn btn-ghost">Get in Touch</a>
-    </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-    <div class="footer-inner">
+<!-- Mission Section -->
+<section class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div>
-            <a href="index.html" class="footer-logo">GOAL<span>FUSION</span></a>
-            <div class="footer-tagline">GoalHub Complex · Kitengela, Kenya</div>
+            <span class="text-xs font-headline font-bold tracking-widest uppercase text-primary/70 mb-4 block">Our Mission</span>
+            <h2 class="text-4xl lg:text-5xl font-headline font-bold tracking-tighter text-primary mb-6">One Roof.<br>Every Need.</h2>
+            <p class="text-on-surface-variant leading-relaxed mb-5 text-base">GoalFusion was born from a simple idea: the people of Kitengela deserve world-class facilities — for sport, for food, and for their homes — without having to drive across town.</p>
+            <p class="text-on-surface-variant leading-relaxed mb-8 text-base">We brought together three specialist brands under one roof at the GoalHub Complex on Namanga Road, creating Kitengela's first truly integrated lifestyle destination.</p>
+            <div class="flex flex-wrap gap-4">
+                <a href="services.html" class="bg-primary text-on-primary px-7 py-3.5 rounded-full font-headline font-bold text-sm hover:scale-105 transition-transform inline-flex items-center gap-2">
+                    Our Services <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </a>
+                <a href="contact.html" class="border border-outline-variant text-on-surface px-7 py-3.5 rounded-full font-headline font-bold text-sm hover:border-primary hover:text-primary transition-colors inline-flex items-center gap-2">
+                    Get in Touch
+                </a>
+            </div>
         </div>
-        <ul class="footer-links">
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="goalhub.html">GoalHub</a></li>
-            <li><a href="expresscarpets.html">ExpressCarpets</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <div class="footer-copy">
-            © 2025 GoalFusion. All rights reserved.<br>
-            GoalHub Complex, Kitengela.
+        <div class="grid grid-cols-2 gap-4">
+            <div class="rounded-xl overflow-hidden h-56">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800&auto=format&fit=crop" alt="GoalHub pitch" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"/>
+            </div>
+            <div class="rounded-xl overflow-hidden h-56 mt-8">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop" alt="Kienyeji Hub food" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values -->
+<section class="py-24 px-6 bg-surface-container-low">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-xs font-headline font-bold tracking-widest uppercase text-primary/70 mb-4 block">What We Stand For</span>
+            <h2 class="text-4xl lg:text-5xl font-headline font-bold tracking-tighter text-primary">Our Core Values</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl p-10 border border-outline-variant/10 hover:border-outline-variant/30 transition-colors">
+                <span class="material-symbols-outlined text-4xl text-primary mb-5 block">groups</span>
+                <h3 class="text-xl font-headline font-bold text-primary mb-3">Community First</h3>
+                <p class="text-on-surface-variant text-sm leading-relaxed">Everything we build is designed around what Kitengela actually needs — not what looks good on paper. Our community is our compass.</p>
+            </div>
+            <div class="bg-white rounded-xl p-10 border border-outline-variant/10 hover:border-outline-variant/30 transition-colors">
+                <span class="material-symbols-outlined text-4xl text-primary mb-5 block">verified</span>
+                <h3 class="text-xl font-headline font-bold text-primary mb-3">Uncompromising Quality</h3>
+                <p class="text-on-surface-variant text-sm leading-relaxed">From the turf underfoot to the food on the plate, every detail is held to a standard that makes us proud and our customers loyal.</p>
+            </div>
+            <div class="bg-white rounded-xl p-10 border border-outline-variant/10 hover:border-outline-variant/30 transition-colors">
+                <span class="material-symbols-outlined text-4xl text-primary mb-5 block">bolt</span>
+                <h3 class="text-xl font-headline font-bold text-primary mb-3">Accessible Excellence</h3>
+                <p class="text-on-surface-variant text-sm leading-relaxed">World-class shouldn't mean out of reach. We price fairly, operate transparently, and welcome everyone — from Sunday kick-abouts to corporate events.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- The Three Brands -->
+<section class="py-24 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+        <span class="text-xs font-headline font-bold tracking-widest uppercase text-primary/70 mb-4 block">Under One Roof</span>
+        <h2 class="text-4xl lg:text-5xl font-headline font-bold tracking-tighter text-primary">Three Brands, One Vision</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- GoalHub -->
+        <div class="bg-primary-container rounded-xl overflow-hidden group">
+            <div class="h-48 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800&auto=format&fit=crop" alt="GoalHub" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
+            </div>
+            <div class="p-8 text-primary-fixed">
+                <div class="text-xs font-headline font-bold tracking-widest uppercase mb-3 text-primary-fixed/60">Premier Sports</div>
+                <h3 class="text-2xl font-headline font-bold mb-3">GoalHub</h3>
+                <p class="text-primary-fixed/70 text-sm leading-relaxed mb-5">Professional-grade football turfs for the beautiful game. Book by the hour, enter leagues, host events.</p>
+                <a href="goalhub.html" class="inline-flex items-center gap-2 text-sm font-headline font-bold text-primary-fixed hover:gap-3 transition-all">
+                    Explore GoalHub <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+        <!-- Kienyeji Hub -->
+        <div class="bg-[#542925] rounded-xl overflow-hidden group">
+            <div class="h-48 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800&auto=format&fit=crop" alt="Kienyeji Hub" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
+            </div>
+            <div class="p-8 text-[#ffdad6]">
+                <div class="text-xs font-headline font-bold tracking-widest uppercase mb-3 text-[#ffdad6]/60">Authentic Dining</div>
+                <h3 class="text-2xl font-headline font-bold mb-3">Kienyeji Hub</h3>
+                <p class="text-[#ffdad6]/70 text-sm leading-relaxed mb-5">Heritage Kenyan cuisine crafted from locally sourced ingredients. Dine in, take away, or let us cater your event.</p>
+                <a href="kienyeji-hub.html" class="inline-flex items-center gap-2 text-sm font-headline font-bold text-[#f9b6af] hover:gap-3 transition-all">
+                    Explore Kienyeji Hub <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+        <!-- ExpressCarpets -->
+        <div class="bg-surface-container-high rounded-xl overflow-hidden group border border-outline-variant/10">
+            <div class="h-48 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800&auto=format&fit=crop" alt="ExpressCarpets" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
+            </div>
+            <div class="p-8">
+                <div class="text-xs font-headline font-bold tracking-widest uppercase mb-3 text-primary/60">Care Specialists</div>
+                <h3 class="text-2xl font-headline font-bold text-primary mb-3">ExpressCarpets</h3>
+                <p class="text-on-surface-variant text-sm leading-relaxed mb-5">Industrial-grade carpet and fabric cleaning with free doorstep pickup across Kenya. Same-day turnaround available.</p>
+                <a href="expresscarpets.html" class="inline-flex items-center gap-2 text-sm font-headline font-bold text-primary hover:gap-3 transition-all">
+                    Explore ExpressCarpets <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Location -->
+<section class="py-24 px-6 bg-primary">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <span class="text-xs font-headline font-bold tracking-widest uppercase text-primary-fixed/60 mb-4 block">Where to Find Us</span>
+                <h2 class="text-4xl lg:text-5xl font-headline font-bold tracking-tighter text-on-primary mb-6">GoalHub Complex,<br/>Kitengela</h2>
+                <p class="text-on-primary-container leading-relaxed mb-8 text-base">We're on Namanga Road in Kitengela, Kajiado County — easily accessible from Nairobi and the surrounding area.</p>
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary-fixed mt-0.5">location_on</span>
+                        <div>
+                            <div class="text-on-primary font-semibold text-sm">Address</div>
+                            <div class="text-on-primary-container text-sm">GoalHub Complex, Namanga Road, Kitengela, Kajiado County, Kenya</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary-fixed mt-0.5">schedule</span>
+                        <div>
+                            <div class="text-on-primary font-semibold text-sm">Hours</div>
+                            <div class="text-on-primary-container text-sm">GoalHub: 06:00–22:00 · Kienyeji Hub: 11:00–23:00 · ExpressCarpets: 08:00–18:00</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary-fixed mt-0.5">phone</span>
+                        <div>
+                            <div class="text-on-primary font-semibold text-sm">Phone</div>
+                            <div class="text-on-primary-container text-sm">+254 700 000 000</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="contact.html" class="bg-primary-fixed text-primary px-7 py-3.5 rounded-full font-headline font-bold text-sm hover:scale-105 transition-transform inline-flex items-center gap-2">
+                    Get Directions <span class="material-symbols-outlined text-base">map</span>
+                </a>
+            </div>
+            <div class="rounded-xl overflow-hidden h-80 bg-primary-container">
+                <img src="https://images.unsplash.com/photo-1484910292437-025e5d13ce87?q=80&w=1200&auto=format&fit=crop"
+                     alt="Kitengela aerial" class="w-full h-full object-cover opacity-60"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="w-full rounded-t-[3rem] bg-[#f5f4e8]">
+    <div class="w-full px-10 py-16 flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto text-sm tracking-wide">
+        <div class="flex flex-col items-center md:items-start gap-3">
+            <a href="index.html" class="font-headline text-lg font-bold text-primary">GoalFusion</a>
+            <p class="text-on-background/50 text-center md:text-left max-w-xs text-xs leading-relaxed">
+                GoalHub Complex · Namanga Road, Kitengela, Kenya<br/>
+                © 2026 GoalFusion Group. All Rights Reserved.
+            </p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-8">
+            <a class="text-on-background/55 hover:text-primary transition-colors" href="about.html">About</a>
+            <a class="text-on-background/55 hover:text-primary transition-colors" href="services.html">Services</a>
+            <a class="text-on-background/55 hover:text-primary transition-colors" href="goalhub.html">GoalHub</a>
+            <a class="text-on-background/55 hover:text-primary transition-colors" href="kienyeji-hub.html">Kienyeji Hub</a>
+            <a class="text-on-background/55 hover:text-primary transition-colors" href="expresscarpets.html">ExpressCarpets</a>
+            <a class="text-on-background/55 hover:text-primary transition-colors" href="contact.html">Contact</a>
+        </div>
+        <div class="flex gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/8 flex items-center justify-center hover:scale-110 transition-transform cursor-pointer text-primary">
+                <span class="material-symbols-outlined text-xl">share</span>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-primary/8 flex items-center justify-center hover:scale-110 transition-transform cursor-pointer text-primary">
+                <span class="material-symbols-outlined text-xl">public</span>
+            </div>
         </div>
     </div>
 </footer>
