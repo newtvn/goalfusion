@@ -37,10 +37,43 @@
             },
         },
     }
+
+    // Hamburger menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon   = document.getElementById('menu-icon');
+    const mainNav    = document.getElementById('main-nav');
+
+    function openMenu() {
+        mobileMenu.classList.remove('hidden');
+        menuIcon.textContent = 'close';
+        menuToggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeMenu() {
+        mobileMenu.classList.add('hidden');
+        menuIcon.textContent = 'menu';
+        menuToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', e => {
+            e.stopPropagation();
+            mobileMenu.classList.contains('hidden') ? openMenu() : closeMenu();
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+        document.addEventListener('click', e => {
+            if (!mainNav.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
+        });
+    }
+
 </script>
 <style>
     .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
     /* ── African Kente-diamond geometric pattern ── */
+    body {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg opacity='.045'%3E%3Cpath d='M20 1L39 20L20 39L1 20Z' fill='none' stroke='%2300261b' stroke-width='1'/%3E%3Cpath d='M20 9L31 20L20 31L9 20Z' fill='none' stroke='%2300261b' stroke-width='.75'/%3E%3Cline x1='20' y1='1' x2='20' y2='39' stroke='%2300261b' stroke-width='.45'/%3E%3Cline x1='1' y1='20' x2='39' y2='20' stroke='%2300261b' stroke-width='.45'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%2300261b'/%3E%3Ccircle cx='20' cy='1' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='39' cy='20' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='20' cy='39' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='1' cy='20' r='1.5' fill='%2300261b'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: 40px 40px;
+    }
     .af-pat-dk {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 1L39 20L20 39L1 20Z' fill='none' stroke='%2300261b' stroke-width='1'/%3E%3Cpath d='M20 9L31 20L20 31L9 20Z' fill='none' stroke='%2300261b' stroke-width='.75'/%3E%3Cline x1='20' y1='1' x2='20' y2='39' stroke='%2300261b' stroke-width='.45'/%3E%3Cline x1='1' y1='20' x2='39' y2='20' stroke='%2300261b' stroke-width='.45'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%2300261b'/%3E%3Ccircle cx='20' cy='1' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='39' cy='20' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='20' cy='39' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='1' cy='20' r='1.5' fill='%2300261b'/%3E%3C/svg%3E");
         background-repeat: repeat;
@@ -56,7 +89,7 @@
 <body class="bg-background text-on-background font-body antialiased">
 
 <!-- Floating Pill Nav -->
-<nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-full border border-[#c0c8c3]/20 bg-white/80 backdrop-blur-3xl shadow-[0_20px_80px_rgba(27,28,21,0.08)] flex justify-between items-center px-8 py-3.5 z-50 relative overflow-hidden">
+<nav id="main-nav" class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-full border border-[#c0c8c3]/20 bg-white/80 backdrop-blur-3xl shadow-[0_20px_80px_rgba(27,28,21,0.08)] flex justify-between items-center px-8 py-3.5 z-50 relative overflow-hidden">
     <div class="absolute inset-0 af-pat-dk opacity-[0.045] pointer-events-none rounded-full"></div>
 
     <a href="index.html" class="text-2xl font-bold tracking-tighter text-primary font-headline select-none">
@@ -69,10 +102,30 @@
         <a class="text-on-background/60 font-medium hover:text-primary transition-colors hover:scale-105 duration-300 text-sm" href="kienyeji-hub.html">Kienyeji Hub</a>
         <a class="text-on-background/60 font-medium hover:text-primary transition-colors hover:scale-105 duration-300 text-sm" href="https://www.expresscarpets.co.ke/" target="_blank" rel="noopener">ExpressCarpets</a>
     </div>
-    <a href="contact.html" class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-headline font-bold text-sm hover:scale-105 transition-transform active:scale-95">
-        Get Started
-    </a>
+    <div class="flex items-center gap-2 relative z-10">
+        <!-- Hamburger: mobile only -->
+        <button id="menu-toggle" class="md:hidden w-10 h-10 flex items-center justify-center rounded-full text-primary hover:bg-primary/10 transition-colors" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="material-symbols-outlined text-[22px]" id="menu-icon">menu</span>
+        </button>
+        <!-- Get Started: desktop only -->
+        <a href="contact.html" class="hidden md:inline-flex bg-primary text-on-primary px-6 py-2.5 rounded-full font-headline font-bold text-sm hover:scale-105 transition-transform active:scale-95 duration-150">
+            Get Started
+        </a>
+    </div>
 </nav>
+
+<!-- Mobile dropdown menu -->
+<div id="mobile-menu" class="hidden fixed top-[4.5rem] left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-2xl border border-outline-variant/20 bg-white/95 backdrop-blur-2xl shadow-[0_20px_60px_rgba(27,28,21,0.15)] z-40 overflow-hidden" role="dialog" aria-label="Site navigation">
+    <div class="absolute inset-0 af-pat-dk opacity-[0.055] pointer-events-none"></div>
+    <div class="relative flex flex-col p-5 gap-0">
+        <a href="about.html" class="flex items-center justify-between py-4 px-2 border-b border-outline-variant/15 text-on-background font-medium text-base hover:text-primary transition-colors">About <span class="material-symbols-outlined text-base text-primary/50">chevron_right</span></a>
+        <a href="services.html" class="flex items-center justify-between py-4 px-2 border-b border-outline-variant/15 text-on-background font-medium text-base hover:text-primary transition-colors">Services <span class="material-symbols-outlined text-base text-primary/50">chevron_right</span></a>
+        <a href="https://goalhub.ke/" target="_blank" rel="noopener" class="flex items-center justify-between py-4 px-2 border-b border-outline-variant/15 text-on-background font-medium text-base hover:text-primary transition-colors">GoalHub <span class="material-symbols-outlined text-base text-primary/50">open_in_new</span></a>
+        <a href="kienyeji-hub.html" class="flex items-center justify-between py-4 px-2 border-b border-outline-variant/15 text-on-background font-medium text-base hover:text-primary transition-colors">Kienyeji Hub <span class="material-symbols-outlined text-base text-primary/50">chevron_right</span></a>
+        <a href="https://www.expresscarpets.co.ke/" target="_blank" rel="noopener" class="flex items-center justify-between py-4 px-2 border-b border-outline-variant/15 text-on-background font-medium text-base hover:text-primary transition-colors">ExpressCarpets <span class="material-symbols-outlined text-base text-primary/50">open_in_new</span></a>
+        <a href="contact.html" class="mt-5 bg-primary text-on-primary px-8 py-4 rounded-full font-headline font-bold text-center text-sm hover:scale-105 transition-transform active:scale-95">Get Started</a>
+    </div>
+</div>
 
 <!-- Page Hero -->
 <div class="relative min-h-[380px] flex items-end overflow-hidden pt-20">
