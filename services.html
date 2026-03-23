@@ -39,12 +39,25 @@
 </script>
 <style>
     .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+    /* ── African Kente-diamond geometric pattern ── */
+    .af-pat-dk {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 1L39 20L20 39L1 20Z' fill='none' stroke='%2300261b' stroke-width='1'/%3E%3Cpath d='M20 9L31 20L20 31L9 20Z' fill='none' stroke='%2300261b' stroke-width='.75'/%3E%3Cline x1='20' y1='1' x2='20' y2='39' stroke='%2300261b' stroke-width='.45'/%3E%3Cline x1='1' y1='20' x2='39' y2='20' stroke='%2300261b' stroke-width='.45'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%2300261b'/%3E%3Ccircle cx='20' cy='1' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='39' cy='20' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='20' cy='39' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='1' cy='20' r='1.5' fill='%2300261b'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 40px 40px;
+    }
+    .af-pat-lt {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 1L39 20L20 39L1 20Z' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3Cpath d='M20 9L31 20L20 31L9 20Z' fill='none' stroke='%23ffffff' stroke-width='.75'/%3E%3Cline x1='20' y1='1' x2='20' y2='39' stroke='%23ffffff' stroke-width='.45'/%3E%3Cline x1='1' y1='20' x2='39' y2='20' stroke='%23ffffff' stroke-width='.45'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%23ffffff'/%3E%3Ccircle cx='20' cy='1' r='1.5' fill='%23ffffff'/%3E%3Ccircle cx='39' cy='20' r='1.5' fill='%23ffffff'/%3E%3Ccircle cx='20' cy='39' r='1.5' fill='%23ffffff'/%3E%3Ccircle cx='1' cy='20' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 40px 40px;
+    }
 </style>
 </head>
 <body class="bg-background text-on-background font-body antialiased">
 
 <!-- Floating Pill Nav -->
-<nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-full border border-[#c0c8c3]/20 bg-white/80 backdrop-blur-3xl shadow-[0_20px_80px_rgba(27,28,21,0.08)] flex justify-between items-center px-8 py-3.5 z-50">
+<nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-full border border-[#c0c8c3]/20 bg-white/80 backdrop-blur-3xl shadow-[0_20px_80px_rgba(27,28,21,0.08)] flex justify-between items-center px-8 py-3.5 z-50 relative overflow-hidden">
+    <div class="absolute inset-0 af-pat-dk opacity-[0.045] pointer-events-none rounded-full"></div>
+
     <a href="index.html" class="text-2xl font-bold tracking-tighter text-primary font-headline select-none">
         Goal<span class="text-[#396756]">Fusion</span>
     </a>
@@ -76,7 +89,7 @@
 <section class="py-24 px-6 max-w-7xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div class="rounded-xl overflow-hidden h-96 group">
-            <img src="https://images.unsplash.com/photo-DXw2zWRxPR0?q=80&w=1200&auto=format&fit=crop"
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1200&auto=format&fit=crop"
                  alt="GoalHub football turf" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
         </div>
         <div>
@@ -162,7 +175,7 @@
 <section class="py-24 px-6 max-w-7xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div class="rounded-xl overflow-hidden h-96 group">
-            <img src="https://images.unsplash.com/photo-cpIgNaazQ6w?q=80&w=1200&auto=format&fit=crop"
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop"
                  alt="ExpressCarpets fabric care" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
         </div>
         <div>
