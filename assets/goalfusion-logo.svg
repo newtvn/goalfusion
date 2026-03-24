@@ -3,7 +3,7 @@
   <!-- ── G Icon Mark — centered at (220, 155), r=130 ── -->
 
   <!-- Full orange circle -->
-  <circle cx="220" cy="155" r="130" fill="#E87B2E"/>
+  <circle cx="220" cy="155" r="130" fill="#F4743B"/>
 
   <!-- White gap sector (upper-right opening of G) -->
   <!-- -32° on the circle: (220+130·cos(-32°), 155+130·sin(-32°)) ≈ (330, 86) -->
@@ -21,7 +21,7 @@
   <path d="M 232,147 C 248,127 278,125 298,155 C 278,185 248,183 232,163 Z" fill="white"/>
 
   <!-- Orange center circle -->
-  <circle cx="220" cy="155" r="20" fill="#E87B2E"/>
+  <circle cx="220" cy="155" r="20" fill="#F4743B"/>
 
 
   <!-- ── Wordmark: "goal fusion" ── -->

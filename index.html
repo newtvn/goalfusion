@@ -24,7 +24,7 @@
 <meta name="ICBM" content="-1.469, 36.961"/>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
 
 <script id="tailwind-config">
@@ -33,58 +33,58 @@
         theme: {
             extend: {
                 colors: {
-                    "on-primary-container": "#79a894",
+                    "on-primary-container": "#69B578",
                     "on-tertiary": "#ffffff",
-                    "primary-fixed": "#bcedd7",
-                    "on-primary-fixed-variant": "#214f3f",
+                    "primary-fixed": "#c8e8d4",
+                    "on-primary-fixed-variant": "#1a4e38",
                     "on-secondary-fixed": "#0e1f18",
-                    "surface-dim": "#dbdbcf",
+                    "surface-dim": "#d8d8d0",
                     "outline": "#717974",
                     "tertiary": "#3a1411",
                     "on-secondary": "#ffffff",
                     "on-tertiary-container": "#cc8f88",
-                    "primary-container": "#0b3d2e",
+                    "primary-container": "#123d2c",
                     "secondary-fixed": "#d3e7dc",
                     "secondary-container": "#d3e7dc",
-                    "surface-tint": "#396756",
-                    "background": "#fbfaee",
-                    "inverse-primary": "#a0d1bc",
+                    "surface-tint": "#3a7a5c",
+                    "background": "#F2F2F2",
+                    "inverse-primary": "#92cba8",
                     "on-tertiary-fixed-variant": "#693a35",
                     "tertiary-fixed-dim": "#f9b6af",
                     "on-primary": "#ffffff",
-                    "surface-container-highest": "#e4e3d7",
+                    "surface-container-highest": "#dcdcd4",
                     "on-secondary-fixed-variant": "#394a43",
                     "on-error-container": "#93000a",
-                    "on-background": "#1b1c15",
+                    "on-background": "#1A1A1A",
                     "outline-variant": "#c0c8c3",
-                    "on-primary-fixed": "#002116",
+                    "on-primary-fixed": "#0f3327",
                     "tertiary-fixed": "#ffdad6",
                     "error": "#ba1a1a",
-                    "surface-variant": "#e4e3d7",
-                    "surface": "#fbfaee",
+                    "surface-variant": "#dcdcd4",
+                    "surface": "#F2F2F2",
                     "surface-container-lowest": "#ffffff",
-                    "surface-bright": "#fbfaee",
-                    "primary": "#00261b",
-                    "on-surface": "#1b1c15",
-                    "inverse-surface": "#303129",
+                    "surface-bright": "#F2F2F2",
+                    "primary": "#1E5B45",
+                    "on-surface": "#1A1A1A",
+                    "inverse-surface": "#303030",
                     "on-secondary-container": "#566860",
                     "on-error": "#ffffff",
-                    "secondary": "#50625a",
-                    "inverse-on-surface": "#f2f1e5",
+                    "secondary": "#4a7060",
+                    "inverse-on-surface": "#f0f0f0",
                     "tertiary-container": "#542925",
-                    "on-surface-variant": "#414944",
+                    "on-surface-variant": "#404040",
                     "error-container": "#ffdad6",
-                    "surface-container-low": "#f5f4e8",
-                    "surface-container-high": "#e9e9dd",
+                    "surface-container-low": "#e8e8e2",
+                    "surface-container-high": "#e0e0d8",
                     "on-tertiary-fixed": "#34100d",
-                    "primary-fixed-dim": "#a0d1bc",
-                    "secondary-fixed-dim": "#b8cbc1",
-                    "surface-container": "#efeee3"
+                    "primary-fixed-dim": "#92cba8",
+                    "secondary-fixed-dim": "#a8c4b4",
+                    "surface-container": "#e8e8e0"
                 },
                 fontFamily: {
-                    "headline": ["Space Grotesk"],
-                    "body": ["Inter"],
-                    "label": ["Inter"]
+                    "headline": ["DM Sans"],
+                    "body": ["DM Sans"],
+                    "label": ["DM Sans"]
                 },
                 borderRadius: {
                     "DEFAULT": "1rem",
@@ -97,6 +97,86 @@
     }
 </script>
 <style>
+    
+    /* ── Brand CSS custom properties ── */
+    :root {
+        --color-deep-green:  #1E5B45;
+        --color-orange:      #F4743B;
+        --color-sage-green:  #69B578;
+        --color-off-white:   #F2F2F2;
+        --color-lime-green:  #E5F77D;
+        --color-black:       #1A1A1A;
+        --color-white:       #FFFFFF;
+    }
+
+    /* ── Typography ── */
+    h1 {
+        font-family: 'Berlin Sans FB', 'Trebuchet MS', sans-serif !important;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.055em;
+    }
+    h2, h3, .section-title {
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 700;
+    }
+    body, p, li {
+        font-family: 'DM Sans', sans-serif;
+    }
+    .tagline, .script-text {
+        font-family: 'Dancing Script', cursive !important;
+        font-weight: 700;
+    }
+
+    /* ── Nav scroll transition ── */
+    #main-nav {
+        transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    #main-nav.nav-scrolled {
+        background-color: var(--color-deep-green) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-color: rgba(255,255,255,0.12) !important;
+        box-shadow: 0 8px 40px rgba(30,91,69,0.3) !important;
+    }
+    #main-nav.nav-scrolled .nav-link {
+        color: rgba(255,255,255,0.8) !important;
+    }
+    #main-nav.nav-scrolled .nav-link:hover {
+        color: var(--color-lime-green) !important;
+    }
+    #main-nav.nav-scrolled .nav-logo-text {
+        color: white !important;
+    }
+
+    /* ── Buttons ── */
+    .btn-primary {
+        background-color: var(--color-orange);
+        color: #fff;
+        border-radius: 50px;
+        padding: 12px 28px;
+        font-weight: 700;
+        transition: background-color 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover {
+        background-color: var(--color-deep-green);
+        transform: scale(1.02);
+    }
+
+    /* ── Cards hover ── */
+    .brand-card {
+        transition: box-shadow 0.25s, transform 0.25s;
+        border-radius: 16px;
+    }
+    .brand-card:hover {
+        box-shadow: 0 8px 32px rgba(30,91,69,0.15);
+        transform: translateY(-4px);
+    }
+
+    /* ── Wave divider ── */
+    .wave-divider { line-height: 0; overflow: hidden; }
+    .wave-divider svg { display: block; width: 100%; height: 60px; }
+
     .material-symbols-outlined {
         font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
@@ -104,12 +184,12 @@
     /* ── African Kente-diamond geometric pattern ── */
     /* Page-level body background — very faint */
     body {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg opacity='.045'%3E%3Cpath d='M20 1L39 20L20 39L1 20Z' fill='none' stroke='%2300261b' stroke-width='1'/%3E%3Cpath d='M20 9L31 20L20 31L9 20Z' fill='none' stroke='%2300261b' stroke-width='.75'/%3E%3Cline x1='20' y1='1' x2='20' y2='39' stroke='%2300261b' stroke-width='.45'/%3E%3Cline x1='1' y1='20' x2='39' y2='20' stroke='%2300261b' stroke-width='.45'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%2300261b'/%3E%3Ccircle cx='20' cy='1' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='39' cy='20' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='20' cy='39' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='1' cy='20' r='1.5' fill='%2300261b'/%3E%3C/g%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg opacity='.045'%3E%3Cpath d='M20 1L39 20L20 39L1 20Z' fill='none' stroke='%231E5B45' stroke-width='1'/%3E%3Cpath d='M20 9L31 20L20 31L9 20Z' fill='none' stroke='%231E5B45' stroke-width='.75'/%3E%3Cline x1='20' y1='1' x2='20' y2='39' stroke='%231E5B45' stroke-width='.45'/%3E%3Cline x1='1' y1='20' x2='39' y2='20' stroke='%231E5B45' stroke-width='.45'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%231E5B45'/%3E%3Ccircle cx='20' cy='1' r='1.5' fill='%231E5B45'/%3E%3Ccircle cx='39' cy='20' r='1.5' fill='%231E5B45'/%3E%3Ccircle cx='20' cy='39' r='1.5' fill='%231E5B45'/%3E%3Ccircle cx='1' cy='20' r='1.5' fill='%231E5B45'/%3E%3C/g%3E%3C/svg%3E");
         background-size: 40px 40px;
     }
     /* Dark variant: for light surfaces (nav, footer, light cards) */
     .af-pat-dk {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 1L39 20L20 39L1 20Z' fill='none' stroke='%2300261b' stroke-width='1'/%3E%3Cpath d='M20 9L31 20L20 31L9 20Z' fill='none' stroke='%2300261b' stroke-width='.75'/%3E%3Cline x1='20' y1='1' x2='20' y2='39' stroke='%2300261b' stroke-width='.45'/%3E%3Cline x1='1' y1='20' x2='39' y2='20' stroke='%2300261b' stroke-width='.45'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%2300261b'/%3E%3Ccircle cx='20' cy='1' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='39' cy='20' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='20' cy='39' r='1.5' fill='%2300261b'/%3E%3Ccircle cx='1' cy='20' r='1.5' fill='%2300261b'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 1L39 20L20 39L1 20Z' fill='none' stroke='%231E5B45' stroke-width='1'/%3E%3Cpath d='M20 9L31 20L20 31L9 20Z' fill='none' stroke='%231E5B45' stroke-width='.75'/%3E%3Cline x1='20' y1='1' x2='20' y2='39' stroke='%231E5B45' stroke-width='.45'/%3E%3Cline x1='1' y1='20' x2='39' y2='20' stroke='%231E5B45' stroke-width='.45'/%3E%3Ccircle cx='20' cy='20' r='2' fill='%231E5B45'/%3E%3Ccircle cx='20' cy='1' r='1.5' fill='%231E5B45'/%3E%3Ccircle cx='39' cy='20' r='1.5' fill='%231E5B45'/%3E%3Ccircle cx='20' cy='39' r='1.5' fill='%231E5B45'/%3E%3Ccircle cx='1' cy='20' r='1.5' fill='%231E5B45'/%3E%3C/svg%3E");
         background-repeat: repeat;
         background-size: 40px 40px;
     }
@@ -124,20 +204,20 @@
 <body class="bg-background text-on-background font-body antialiased">
 
 <!-- Floating Pill Nav -->
-<nav id="main-nav" class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-full border border-[#c0c8c3]/20 bg-white/80 backdrop-blur-3xl shadow-[0_20px_80px_rgba(27,28,21,0.08)] flex justify-between items-center px-8 py-3.5 z-50 relative overflow-hidden">
+<nav id="main-nav" class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-full border border-white/15 bg-white/80 backdrop-blur-3xl shadow-[0_20px_80px_rgba(30,91,69,0.12)] flex justify-between items-center px-8 py-3.5 z-50 relative overflow-hidden">
     <div class="absolute inset-0 af-pat-dk opacity-[0.045] pointer-events-none rounded-full"></div>
     <a href="index.html" class="relative z-10 flex items-center gap-2.5 select-none" aria-label="GoalFusion home">
         <img src="assets/gf-mark.svg" alt="GoalFusion mark" class="h-9 w-9 flex-shrink-0"/>
         <span class="font-headline font-bold text-xl leading-none">
-            <span class="text-primary">goal</span><span class="text-[#E87B2E]"> fusion</span>
+            <span class="text-white nav-logo-text">goal</span><span class="text-[#F4743B]"> fusion</span>
         </span>
     </a>
     <div class="hidden md:flex items-center gap-8">
-        <a class="text-on-background/60 font-medium hover:text-primary transition-colors hover:scale-105 duration-300 text-sm" href="about.html">About</a>
-        <a class="text-on-background/60 font-medium hover:text-primary transition-colors hover:scale-105 duration-300 text-sm" href="services.html">Services</a>
-        <a class="text-on-background/60 font-medium hover:text-primary transition-colors hover:scale-105 duration-300 text-sm" href="https://goalhub.ke/" target="_blank" rel="noopener">GoalHub</a>
-        <a class="text-on-background/60 font-medium hover:text-primary transition-colors hover:scale-105 duration-300 text-sm" href="kienyeji-hub.html">Kienyeji Hub</a>
-        <a class="text-on-background/60 font-medium hover:text-primary transition-colors hover:scale-105 duration-300 text-sm" href="https://www.expresscarpets.co.ke/" target="_blank" rel="noopener">ExpressCarpets</a>
+        <a class="nav-link text-on-background/60 font-medium hover:text-[#F4743B] transition-colors hover:scale-105 duration-300 text-sm" href="about.html">About</a>
+        <a class="nav-link text-on-background/60 font-medium hover:text-[#F4743B] transition-colors hover:scale-105 duration-300 text-sm" href="services.html">Services</a>
+        <a class="nav-link text-on-background/60 font-medium hover:text-[#F4743B] transition-colors hover:scale-105 duration-300 text-sm" href="https://goalhub.ke/" target="_blank" rel="noopener">GoalHub</a>
+        <a class="nav-link text-on-background/60 font-medium hover:text-[#F4743B] transition-colors hover:scale-105 duration-300 text-sm" href="kienyeji-hub.html">Kienyeji Hub</a>
+        <a class="nav-link text-on-background/60 font-medium hover:text-[#F4743B] transition-colors hover:scale-105 duration-300 text-sm" href="https://www.expresscarpets.co.ke/" target="_blank" rel="noopener">ExpressCarpets</a>
     </div>
     <div class="flex items-center gap-2 relative z-10">
         <!-- Hamburger: mobile only -->
@@ -145,21 +225,21 @@
             <span class="material-symbols-outlined text-[22px]" id="menu-icon">menu</span>
         </button>
         <!-- Get Started: desktop only -->
-        <a href="contact.html" class="hidden md:inline-flex bg-primary text-on-primary px-6 py-2.5 rounded-full font-headline font-bold text-sm hover:scale-105 transition-transform active:scale-95 duration-150">
+        <a href="contact.html" class="nav-cta hidden md:inline-flex bg-[#F4743B] text-white px-6 py-2.5 rounded-full font-headline font-bold text-sm hover:bg-[#1E5B45] hover:scale-105 transition-all active:scale-95 duration-150">
             Get Started
         </a>
     </div>
 </nav>
 
 <!-- Mobile dropdown menu -->
-<div id="mobile-menu" class="hidden fixed top-[4.5rem] left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-2xl border border-outline-variant/20 bg-white/95 backdrop-blur-2xl shadow-[0_20px_60px_rgba(27,28,21,0.15)] z-40 overflow-hidden" role="dialog" aria-label="Site navigation">
+<div id="mobile-menu" class="hidden fixed top-[4.5rem] left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-2xl border border-outline-variant/20 bg-white/95 backdrop-blur-2xl shadow-[0_20px_60px_rgba(30,91,69,0.2)] z-40 overflow-hidden" role="dialog" aria-label="Site navigation">
     <div class="absolute inset-0 af-pat-dk opacity-[0.055] pointer-events-none"></div>
     <div class="relative flex flex-col p-5 gap-0">
         <!-- Logo in menu header -->
         <div class="flex items-center gap-3 pb-4 mb-1 border-b border-outline-variant/15">
             <img src="assets/gf-mark.svg" alt="GoalFusion" class="h-10 w-10"/>
             <div class="flex flex-col">
-                <span class="font-headline font-bold text-base leading-tight text-primary">goal <span class="text-[#E87B2E]">fusion</span></span>
+                <span class="font-headline font-bold text-base leading-tight text-primary">goal <span class="text-[#F4743B]">fusion</span></span>
                 <span class="text-on-background/40 text-[10px] italic">Play . Dine . Thrive</span>
             </div>
         </div>
@@ -168,7 +248,7 @@
         <a href="https://goalhub.ke/" target="_blank" rel="noopener" class="flex items-center justify-between py-4 px-2 border-b border-outline-variant/15 text-on-background font-medium text-base hover:text-primary transition-colors">GoalHub <span class="material-symbols-outlined text-base text-primary/50">open_in_new</span></a>
         <a href="kienyeji-hub.html" class="flex items-center justify-between py-4 px-2 border-b border-outline-variant/15 text-on-background font-medium text-base hover:text-primary transition-colors">Kienyeji Hub <span class="material-symbols-outlined text-base text-primary/50">chevron_right</span></a>
         <a href="https://www.expresscarpets.co.ke/" target="_blank" rel="noopener" class="flex items-center justify-between py-4 px-2 border-b border-outline-variant/15 text-on-background font-medium text-base hover:text-primary transition-colors">ExpressCarpets <span class="material-symbols-outlined text-base text-primary/50">open_in_new</span></a>
-        <a href="contact.html" class="mt-5 bg-primary text-on-primary px-8 py-4 rounded-full font-headline font-bold text-center text-sm hover:scale-105 transition-transform active:scale-95">Get Started</a>
+        <a href="contact.html" class="mt-5 bg-[#F4743B] text-white px-8 py-4 rounded-full font-headline font-bold text-center text-sm hover:bg-[#1E5B45] hover:scale-105 transition-all active:scale-95">Get Started</a>
     </div>
 </div>
 
@@ -182,32 +262,32 @@
             alt="Professional football turf at GoalHub"
             class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-[#031608]/90 via-[#05280c]/50 to-[#020f06]/20"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1E5B45]/80 via-[#1E5B45]/40 to-transparent"></div>
         <div class="absolute inset-0 af-pat-lt opacity-[0.09] pointer-events-none"></div>
         <div class="relative h-full flex flex-col justify-end p-10 lg:p-14 lg:pb-24 z-10 text-white">
-            <span class="text-primary-fixed font-headline tracking-widest text-xs uppercase mb-4 block">Premier Sports</span>
+            <span class="text-[#E5F77D] font-headline tracking-[0.12em] text-xs uppercase mb-4 block font-bold">Premier Sports</span>
             <h1 class="text-5xl lg:text-7xl font-headline font-bold tracking-tighter mb-5">GoalHub</h1>
             <p class="text-base text-white/75 max-w-xs mb-8 leading-relaxed">Professional-grade football turfs built for champions. Book your pitch and play your game.</p>
-            <a href="https://goalhub.ke/" target="_blank" rel="noopener" class="w-fit bg-primary-fixed text-primary px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform flex items-center gap-2 text-sm font-headline">
+            <a href="https://goalhub.ke/" target="_blank" rel="noopener" class="w-fit border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-[#1E5B45] transition-all flex items-center gap-2 text-sm font-headline">
                 Book Pitch <span class="material-symbols-outlined text-base">arrow_forward</span>
             </a>
         </div>
     </div>
 
     <!-- ExpressCarpets Panel -->
-    <div class="relative flex-1 group overflow-hidden bg-[#e4e3d7] min-h-[60vw] lg:min-h-0">
+    <div class="relative flex-1 group overflow-hidden bg-[#dcdcd4] min-h-[60vw] lg:min-h-0">
         <img
             src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1600&auto=format&fit=crop"
             alt="ExpressCarpets professional fabric care"
             class="absolute inset-0 w-full h-full object-cover opacity-45 group-hover:scale-110 transition-transform duration-700"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-[#1b1c15]/60 via-transparent to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#1E5B45]/70 via-[#1E5B45]/30 to-transparent"></div>
         <div class="absolute inset-0 af-pat-dk opacity-[0.07] pointer-events-none"></div>
-        <div class="relative h-full flex flex-col justify-end p-10 lg:p-14 lg:pb-24 z-10 text-on-surface">
-            <span class="text-primary font-headline tracking-widest text-xs uppercase mb-4 block">Care Specialists</span>
+        <div class="relative h-full flex flex-col justify-end p-10 lg:p-14 lg:pb-24 z-10 text-white">
+            <span class="text-[#E5F77D] font-headline tracking-[0.12em] text-xs uppercase mb-4 block font-bold">Care Specialists</span>
             <h1 class="text-5xl lg:text-7xl font-headline font-bold tracking-tighter mb-5">ExpressCarpets</h1>
-            <p class="text-base text-on-surface/65 max-w-xs mb-8 leading-relaxed">Precision carpet and fabric care with free doorstep pickup. Reviving every fibre, every time.</p>
-            <a href="https://www.expresscarpets.co.ke/portal/request-pickup" target="_blank" rel="noopener" class="w-fit bg-primary text-on-primary px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform flex items-center gap-2 text-sm font-headline">
+            <p class="text-base text-white/80 max-w-xs mb-8 leading-relaxed">Precision carpet and fabric care with free doorstep pickup. Reviving every fibre, every time.</p>
+            <a href="https://www.expresscarpets.co.ke/portal/request-pickup" target="_blank" rel="noopener" class="w-fit bg-[#F4743B] text-white px-8 py-4 rounded-full font-bold hover:bg-[#1E5B45] hover:scale-105 transition-all flex items-center gap-2 text-sm font-headline">
                 Schedule Pickup <span class="material-symbols-outlined text-base">cleaning_services</span>
             </a>
         </div>
@@ -223,10 +303,10 @@
         <div class="absolute inset-0 bg-gradient-to-t from-[#140800]/80 via-[#140800]/25 to-transparent"></div>
         <div class="absolute inset-0 af-pat-lt opacity-[0.09] pointer-events-none"></div>
         <div class="relative h-full flex flex-col justify-end p-10 lg:p-14 lg:pb-24 z-10 text-white">
-            <span class="text-tertiary-fixed-dim font-headline tracking-widest text-xs uppercase mb-4 block">Authentic Dining</span>
+            <span class="text-[#E5F77D] font-headline tracking-[0.12em] text-xs uppercase mb-4 block font-bold">Authentic Dining</span>
             <h1 class="text-5xl lg:text-7xl font-headline font-bold tracking-tighter mb-5">Kienyeji Hub</h1>
             <p class="text-base text-white/75 max-w-xs mb-8 leading-relaxed">Heritage Kenyan cuisine made from locally sourced ingredients. Taste the soul of home cooking.</p>
-            <a href="kienyeji-hub.html" class="w-fit bg-tertiary-fixed-dim text-tertiary px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform flex items-center gap-2 text-sm font-headline">
+            <a href="kienyeji-hub.html" class="w-fit bg-[#F4743B] text-white px-8 py-4 rounded-full font-bold hover:bg-[#1E5B45] hover:scale-105 transition-all flex items-center gap-2 text-sm font-headline">
                 View Menu <span class="material-symbols-outlined text-base">restaurant</span>
             </a>
         </div>
@@ -244,19 +324,19 @@
         <!-- Adinkra medallion watermark -->
         <div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-[0.06] pointer-events-none select-none" aria-hidden="true">
             <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="80" cy="80" r="75" stroke="#00261b" stroke-width="2.5"/>
-                <circle cx="80" cy="80" r="56" stroke="#00261b" stroke-width="2"/>
-                <circle cx="80" cy="80" r="37" stroke="#00261b" stroke-width="1.5"/>
-                <circle cx="80" cy="80" r="18" stroke="#00261b" stroke-width="1.5"/>
-                <circle cx="80" cy="80" r="5" fill="#00261b"/>
-                <line x1="5" y1="80" x2="155" y2="80" stroke="#00261b" stroke-width="1"/>
-                <line x1="80" y1="5" x2="80" y2="155" stroke="#00261b" stroke-width="1"/>
-                <line x1="27" y1="27" x2="133" y2="133" stroke="#00261b" stroke-width="1"/>
-                <line x1="133" y1="27" x2="27" y2="133" stroke="#00261b" stroke-width="1"/>
-                <circle cx="80" cy="5" r="4" fill="#00261b"/>
-                <circle cx="155" cy="80" r="4" fill="#00261b"/>
-                <circle cx="80" cy="155" r="4" fill="#00261b"/>
-                <circle cx="5" cy="80" r="4" fill="#00261b"/>
+                <circle cx="80" cy="80" r="75" stroke="#1E5B45" stroke-width="2.5"/>
+                <circle cx="80" cy="80" r="56" stroke="#1E5B45" stroke-width="2"/>
+                <circle cx="80" cy="80" r="37" stroke="#1E5B45" stroke-width="1.5"/>
+                <circle cx="80" cy="80" r="18" stroke="#1E5B45" stroke-width="1.5"/>
+                <circle cx="80" cy="80" r="5" fill="#1E5B45"/>
+                <line x1="5" y1="80" x2="155" y2="80" stroke="#1E5B45" stroke-width="1"/>
+                <line x1="80" y1="5" x2="80" y2="155" stroke="#1E5B45" stroke-width="1"/>
+                <line x1="27" y1="27" x2="133" y2="133" stroke="#1E5B45" stroke-width="1"/>
+                <line x1="133" y1="27" x2="27" y2="133" stroke="#1E5B45" stroke-width="1"/>
+                <circle cx="80" cy="5" r="4" fill="#1E5B45"/>
+                <circle cx="155" cy="80" r="4" fill="#1E5B45"/>
+                <circle cx="80" cy="155" r="4" fill="#1E5B45"/>
+                <circle cx="5" cy="80" r="4" fill="#1E5B45"/>
             </svg>
         </div>
         <h2 class="text-4xl lg:text-6xl font-headline font-bold tracking-tighter text-primary">The Fusion Ecosystem</h2>
@@ -266,7 +346,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
         <!-- Large Focus Card -->
-        <div class="md:col-span-2 bg-surface-container-low p-10 lg:p-12 rounded-xl border border-outline-variant/10 flex flex-col justify-between group relative overflow-hidden">
+        <div class="brand-card md:col-span-2 bg-surface-container-low p-10 lg:p-12 rounded-xl border border-outline-variant/10 flex flex-col justify-between group relative overflow-hidden">
             <div class="absolute inset-0 af-pat-dk opacity-[0.055] pointer-events-none rounded-xl"></div>
             <div class="max-w-md">
                 <span class="material-symbols-outlined text-4xl text-primary mb-6 block">hub</span>
@@ -299,7 +379,7 @@
         </div>
 
         <!-- Elite Standards Card -->
-        <div class="bg-primary-container text-primary-fixed p-10 lg:p-12 rounded-xl flex flex-col justify-center items-center text-center relative overflow-hidden">
+        <div class="brand-card bg-primary-container text-primary-fixed p-10 lg:p-12 rounded-xl flex flex-col justify-center items-center text-center relative overflow-hidden">
             <div class="absolute inset-0 af-pat-lt opacity-[0.12] pointer-events-none rounded-xl"></div>
             <div class="w-20 h-20 rounded-full bg-primary-fixed/20 flex items-center justify-center mb-8">
                 <span class="material-symbols-outlined text-4xl">verified</span>
@@ -309,7 +389,7 @@
         </div>
 
         <!-- Operating Hours Card -->
-        <div class="bg-surface-container-high p-10 lg:p-12 rounded-xl border border-outline-variant/10 flex flex-col justify-center relative overflow-hidden">
+        <div class="brand-card bg-surface-container-high p-10 lg:p-12 rounded-xl border border-outline-variant/10 flex flex-col justify-center relative overflow-hidden">
             <div class="absolute inset-0 af-pat-dk opacity-[0.06] pointer-events-none rounded-xl"></div>
             <h3 class="text-2xl font-headline font-bold mb-6">Operating Hours</h3>
             <ul class="space-y-4 text-sm font-medium">
@@ -329,7 +409,7 @@
         </div>
 
         <!-- Stats Card -->
-        <div class="md:col-span-2 bg-white p-10 lg:p-12 rounded-xl border border-outline-variant/10 flex flex-wrap gap-10 items-center justify-around relative overflow-hidden">
+        <div class="brand-card md:col-span-2 bg-white p-10 lg:p-12 rounded-xl border border-outline-variant/10 flex flex-wrap gap-10 items-center justify-around relative overflow-hidden">
             <div class="absolute inset-0 af-pat-dk opacity-[0.05] pointer-events-none rounded-xl"></div>
             <div class="text-center">
                 <div class="text-4xl font-headline font-bold text-primary">15k+</div>
@@ -382,38 +462,45 @@
     </div>
 </section>
 
+<!-- Wave divider → footer -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#1E5B45"/>
+  </svg>
+</div>
+
 <!-- Footer -->
-<footer class="w-full rounded-t-[3rem] bg-[#f5f4e8] relative overflow-hidden">
-    <div class="absolute inset-0 af-pat-dk opacity-[0.04] pointer-events-none rounded-t-[3rem]"></div>
+<footer class="w-full rounded-t-[3rem] bg-[#1E5B45] relative overflow-hidden">
+    <div class="absolute inset-0 af-pat-lt opacity-[0.06] pointer-events-none rounded-t-[3rem]"></div>
     <div class="w-full px-10 py-16 flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto text-sm tracking-wide">
         <div class="flex flex-col items-center md:items-start gap-4">
             <a href="index.html" class="flex items-center gap-3 group" aria-label="GoalFusion home">
                 <img src="assets/gf-mark.svg" alt="GoalFusion" class="h-12 w-12 flex-shrink-0"/>
                 <div class="flex flex-col">
                     <span class="font-headline font-bold text-lg leading-tight">
-                        <span class="text-primary">goal</span><span class="text-[#E87B2E]"> fusion</span>
+                        <span class="text-white nav-logo-text">goal</span><span class="text-[#F4743B]"> fusion</span>
                     </span>
-                    <span class="text-on-background/40 text-[10px] italic tracking-wide font-body">Play . Dine . Thrive</span>
+                    <span class="tagline text-[#E5F77D] text-xs tracking-wide">Play . Dine . Thrive</span>
                 </div>
             </a>
-            <p class="text-on-background/50 text-center md:text-left max-w-xs text-xs leading-relaxed">
+            <p class="text-white/60 text-center md:text-left max-w-xs text-xs leading-relaxed">
                 GoalHub Complex · Namanga Road, Kitengela, Kenya<br/>
                 © 2026 GoalFusion Group. All Rights Reserved.
             </p>
         </div>
         <div class="flex flex-wrap justify-center gap-8">
-            <a class="text-on-background/55 hover:text-primary transition-colors" href="about.html">About</a>
-            <a class="text-on-background/55 hover:text-primary transition-colors" href="services.html">Services</a>
-            <a class="text-on-background/55 hover:text-primary transition-colors" href="https://goalhub.ke/" target="_blank" rel="noopener">GoalHub</a>
-            <a class="text-on-background/55 hover:text-primary transition-colors" href="kienyeji-hub.html">Kienyeji Hub</a>
-            <a class="text-on-background/55 hover:text-primary transition-colors" href="https://www.expresscarpets.co.ke/" target="_blank" rel="noopener">ExpressCarpets</a>
-            <a class="text-on-background/55 hover:text-primary transition-colors" href="contact.html">Contact</a>
+            <a class="text-white/70 hover:text-[#E5F77D] transition-colors" href="about.html">About</a>
+            <a class="text-white/70 hover:text-[#E5F77D] transition-colors" href="services.html">Services</a>
+            <a class="text-white/70 hover:text-[#E5F77D] transition-colors" href="https://goalhub.ke/" target="_blank" rel="noopener">GoalHub</a>
+            <a class="text-white/70 hover:text-[#E5F77D] transition-colors" href="kienyeji-hub.html">Kienyeji Hub</a>
+            <a class="text-white/70 hover:text-[#E5F77D] transition-colors" href="https://www.expresscarpets.co.ke/" target="_blank" rel="noopener">ExpressCarpets</a>
+            <a class="text-white/70 hover:text-[#E5F77D] transition-colors" href="contact.html">Contact</a>
         </div>
         <div class="flex gap-3">
-            <div class="w-10 h-10 rounded-full bg-primary/8 flex items-center justify-center hover:scale-110 transition-transform cursor-pointer text-primary">
+            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:scale-110 hover:text-[#F4743B] transition-all cursor-pointer text-white/70">
                 <span class="material-symbols-outlined text-xl">share</span>
             </div>
-            <div class="w-10 h-10 rounded-full bg-primary/8 flex items-center justify-center hover:scale-110 transition-transform cursor-pointer text-primary">
+            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:scale-110 hover:text-[#F4743B] transition-all cursor-pointer text-white/70">
                 <span class="material-symbols-outlined text-xl">public</span>
             </div>
         </div>
@@ -458,6 +545,16 @@
             if (!mainNav.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
         });
     }
+
+    // Nav scroll: white glass → deep green on 80px+
+    (function() {
+        const nav = document.getElementById('main-nav');
+        if (!nav) return;
+        const onScroll = () => nav.classList.toggle('nav-scrolled', window.scrollY > 80);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+    })();
+
 </script>
 </body>
 </html>
