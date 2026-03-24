@@ -61,8 +61,11 @@
 <nav id="main-nav" class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-full border border-[#c0c8c3]/20 bg-white/80 backdrop-blur-3xl shadow-[0_20px_80px_rgba(27,28,21,0.08)] flex justify-between items-center px-8 py-3.5 z-50 relative overflow-hidden">
     <div class="absolute inset-0 af-pat-dk opacity-[0.045] pointer-events-none rounded-full"></div>
 
-    <a href="index.html" class="text-2xl font-bold tracking-tighter text-primary font-headline select-none">
-        Goal<span class="text-[#396756]">Fusion</span>
+    <a href="index.html" class="relative z-10 flex items-center gap-2.5 select-none" aria-label="GoalFusion home">
+        <img src="assets/gf-mark.svg" alt="GoalFusion mark" class="h-9 w-9 flex-shrink-0"/>
+        <span class="font-headline font-bold text-xl leading-none">
+            <span class="text-primary">goal</span><span class="text-[#E87B2E]"> fusion</span>
+        </span>
     </a>
     <div class="hidden md:flex items-center gap-8">
         <a class="text-on-background/60 font-medium hover:text-primary transition-colors hover:scale-105 duration-300 text-sm" href="about.html">About</a>
@@ -85,6 +88,14 @@
 <div id="mobile-menu" class="hidden fixed top-[4.5rem] left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-2xl border border-outline-variant/20 bg-white/95 backdrop-blur-2xl shadow-[0_20px_60px_rgba(27,28,21,0.15)] z-40 overflow-hidden" role="dialog" aria-label="Site navigation">
     <div class="absolute inset-0 af-pat-dk opacity-[0.055] pointer-events-none"></div>
     <div class="relative flex flex-col p-5 gap-0">
+        <!-- Logo in menu header -->
+        <div class="flex items-center gap-3 pb-4 mb-1 border-b border-outline-variant/15">
+            <img src="assets/gf-mark.svg" alt="GoalFusion" class="h-10 w-10"/>
+            <div class="flex flex-col">
+                <span class="font-headline font-bold text-base leading-tight text-primary">goal <span class="text-[#E87B2E]">fusion</span></span>
+                <span class="text-on-background/40 text-[10px] italic">Play . Dine . Thrive</span>
+            </div>
+        </div>
         <a href="about.html" class="flex items-center justify-between py-4 px-2 border-b border-outline-variant/15 text-on-background font-medium text-base hover:text-primary transition-colors">About <span class="material-symbols-outlined text-base text-primary/50">chevron_right</span></a>
         <a href="services.html" class="flex items-center justify-between py-4 px-2 border-b border-outline-variant/15 text-on-background font-medium text-base hover:text-primary transition-colors">Services <span class="material-symbols-outlined text-base text-primary/50">chevron_right</span></a>
         <a href="https://goalhub.ke/" target="_blank" rel="noopener" class="flex items-center justify-between py-4 px-2 border-b border-outline-variant/15 text-on-background font-medium text-base hover:text-primary transition-colors">GoalHub <span class="material-symbols-outlined text-base text-primary/50">open_in_new</span></a>
@@ -201,7 +212,15 @@
 <footer class="w-full rounded-t-[3rem] bg-[#f5f4e8]">
     <div class="w-full px-10 py-16 flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto text-sm tracking-wide">
         <div class="flex flex-col items-center md:items-start gap-3">
-            <a href="index.html" class="font-headline text-lg font-bold text-primary">GoalFusion</a>
+            <a href="index.html" class="flex items-center gap-3 group" aria-label="GoalFusion home">
+                <img src="assets/gf-mark.svg" alt="GoalFusion" class="h-12 w-12 flex-shrink-0"/>
+                <div class="flex flex-col">
+                    <span class="font-headline font-bold text-lg leading-tight">
+                        <span class="text-primary">goal</span><span class="text-[#E87B2E]"> fusion</span>
+                    </span>
+                    <span class="text-on-background/40 text-[10px] italic tracking-wide font-body">Play . Dine . Thrive</span>
+                </div>
+            </a>
             <p class="text-on-background/50 text-center md:text-left max-w-xs text-xs leading-relaxed">
                 GoalHub Complex · Namanga Road, Kitengela, Kenya<br/>
                 © 2026 GoalFusion Group. All Rights Reserved.

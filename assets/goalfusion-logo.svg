@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 520" width="440" height="520">
+
+  <!-- ── G Icon Mark — centered at (220, 155), r=130 ── -->
+
+  <!-- Full orange circle -->
+  <circle cx="220" cy="155" r="130" fill="#E87B2E"/>
+
+  <!-- White gap sector (upper-right opening of G) -->
+  <!-- -32° on the circle: (220+130·cos(-32°), 155+130·sin(-32°)) ≈ (330, 86) -->
+  <!-- 0° (3 o'clock): (350, 155) -->
+  <path d="M 220,155 L 330,86 A 130,130 0 0,1 350,155 Z" fill="white"/>
+
+  <!-- White organic compass petals -->
+  <!-- Top petal -->
+  <path d="M 212,143 C 192,127 190,97 220,77 C 250,97 248,127 228,143 Z" fill="white"/>
+  <!-- Bottom petal -->
+  <path d="M 212,167 C 192,183 190,213 220,233 C 250,213 248,183 228,167 Z" fill="white"/>
+  <!-- Left petal -->
+  <path d="M 208,147 C 192,127 162,125 142,155 C 162,185 192,183 208,163 Z" fill="white"/>
+  <!-- Right petal (partially clipped by gap — normal) -->
+  <path d="M 232,147 C 248,127 278,125 298,155 C 278,185 248,183 232,163 Z" fill="white"/>
+
+  <!-- Orange center circle -->
+  <circle cx="220" cy="155" r="20" fill="#E87B2E"/>
+
+
+  <!-- ── Wordmark: "goal fusion" ── -->
+  <text
+    x="220" y="345"
+    text-anchor="middle"
+    font-family="'Space Grotesk', 'Nunito', 'Arial Rounded MT Bold', sans-serif"
+    font-size="76"
+    font-weight="800"
+    fill="#1D5C33"
+    letter-spacing="-2">goal fusion</text>
+
+  <!-- ── Tagline: Play . Dine . Thrive ── -->
+  <text
+    x="220" y="400"
+    text-anchor="middle"
+    font-family="Georgia, 'Palatino Linotype', serif"
+    font-style="italic"
+    font-size="32"
+    fill="#1D5C33"
+    letter-spacing="1">Play . Dine . Thrive</text>
+
+</svg>
