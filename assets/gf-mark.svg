@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
   <!-- Full orange circle -->
-  <circle cx="110" cy="110" r="100" fill="#E87B2E"/>
+  <circle cx="110" cy="110" r="100" fill="#F4743B"/>
 
   <!-- White gap sector — cuts the upper-right opening of the G -->
   <!-- Gap: from -32° (top: ~194,57) to 0° (3 o'clock: 210,110) -->
@@ -17,5 +17,5 @@
   <path d="M 119,103 C 132,86 157,85 174,110 C 157,135 132,134 119,117 Z" fill="white"/>
 
   <!-- Orange center circle (caps the petal intersection) -->
-  <circle cx="110" cy="110" r="15" fill="#E87B2E"/>
+  <circle cx="110" cy="110" r="15" fill="#F4743B"/>
 </svg>
