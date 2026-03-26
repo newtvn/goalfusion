@@ -14,7 +14,7 @@
 <meta name="geo.region" content="KE-16"/>
 <meta name="geo.placename" content="Kitengela"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Dancing+Script:wght@700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
 <script>
     tailwind.config = {
@@ -130,6 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
     #main-nav.nav-scrolled .nav-logo-text {
         color: white !important;
     }
+    #main-nav.nav-scrolled .nav-logo-tagline {
+        color: rgba(255,255,255,0.65) !important;
+    }
 
     /* ── Buttons ── */
     .btn-primary {
@@ -187,10 +190,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="absolute inset-0 af-pat-dk opacity-[0.045] pointer-events-none rounded-full"></div>
 
     <a href="/" class="relative z-10 flex items-center gap-2.5 select-none" aria-label="GoalFusion home">
-        <img src="../assets/gf-mark.svg" alt="GoalFusion mark" class="h-9 w-9 flex-shrink-0"/>
-        <span class="font-headline font-bold text-xl leading-none">
-            <span class="text-primary nav-logo-text">goal</span><span class="text-[#F4743B]"> fusion</span>
-        </span>
+        <img src="../assets/favicon-mark.svg" alt="GoalFusion mark" class="h-9 w-9 flex-shrink-0"/>
+        <div class="flex flex-col leading-none">
+            <span class="nav-logo-text text-primary font-bold text-xl leading-tight" style="font-family:'Space Grotesk','Nunito','Arial Rounded MT Bold',sans-serif;font-weight:800;letter-spacing:-0.02em;">goal fusion</span>
+            <span class="tagline nav-logo-tagline text-primary/60 leading-none" style="font-size:9px;">Play . Dine . Thrive</span>
+        </div>
     </a>
     <div class="hidden md:flex items-center gap-8">
         <a class="nav-link text-on-background/60 font-medium hover:text-[#F4743B] transition-colors hover:scale-105 duration-300 text-sm" href="/about/">About</a>
@@ -217,10 +221,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="relative flex flex-col p-5 gap-0">
         <!-- Logo in menu header -->
         <div class="flex items-center gap-3 pb-4 mb-1 border-b border-outline-variant/15">
-            <img src="../assets/gf-mark.svg" alt="GoalFusion" class="h-10 w-10"/>
+            <img src="../assets/favicon-mark.svg" alt="GoalFusion" class="h-10 w-10"/>
             <div class="flex flex-col">
-                <span class="font-headline font-bold text-base leading-tight text-primary">goal <span class="text-[#F4743B]">fusion</span></span>
-                <span class="text-on-background/40 text-[10px] italic">Play . Dine . Thrive</span>
+                <span class="font-bold text-base leading-tight text-primary" style="font-family:'Space Grotesk','Nunito','Arial Rounded MT Bold',sans-serif;font-weight:800;">goal fusion</span>
+                <span class="tagline text-on-background/40 leading-none" style="font-size:10px;">Play . Dine . Thrive</span>
             </div>
         </div>
         <a href="/about/" class="flex items-center justify-between py-4 px-2 border-b border-outline-variant/15 text-on-background font-medium text-base hover:text-primary transition-colors">About <span class="material-symbols-outlined text-base text-primary/50">chevron_right</span></a>
@@ -471,12 +475,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="w-full px-10 py-16 flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto text-sm tracking-wide">
         <div class="flex flex-col items-center md:items-start gap-3">
             <a href="/" class="flex items-center gap-3 group" aria-label="GoalFusion home">
-                <img src="../assets/gf-mark.svg" alt="GoalFusion" class="h-12 w-12 flex-shrink-0"/>
+                <img src="../assets/favicon-mark.svg" alt="GoalFusion" class="h-12 w-12 flex-shrink-0"/>
                 <div class="flex flex-col">
-                    <span class="font-headline font-bold text-lg leading-tight">
-                        <span class="text-white nav-logo-text">goal</span><span class="text-[#F4743B]"> fusion</span>
-                    </span>
-                    <span class="tagline text-[#E5F77D] text-xs tracking-wide">Play . Dine . Thrive</span>
+                    <span class="font-bold text-lg leading-tight text-white" style="font-family:'Space Grotesk','Nunito','Arial Rounded MT Bold',sans-serif;font-weight:800;letter-spacing:-0.02em;">goal fusion</span>
+                    <span class="tagline text-[#E5F77D] leading-none" style="font-size:10px;">Play . Dine . Thrive</span>
                 </div>
             </a>
             <p class="text-white/60 text-center md:text-left max-w-xs text-xs leading-relaxed">
