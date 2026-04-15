@@ -182,6 +182,20 @@
         border-color: #F4743B !important;
         box-shadow: 0 0 0 3px rgba(244,116,59,0.18) !important;
     }
+
+    /* ── Trending meals scroll ── */
+    .trending-scroll {
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .trending-scroll::-webkit-scrollbar { display: none; }
+    .trending-card { scroll-snap-align: start; }
+    @keyframes badgePulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50%       { opacity: 0.8; transform: scale(1.06); }
+    }
+    .badge-pulse { animation: badgePulse 2.4s ease-in-out infinite; }
 </style>
 </head>
 <body class="bg-background text-on-background font-body antialiased">
@@ -255,6 +269,127 @@
                 See Menu
             </a>
         </div>
+    </div>
+</section>
+
+<!-- Trending This Week -->
+<section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <div class="flex items-end justify-between mb-8 md:mb-12">
+            <div>
+                <span class="text-xs font-headline font-bold tracking-widest uppercase text-[#542925]/70 mb-2 block">Most Ordered</span>
+                <h2 class="text-3xl md:text-4xl font-headline font-bold tracking-tighter text-primary">Trending This Week</h2>
+            </div>
+            <a href="#menu" class="hidden md:flex items-center gap-1 text-sm font-bold text-[#542925] hover:text-[#F4743B] transition-colors">
+                Full Menu <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+        </div>
+
+        <!-- Horizontal scroll on mobile, 3-col grid on md, 6-col on lg -->
+        <div class="flex gap-4 overflow-x-auto trending-scroll md:grid md:grid-cols-3 lg:grid-cols-6 pb-4 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0">
+
+            <!-- 1: Kienyeji Chicken -->
+            <div class="trending-card flex-shrink-0 w-[240px] md:w-auto bg-gradient-to-br from-[#7c3d39] to-[#542925] rounded-2xl p-5 relative overflow-hidden group cursor-pointer hover:scale-[1.03] transition-transform duration-300"
+                 onclick="orderItem('Kienyeji Chicken (Free-range)', 'KES 520')">
+                <div class="absolute inset-0 af-pat-lt opacity-[0.07] pointer-events-none"></div>
+                <span class="inline-flex items-center gap-1 bg-[#F4743B] text-white text-[10px] font-headline font-bold px-2.5 py-1 rounded-full mb-3 badge-pulse">
+                    <span class="material-symbols-outlined text-[11px]">local_fire_department</span> TRENDING
+                </span>
+                <div class="text-4xl mb-3 select-none">🍗</div>
+                <h3 class="font-headline font-bold text-[#ffdad6] text-sm mb-1 leading-tight">Kienyeji Chicken</h3>
+                <p class="text-[#ffdad6]/55 text-xs leading-relaxed mb-3">Free-range chicken slow-cooked in traditional sauce with kienyeji greens.</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-[#f9b6af] font-headline font-bold text-sm">KES 520</span>
+                    <span class="material-symbols-outlined text-lg text-[#ffdad6]/30 group-hover:text-[#ffdad6]/80 transition-colors">shopping_bag</span>
+                </div>
+            </div>
+
+            <!-- 2: Matumbo Fry -->
+            <div class="trending-card flex-shrink-0 w-[240px] md:w-auto bg-gradient-to-br from-[#5c2e0a] to-[#3a1805] rounded-2xl p-5 relative overflow-hidden group cursor-pointer hover:scale-[1.03] transition-transform duration-300"
+                 onclick="orderItem('Matumbo Fry (Spiced Tripe)', 'KES 380')">
+                <div class="absolute inset-0 af-pat-lt opacity-[0.07] pointer-events-none"></div>
+                <span class="inline-flex items-center gap-1 bg-[#f59e0b] text-white text-[10px] font-headline font-bold px-2.5 py-1 rounded-full mb-3">
+                    <span class="material-symbols-outlined text-[11px]">star</span> BEST SELLER
+                </span>
+                <div class="text-4xl mb-3 select-none">🍲</div>
+                <h3 class="font-headline font-bold text-[#ffdad6] text-sm mb-1 leading-tight">Matumbo Fry</h3>
+                <p class="text-[#ffdad6]/55 text-xs leading-relaxed mb-3">Perfectly spiced tripe fried with tomatoes, onions and fresh peppers.</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-[#f9b6af] font-headline font-bold text-sm">KES 380</span>
+                    <span class="material-symbols-outlined text-lg text-[#ffdad6]/30 group-hover:text-[#ffdad6]/80 transition-colors">shopping_bag</span>
+                </div>
+            </div>
+
+            <!-- 3: Pilau ya Nyama -->
+            <div class="trending-card flex-shrink-0 w-[240px] md:w-auto bg-gradient-to-br from-[#6b3a1f] to-[#40200a] rounded-2xl p-5 relative overflow-hidden group cursor-pointer hover:scale-[1.03] transition-transform duration-300"
+                 onclick="orderItem('Pilau ya Nyama (Beef Pilau)', 'KES 420')">
+                <div class="absolute inset-0 af-pat-lt opacity-[0.07] pointer-events-none"></div>
+                <span class="inline-flex items-center gap-1 bg-[#542925] text-[#ffdad6] border border-[#ffdad6]/25 text-[10px] font-headline font-bold px-2.5 py-1 rounded-full mb-3">
+                    <span class="material-symbols-outlined text-[11px]">thumb_up</span> FAN FAV
+                </span>
+                <div class="text-4xl mb-3 select-none">🍛</div>
+                <h3 class="font-headline font-bold text-[#ffdad6] text-sm mb-1 leading-tight">Pilau ya Nyama</h3>
+                <p class="text-[#ffdad6]/55 text-xs leading-relaxed mb-3">Fragrant rice with tender beef and whole spices in a rich broth base.</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-[#f9b6af] font-headline font-bold text-sm">KES 420</span>
+                    <span class="material-symbols-outlined text-lg text-[#ffdad6]/30 group-hover:text-[#ffdad6]/80 transition-colors">shopping_bag</span>
+                </div>
+            </div>
+
+            <!-- 4: Nyama Choma -->
+            <div class="trending-card flex-shrink-0 w-[240px] md:w-auto bg-gradient-to-br from-[#8b3a1f] to-[#5c1a05] rounded-2xl p-5 relative overflow-hidden group cursor-pointer hover:scale-[1.03] transition-transform duration-300"
+                 onclick="orderItem('Nyama Choma (Roasted Goat with Kachumbari)', 'KES 650')">
+                <div class="absolute inset-0 af-pat-lt opacity-[0.07] pointer-events-none"></div>
+                <span class="inline-flex items-center gap-1 bg-[#F4743B] text-white text-[10px] font-headline font-bold px-2.5 py-1 rounded-full mb-3 badge-pulse">
+                    <span class="material-symbols-outlined text-[11px]">local_fire_department</span> TRENDING
+                </span>
+                <div class="text-4xl mb-3 select-none">🥩</div>
+                <h3 class="font-headline font-bold text-[#ffdad6] text-sm mb-1 leading-tight">Nyama Choma</h3>
+                <p class="text-[#ffdad6]/55 text-xs leading-relaxed mb-3">Roasted goat seasoned with herbs, served with fresh kachumbari salad.</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-[#f9b6af] font-headline font-bold text-sm">KES 650</span>
+                    <span class="material-symbols-outlined text-lg text-[#ffdad6]/30 group-hover:text-[#ffdad6]/80 transition-colors">shopping_bag</span>
+                </div>
+            </div>
+
+            <!-- 5: Mukimo Special -->
+            <div class="trending-card flex-shrink-0 w-[240px] md:w-auto bg-gradient-to-br from-[#2d5016] to-[#1a3009] rounded-2xl p-5 relative overflow-hidden group cursor-pointer hover:scale-[1.03] transition-transform duration-300"
+                 onclick="orderItem('Mukimo Special (Mashed Greens & Potatoes)', 'KES 300')">
+                <div class="absolute inset-0 af-pat-lt opacity-[0.07] pointer-events-none"></div>
+                <span class="inline-flex items-center gap-1 bg-[#69B578] text-white text-[10px] font-headline font-bold px-2.5 py-1 rounded-full mb-3">
+                    <span class="material-symbols-outlined text-[11px]">eco</span> VEGGIE
+                </span>
+                <div class="text-4xl mb-3 select-none">🌿</div>
+                <h3 class="font-headline font-bold text-[#d4ffd4] text-sm mb-1 leading-tight">Mukimo Special</h3>
+                <p class="text-[#d4ffd4]/55 text-xs leading-relaxed mb-3">Mashed peas, greens and potatoes finished with a drizzle of golden ghee.</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-[#a8f0a8] font-headline font-bold text-sm">KES 300</span>
+                    <span class="material-symbols-outlined text-lg text-[#d4ffd4]/30 group-hover:text-[#d4ffd4]/80 transition-colors">shopping_bag</span>
+                </div>
+            </div>
+
+            <!-- 6: Githeri ya Mama -->
+            <div class="trending-card flex-shrink-0 w-[240px] md:w-auto bg-gradient-to-br from-[#6b4c1f] to-[#42300a] rounded-2xl p-5 relative overflow-hidden group cursor-pointer hover:scale-[1.03] transition-transform duration-300"
+                 onclick="orderItem('Githeri ya Mama (Traditional Githeri)', 'KES 280')">
+                <div class="absolute inset-0 af-pat-lt opacity-[0.07] pointer-events-none"></div>
+                <span class="inline-flex items-center gap-1 bg-[#f59e0b] text-white text-[10px] font-headline font-bold px-2.5 py-1 rounded-full mb-3">
+                    <span class="material-symbols-outlined text-[11px]">star</span> VALUE PICK
+                </span>
+                <div class="text-4xl mb-3 select-none">🫘</div>
+                <h3 class="font-headline font-bold text-[#ffdad6] text-sm mb-1 leading-tight">Githeri ya Mama</h3>
+                <p class="text-[#ffdad6]/55 text-xs leading-relaxed mb-3">Traditional maize and beans stew cooked with tomatoes and onions.</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-[#f9b6af] font-headline font-bold text-sm">KES 280</span>
+                    <span class="material-symbols-outlined text-lg text-[#ffdad6]/30 group-hover:text-[#ffdad6]/80 transition-colors">shopping_bag</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Mobile swipe hint -->
+        <p class="md:hidden text-center text-xs text-on-surface-variant/40 mt-4 flex items-center justify-center gap-1">
+            <span class="material-symbols-outlined text-sm">swipe</span> Swipe to explore more dishes
+        </p>
     </div>
 </section>
 
@@ -562,6 +697,19 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
     })();
+
+    // ── Quick-order from trending card ──
+    function orderItem(itemName, price) {
+        const msg = [
+            'Hello Kienyeji Hub! 🍽️',
+            '',
+            "I'd like to order:",
+            `• ${itemName}  —  ${price}`,
+            '',
+            'Is this available for pickup / delivery right now? Please confirm. Thank you!'
+        ].join('\n');
+        window.open('https://wa.me/254116909515?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
+    }
 
     // ── Set today as min date on the date picker ──
     (function() {
