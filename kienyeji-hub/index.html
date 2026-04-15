@@ -139,6 +139,49 @@
         background-repeat: repeat;
         background-size: 60px 60px;
     }
+
+    /* ── Reservation form inputs ── */
+    * { -webkit-tap-highlight-color: transparent; }
+    .kh-input {
+        width: 100%;
+        background: rgba(255,255,255,0.88);
+        border: 1.5px solid rgba(84,41,37,0.2);
+        border-radius: 12px;
+        padding: 14px 16px;
+        font-family: 'Nunito', sans-serif;
+        font-size: 16px; /* 16px prevents iOS auto-zoom */
+        color: #1A1A1A;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+        box-sizing: border-box;
+    }
+    .kh-input:focus {
+        border-color: #542925;
+        box-shadow: 0 0 0 3px rgba(84,41,37,0.12);
+    }
+    select.kh-input {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23542925' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 16px;
+        padding-right: 40px;
+    }
+    .kh-label {
+        display: block;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 700;
+        font-size: 12px;
+        color: #542925;
+        margin-bottom: 6px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+    .kh-input.field-error {
+        border-color: #F4743B !important;
+        box-shadow: 0 0 0 3px rgba(244,116,59,0.18) !important;
+    }
 </style>
 </head>
 <body class="bg-background text-on-background font-body antialiased">
@@ -165,7 +208,7 @@
         <button id="menu-toggle" class="md:hidden w-10 h-10 flex items-center justify-center rounded-full text-primary hover:bg-primary/10 transition-colors" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
             <span class="material-symbols-outlined text-[22px]" id="menu-icon">menu</span>
         </button>
-        <a href="https://wa.me/254116909515" target="_blank" rel="noopener" class="nav-cta hidden md:inline-flex bg-[#F4743B] text-white px-6 py-2.5 rounded-full font-headline font-bold text-sm hover:bg-[#1E5B45] hover:scale-105 transition-all active:scale-95">
+        <a href="#reserve" class="nav-cta hidden md:inline-flex bg-[#542925] text-[#ffdad6] px-6 py-2.5 rounded-full font-headline font-bold text-sm hover:bg-[#1a0800] hover:scale-105 transition-all active:scale-95">
             Reserve Table
         </a>
     </div>
@@ -205,7 +248,7 @@
         <h1 class="text-6xl lg:text-8xl font-headline font-bold tracking-tighter text-white mb-6">Kienyeji Hub</h1>
         <p class="text-white/70 text-xl max-w-lg leading-relaxed mb-10">Heritage Kenyan cuisine made from locally sourced ingredients. Taste the soul of home cooking at the heart of Kitengela.</p>
         <div class="flex flex-wrap gap-4">
-            <a href="https://wa.me/254116909515" target="_blank" rel="noopener" class="bg-[#ffdad6] text-[#542925] px-8 py-4 rounded-full font-headline font-bold text-sm hover:scale-105 transition-transform inline-flex items-center gap-2">
+            <a href="#reserve" class="bg-[#ffdad6] text-[#542925] px-8 py-4 rounded-full font-headline font-bold text-sm hover:scale-105 transition-transform inline-flex items-center gap-2">
                 Reserve a Table <span class="material-symbols-outlined text-base">restaurant</span>
             </a>
             <a href="#menu" class="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-headline font-bold text-sm hover:scale-105 transition-transform">
@@ -299,6 +342,134 @@
 </section>
 
 
+<!-- Reserve Your Table -->
+<section id="reserve" class="py-24 px-6 bg-[#1a0800]">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <span class="text-xs font-headline font-bold tracking-widest uppercase text-[#f9b6af]/60 mb-3 block">Book Your Seat</span>
+            <h2 class="text-4xl lg:text-5xl font-headline font-bold tracking-tighter text-[#ffdad6] mb-4">Reserve a Table</h2>
+            <p class="text-[#ffdad6]/60 max-w-lg mx-auto text-base leading-relaxed">Fill in your details below and we'll confirm your booking via WhatsApp in minutes.</p>
+        </div>
+
+        <!-- Step indicator -->
+        <div class="flex items-center justify-center gap-3 mb-10">
+            <div class="flex items-center gap-2">
+                <span class="w-7 h-7 rounded-full bg-[#ffdad6] text-[#542925] font-headline font-bold text-xs flex items-center justify-center">1</span>
+                <span class="text-[#ffdad6]/70 text-xs font-bold tracking-wide uppercase">Fill Details</span>
+            </div>
+            <div class="w-8 h-px bg-[#ffdad6]/20"></div>
+            <div class="flex items-center gap-2">
+                <span class="w-7 h-7 rounded-full bg-[#ffdad6]/20 text-[#ffdad6]/50 font-headline font-bold text-xs flex items-center justify-center">2</span>
+                <span class="text-[#ffdad6]/40 text-xs font-bold tracking-wide uppercase">Confirm on WhatsApp</span>
+            </div>
+        </div>
+
+        <form id="reservation-form" class="bg-[#ffdad6]/5 border border-[#ffdad6]/10 rounded-2xl p-6 md:p-10" novalidate>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+
+                <!-- Full Name -->
+                <div>
+                    <label class="kh-label" for="res-name">Full Name <span class="text-[#F4743B]">*</span></label>
+                    <input type="text" id="res-name" name="name" class="kh-input" placeholder="e.g. John Kamau" autocomplete="name"/>
+                </div>
+
+                <!-- Phone -->
+                <div>
+                    <label class="kh-label" for="res-phone">Phone Number <span class="text-[#F4743B]">*</span></label>
+                    <input type="tel" id="res-phone" name="phone" class="kh-input" placeholder="e.g. 0712 345 678" autocomplete="tel"/>
+                </div>
+
+                <!-- Date -->
+                <div>
+                    <label class="kh-label" for="res-date">Preferred Date <span class="text-[#F4743B]">*</span></label>
+                    <input type="date" id="res-date" name="date" class="kh-input"/>
+                </div>
+
+                <!-- Time -->
+                <div>
+                    <label class="kh-label" for="res-time">Preferred Time <span class="text-[#F4743B]">*</span></label>
+                    <select id="res-time" name="time" class="kh-input">
+                        <option value="">Select a time</option>
+                        <option value="08:00 AM">08:00 AM</option>
+                        <option value="08:30 AM">08:30 AM</option>
+                        <option value="09:00 AM">09:00 AM</option>
+                        <option value="09:30 AM">09:30 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="10:30 AM">10:30 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="11:30 AM">11:30 AM</option>
+                        <option value="12:00 PM">12:00 PM</option>
+                        <option value="12:30 PM">12:30 PM</option>
+                        <option value="01:00 PM">01:00 PM</option>
+                        <option value="01:30 PM">01:30 PM</option>
+                        <option value="02:00 PM">02:00 PM</option>
+                        <option value="02:30 PM">02:30 PM</option>
+                        <option value="03:00 PM">03:00 PM</option>
+                        <option value="03:30 PM">03:30 PM</option>
+                        <option value="04:00 PM">04:00 PM</option>
+                        <option value="04:30 PM">04:30 PM</option>
+                        <option value="05:00 PM">05:00 PM</option>
+                    </select>
+                </div>
+
+                <!-- Guests -->
+                <div>
+                    <label class="kh-label" for="res-guests">Number of Guests <span class="text-[#F4743B]">*</span></label>
+                    <select id="res-guests" name="guests" class="kh-input">
+                        <option value="">How many guests?</option>
+                        <option value="1 person">1 (Just me)</option>
+                        <option value="2 people">2 people</option>
+                        <option value="3 people">3 people</option>
+                        <option value="4 people">4 people</option>
+                        <option value="5 people">5 people</option>
+                        <option value="6 people">6 people</option>
+                        <option value="7-10 people">7 - 10 people</option>
+                        <option value="11-20 people">11 - 20 people</option>
+                        <option value="20+ people (group event)">20+ (Group event)</option>
+                    </select>
+                </div>
+
+                <!-- Occasion -->
+                <div>
+                    <label class="kh-label" for="res-occasion">Occasion</label>
+                    <select id="res-occasion" name="occasion" class="kh-input">
+                        <option value="">Select occasion (optional)</option>
+                        <option value="Regular Dining">Regular Dining</option>
+                        <option value="Birthday Celebration">Birthday Celebration</option>
+                        <option value="Anniversary">Anniversary</option>
+                        <option value="Business Lunch">Business Lunch</option>
+                        <option value="Team / Group Outing">Team / Group Outing</option>
+                        <option value="Post-Match Meal (GoalHub)">Post-Match Meal (GoalHub)</option>
+                        <option value="Private Event">Private Event</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Special Requests -->
+                <div class="md:col-span-2">
+                    <label class="kh-label" for="res-notes">Special Requests</label>
+                    <textarea id="res-notes" name="notes" class="kh-input resize-none" rows="3"
+                              placeholder="Dietary preferences, allergies, seating preferences, or special arrangements..."></textarea>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <button type="submit"
+                        class="w-full sm:w-auto bg-[#ffdad6] text-[#542925] px-10 py-4 rounded-full font-headline font-bold text-base hover:bg-white hover:scale-105 transition-all active:scale-95 inline-flex items-center justify-center gap-2 shadow-[0_8px_30px_rgba(255,218,214,0.2)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 flex-shrink-0">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                    Send via WhatsApp
+                </button>
+                <p class="text-[#ffdad6]/40 text-xs leading-relaxed max-w-xs">
+                    Your details open directly in WhatsApp as a ready-to-send message. We confirm within 30 minutes.
+                </p>
+            </div>
+        </form>
+    </div>
+</section>
+
 <!-- Kienyeji Hub Flyer -->
 <section class="py-16 px-6 max-w-5xl mx-auto">
     <div class="text-center mb-8">
@@ -391,6 +562,66 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
     })();
+
+    // ── Set today as min date on the date picker ──
+    (function() {
+        const d = document.getElementById('res-date');
+        if (!d) return;
+        const t = new Date();
+        d.min = `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+    })();
+
+    // ── Reservation form → opens WhatsApp with pre-typed message ──
+    const reservationForm = document.getElementById('reservation-form');
+    if (reservationForm) {
+        reservationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name     = document.getElementById('res-name').value.trim();
+            const phone    = document.getElementById('res-phone').value.trim();
+            const date     = document.getElementById('res-date').value;
+            const time     = document.getElementById('res-time').value;
+            const guests   = document.getElementById('res-guests').value;
+            const occasion = document.getElementById('res-occasion').value;
+            const notes    = document.getElementById('res-notes').value.trim();
+
+            // Highlight empty required fields
+            const required = { 'res-name': name, 'res-phone': phone, 'res-date': date, 'res-time': time, 'res-guests': guests };
+            let hasError = false;
+            Object.entries(required).forEach(([id, val]) => {
+                const el = document.getElementById(id);
+                if (!val) {
+                    hasError = true;
+                    el.classList.add('field-error');
+                    const clear = () => { el.classList.remove('field-error'); el.removeEventListener('input', clear); el.removeEventListener('change', clear); };
+                    el.addEventListener('input', clear);
+                    el.addEventListener('change', clear);
+                }
+            });
+            if (hasError) { document.getElementById('res-name').closest('form').scrollIntoView({ behavior:'smooth', block:'center' }); return; }
+
+            // Format date for readability
+            const dateObj = new Date(date + 'T12:00:00');
+            const dateFmt = dateObj.toLocaleDateString('en-KE', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+
+            // Build the pre-typed WhatsApp message
+            const lines = [
+                'Hello Kienyeji Hub! 🍽️',
+                '',
+                "I'd like to reserve a table:",
+                `• Name: ${name}`,
+                `• Phone: ${phone}`,
+                `• Date: ${dateFmt}`,
+                `• Time: ${time}`,
+                `• Guests: ${guests}`,
+            ];
+            if (occasion) lines.push(`• Occasion: ${occasion}`);
+            if (notes)    lines.push(`• Special requests: ${notes}`);
+            lines.push('', 'Please confirm my booking. Thank you!');
+
+            const waUrl = 'https://wa.me/254116909515?text=' + encodeURIComponent(lines.join('\n'));
+            window.open(waUrl, '_blank', 'noopener,noreferrer');
+        });
+    }
 
 </script>
 
