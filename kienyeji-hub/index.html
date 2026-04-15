@@ -196,6 +196,27 @@
         50%       { opacity: 0.8; transform: scale(1.06); }
     }
     .badge-pulse { animation: badgePulse 2.4s ease-in-out infinite; }
+
+    /* ── Specials card hover shimmer ── */
+    .special-card {
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .special-card::before {
+        content: '';
+        position: absolute;
+        top: -60%;
+        left: -80%;
+        width: 50%;
+        height: 220%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+        transform: skewX(-18deg);
+        transition: left 0.55s ease;
+        pointer-events: none;
+    }
+    .special-card:hover { transform: translateY(-3px); }
+    .special-card:hover::before { left: 160%; }
 </style>
 </head>
 <body class="bg-background text-on-background font-body antialiased">
@@ -605,20 +626,109 @@
     </div>
 </section>
 
-<!-- Kienyeji Hub Flyer -->
-<section class="py-16 px-6 max-w-5xl mx-auto">
-    <div class="text-center mb-8">
-        <span class="text-xs font-headline font-bold tracking-widest uppercase text-[#542925]/70 mb-3 block">What's On</span>
-        <h2 class="text-3xl font-headline font-bold text-primary tracking-tighter">Current Promotions</h2>
-    </div>
-    <div class="rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(84,41,37,0.2)] border border-[#542925]/10">
-        <img src="kh-flyer.png" alt="Kienyeji Hub promotions flyer" class="w-full h-auto object-contain"/>
-    </div>
-    <div class="text-center mt-8">
-        <a href="https://wa.me/254116909515" target="_blank" rel="noopener"
-           class="inline-flex items-center gap-2 bg-[#F4743B] text-white px-8 py-4 rounded-full font-headline font-bold text-sm hover:bg-[#542925] hover:scale-105 transition-all active:scale-95">
-            Reserve Your Spot <span class="material-symbols-outlined text-base">restaurant</span>
-        </a>
+<!-- Specials & Deals -->
+<section class="py-16 md:py-24 px-6 md:px-8">
+    <div class="max-w-7xl mx-auto">
+
+        <div class="text-center mb-10 md:mb-14">
+            <span class="text-xs font-headline font-bold tracking-widest uppercase text-[#542925]/70 mb-3 block">Limited Time</span>
+            <h2 class="text-3xl md:text-4xl font-headline font-bold tracking-tighter text-primary mb-3">Specials &amp; Deals</h2>
+            <p class="text-on-surface-variant max-w-md mx-auto text-base">Fresh deals every week. Show up hungry, leave happy.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-10 md:mb-12">
+
+            <!-- Deal 1: Lunch Express -->
+            <div class="special-card bg-gradient-to-br from-[#542925] to-[#3d1a0e] rounded-2xl p-6 md:p-7 flex gap-5 items-start border border-[#ffdad6]/10 hover:border-[#ffdad6]/25 cursor-pointer"
+                 onclick="openDeal('Lunch Express', 'Any main meal + fresh fruit juice', 'KES 350 (Mon-Fri, 12pm-2pm)')">
+                <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-[#ffdad6]/12 flex items-center justify-center text-3xl select-none group-hover:scale-110">🍽️</div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
+                        <h3 class="font-headline font-bold text-[#ffdad6] text-lg">Lunch Express</h3>
+                        <span class="flex-shrink-0 bg-[#F4743B] text-white text-[10px] font-headline font-bold px-2.5 py-1 rounded-full">MON – FRI</span>
+                    </div>
+                    <p class="text-[#ffdad6]/60 text-sm leading-relaxed mb-3">Any main meal + fresh fruit juice. Quick, filling, ready in under 10 minutes.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-[#ffdad6]/35 text-sm line-through">KES 430</span>
+                            <span class="text-[#ffdad6] font-headline font-bold text-xl">KES 350</span>
+                        </div>
+                        <span class="text-[#ffdad6]/40 text-xs">12:00 – 14:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deal 2: Weekend Brunch Buffet -->
+            <div class="special-card bg-gradient-to-br from-[#1E5B45] to-[#123d2c] rounded-2xl p-6 md:p-7 flex gap-5 items-start border border-white/10 hover:border-white/20 cursor-pointer"
+                 onclick="openDeal('Weekend Brunch Buffet', 'All-you-can-eat spread: ugali, rice, chapati, stews, veggies and fresh juice', 'KES 500 per person (Sat-Sun, 8am-12pm)')">
+                <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-white/10 flex items-center justify-center text-3xl select-none">🥘</div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
+                        <h3 class="font-headline font-bold text-white text-lg">Weekend Brunch Buffet</h3>
+                        <span class="flex-shrink-0 bg-[#69B578] text-white text-[10px] font-headline font-bold px-2.5 py-1 rounded-full">SAT – SUN</span>
+                    </div>
+                    <p class="text-white/60 text-sm leading-relaxed mb-3">All-you-can-eat: ugali, rice, chapati, stews, veggies and fresh juice included.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-white/30 text-sm line-through">KES 700</span>
+                            <span class="text-white font-headline font-bold text-xl">KES 500 <span class="text-sm font-body font-normal text-white/55">/person</span></span>
+                        </div>
+                        <span class="text-white/40 text-xs">08:00 – 12:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deal 3: GoalHub Combo -->
+            <div class="special-card bg-gradient-to-br from-[#1a0800] to-[#2d1005] rounded-2xl p-6 md:p-7 flex gap-5 items-start border border-[#ffdad6]/10 hover:border-[#ffdad6]/25 cursor-pointer"
+                 onclick="openDeal('GoalHub Combo', 'Pitch booking at GoalHub + post-match meal for 10 people', 'KES 3,200 — save KES 800!')">
+                <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-[#ffdad6]/10 flex items-center justify-center text-3xl select-none">⚽</div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
+                        <h3 class="font-headline font-bold text-[#ffdad6] text-lg">GoalHub Combo</h3>
+                        <span class="flex-shrink-0 bg-[#f59e0b] text-white text-[10px] font-headline font-bold px-2.5 py-1 rounded-full">SAVE KES 800</span>
+                    </div>
+                    <p class="text-[#ffdad6]/60 text-sm leading-relaxed mb-3">Book a pitch at GoalHub + post-match meal for 10 people. Fuel up after the game!</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-[#ffdad6]/35 text-sm line-through">KES 4,000</span>
+                            <span class="text-[#ffdad6] font-headline font-bold text-xl">KES 3,200</span>
+                        </div>
+                        <span class="text-[#ffdad6]/40 text-xs">Group of 10</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deal 4: Happy Hour -->
+            <div class="special-card bg-gradient-to-br from-[#F4743B] to-[#c44f1e] rounded-2xl p-6 md:p-7 flex gap-5 items-start border border-white/10 hover:border-white/20 cursor-pointer"
+                 onclick="openDeal('Happy Hour', '20% off all cold drinks, juices and smoothies', 'Daily 3pm-5pm — no code needed')">
+                <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-white/15 flex items-center justify-center text-3xl select-none">🥤</div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
+                        <h3 class="font-headline font-bold text-white text-lg">Happy Hour</h3>
+                        <span class="flex-shrink-0 bg-white/20 text-white text-[10px] font-headline font-bold px-2.5 py-1 rounded-full">EVERY DAY</span>
+                    </div>
+                    <p class="text-white/70 text-sm leading-relaxed mb-3">All cold drinks, fresh juices and smoothies at 20% off. Unwind every afternoon.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-white font-headline font-bold text-xl">20% OFF <span class="text-sm font-body font-normal text-white/65">all drinks</span></span>
+                        <span class="text-white/60 text-xs">15:00 – 17:00</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Promotions flyer -->
+        <div class="rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(84,41,37,0.2)] border border-[#542925]/10">
+            <img src="kh-flyer.png" alt="Kienyeji Hub current promotions flyer" class="w-full h-auto object-contain"/>
+        </div>
+
+        <div class="text-center mt-8">
+            <a href="#reserve"
+               class="inline-flex items-center gap-2 bg-[#542925] text-[#ffdad6] px-10 py-4 rounded-full font-headline font-bold text-sm hover:bg-[#1a0800] hover:scale-105 transition-all active:scale-95">
+                Claim a Deal <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </a>
+        </div>
+
     </div>
 </section>
 
@@ -697,6 +807,20 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
     })();
+
+    // ── Open a deal via WhatsApp ──
+    function openDeal(dealName, description, pricing) {
+        const msg = [
+            'Hello Kienyeji Hub! 🍽️',
+            '',
+            `I'm interested in the *${dealName}* deal:`,
+            `• ${description}`,
+            `• ${pricing}`,
+            '',
+            'How do I take advantage of this offer? Thank you!'
+        ].join('\n');
+        window.open('https://wa.me/254116909515?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
+    }
 
     // ── Quick-order from trending card ──
     function orderItem(itemName, price) {
